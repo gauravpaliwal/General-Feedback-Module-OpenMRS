@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.openmrs.module.helloworld.">
+  <class name="org.openmrs.module.feedback.HelloWorldResponse" table="hello_world_response">
+    <id column="hello_world_response_id" name="helloWorldResponseId" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="retired" length="1" name="retired" not-null="true" type="boolean"/>
+    <property column="response" length="50" name="response" not-null="true" type="java.lang.String"/>
+  </class>
+</hibernate-mapping>

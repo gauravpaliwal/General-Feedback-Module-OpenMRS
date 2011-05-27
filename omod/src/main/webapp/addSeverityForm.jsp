@@ -8,7 +8,7 @@
 
 <form method="post">
 
-	<spring:message code="feedback.addResponse"/>: 
+	<spring:message code="feedback.addSeverity"/>: 
 	<input type="text" name="response" value="" />
 	
 	<br/><br/>
@@ -17,7 +17,7 @@
 
 </form>
 
-<h3><spring:message code="feedback.responses"/></h3>
+<h3><spring:message code="feedback.severities"/></h3>
  <table border="0">
 
 <c:forEach items="${severities}" var="severityObj">

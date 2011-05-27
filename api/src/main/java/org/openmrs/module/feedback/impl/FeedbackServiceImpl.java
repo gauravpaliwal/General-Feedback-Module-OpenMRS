@@ -11,9 +11,9 @@ import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.module.feedback.db.FeedbackDAO;
 
 /**
- * HelloWorldResponse-related services
+ * Feedback severity related services
  * 
- * @author Ben Wolfe
+ * @author Gaurav Paliwal
  * @vesrion 1.0
  */
 public class FeedbackServiceImpl implements FeedbackService {

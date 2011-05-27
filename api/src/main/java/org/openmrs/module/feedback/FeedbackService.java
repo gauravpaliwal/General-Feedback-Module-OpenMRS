@@ -13,7 +13,7 @@ public interface FeedbackService {
 	public void setHelloWorldDAO(FeedbackDAO dao);
 
 	/**
-	 * Saves (creates) a new hello world response
+	 * Saves (creates) a new feedback module data
 	 * 
 	 * @param saying to be created
 	 * @throws APIException

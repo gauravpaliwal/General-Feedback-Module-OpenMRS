@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.feedback.HelloWorldResponse;
 import org.openmrs.module.feedback.FeedbackSeverity;
 import org.openmrs.module.feedback.FeedbackService;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -21,7 +20,6 @@ public class AddSeverityFormController extends SimpleFormController {
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
 		
-		//String text = Context.getService(HelloWorldService.class);
 		System.out.println(request.getParameter( "response" )) ; 
                 if (request.getParameter("response") != null)
                 {

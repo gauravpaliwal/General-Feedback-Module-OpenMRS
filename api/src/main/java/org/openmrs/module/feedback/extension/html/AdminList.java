@@ -13,14 +13,13 @@ public class AdminList extends AdministrationSectionExt {
 	}
 	
 	public String getTitle() {
-		return "helloworld.title";
+		return "Feedback Module";
 	}
 	
 	public Map<String, String> getLinks() {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
-		map.put("module/feedback/viewHelloWorld.htm", "helloworld.view");
 		map.put("module/feedback/addSeverity.form", "Add Severity Level");
 		
 		return map;

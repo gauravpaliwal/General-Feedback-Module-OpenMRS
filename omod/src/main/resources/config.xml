@@ -5,12 +5,12 @@
 	
 	<!-- Basic Module Properties -->
 	<id>feedback</id>
-	<name>General Feedback Mechaishm Module</name>
-	<version>0.0</version>
+	<name>General Feedback Mechanism Module</name>
+	<version>1.0.0</version>
 	<package>org.openmrs.module.feedback</package>
-	<author>Ben Wolfe</author>
+	<author>Gaurav Paliwal</author>
 	<description>
-			General Feedback Mechanishm Module
+			General Feedback Mechanism Module
 	</description>
 
 	<activator>org.openmrs.module.feedback.FeedbackActivator</activator>

@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>feedback-parent</artifactId>
-	<version>0.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>General Feedback Mechanishm Module</name>
 	<description>Parent project for Hello World Module</description>

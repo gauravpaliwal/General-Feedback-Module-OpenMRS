@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+ 
+
+ 	
+	<changeSet id="feedback-2011-05-26-16:59" author="bwolfe">
+		<preConditions onFail="MARK_RAN">
+			<not><tableExists tableName="feedback_severity"/></not>
+		</preConditions>
+		<comment>
+			Creating the feedback_severity table
+		</comment>
+		<createTable tableName="feedback_severity">
+			<column name="index" type="int">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="severity" type="varchar(50)"/>
+			
+		</createTable>
+                <addAutoIncrement tableName="feedback_severity" columnName="index" columnDataType="int"/>
+
+
+    </changeSet>
+    
+
+ 
+</databaseChangeLog>

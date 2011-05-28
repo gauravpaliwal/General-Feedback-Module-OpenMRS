@@ -7,7 +7,7 @@
  
 
  	
-	<changeSet id="feedback-2011-05-26-16:59" author="bwolfe">
+	<changeSet id="feedback-2011-05-28-10:59" author="gauravpaliwal">
 		<preConditions onFail="MARK_RAN">
 			<not><tableExists tableName="feedback_severity"/></not>
 		</preConditions>
@@ -20,12 +20,75 @@
 			</column>
 			<column name="severity" type="varchar(50)"/>
 			
-		</createTable>
+		</createTable>                
                 <addAutoIncrement tableName="feedback_severity" columnName="index" columnDataType="int"/>
+        </changeSet>
+        
+        <changeSet id="feedback-2011-05-28-11:02" author="gauravpaliwal">
+		<preConditions onFail="MARK_RAN">
+			<not><tableExists tableName="feedback_status"/></not>
+		</preConditions>
+		<comment>
+			Creating the feedback_status table
+		</comment>
+		<createTable tableName="feedback_status">
+			<column name="index" type="int">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="status" type="varchar(50)"/>			
+		</createTable>                
+                <addAutoIncrement tableName="feedback_status" columnName="index" columnDataType="int"/>
+        </changeSet>
 
-
-    </changeSet>
-    
-
+       
+        <changeSet id="feedback-2011-05-28-11:25" author="gauravpaliwal">
+		<preConditions onFail="MARK_RAN">
+			<not><tableExists tableName="feedback_predefined_subject"/></not>
+		</preConditions>
+		<comment>
+			Creating the feedback_predefined_subject table
+		</comment>
+		<createTable tableName="feedback_predefined_subject">
+			<column name="index" type="int">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="subject" type="varchar(50)"/>			
+		</createTable>                
+                <addAutoIncrement tableName="feedback_predefined_subject" columnName="index" columnDataType="int"/>
+        </changeSet>    
+        
+        <changeSet id="feedback-2011-05-28-11:28" author="gauravpaliwal">
+		<preConditions onFail="MARK_RAN">
+			<not><tableExists tableName="feedback_feedback"/></not>
+		</preConditions>
+		<comment>
+			Creating the feedback_predefined_subject table
+		</comment>
+		<createTable tableName="feedback_feedback">
+			<column name="feedback_id" type="int">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="creator" type="int">                 
+                                <constraints nullable="false"/>
+                        </column>
+                        <column name="subject" type="varchar(255)">
+                                <constraints nullable="false"/>
+                        </column>
+                        <column name="content" type="varchar(5000)">     
+                                <constraints nullable="false"/>
+                        </column>
+                        <column name="severity" type="varchar(25)">  
+                                <constraints nullable="false"/>
+                        </column>
+                        <column name="comment" type="varchar(5000)"/>   
+                        <column name="status" type="varchar(25)"/>  
+                        <column name="date_created" type="date">
+                            <constraints nullable="false"/>
+                        </column>
+                        <column name="date_changed" type="date" />
+		</createTable>                
+                <addAutoIncrement tableName="feedback_feedback" columnName="feedback_id" columnDataType="int"/>
+        </changeSet>  
+        
  
 </databaseChangeLog>

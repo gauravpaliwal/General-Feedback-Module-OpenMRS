@@ -1,34 +1,34 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="org.openmrs.module.feedback" >
-    <class name="org.openmrs.module.feedback.FeedbackFeedback" table="feedback_feedback" >
-        <id name="feedbackId" type="java.lang.Integer">
-            <column name="feedback_id" />
-            <generator class="native" />
-        </id>
-        <property name="creator" type="int">
-            <column name="creator" not-null="true" />
-        </property>
-        <property name="subject" type="string">
-            <column name="subject" not-null="true" />
-        </property>
-        <property name="content" type="string">
-            <column name="content" length="5000" not-null="true" />
-        </property>
-        <property name="severity" type="string">
-            <column name="severity" length="25" not-null="true" />
-        </property>
-        <property name="comment" type="string">
-            <column name="comment" length="5000" />
-        </property>
-        <property name="status" type="string">
-            <column name="status" length="25" />
-        </property>
-        <property name="dateCreated" type="date">
-            <column name="date_created" length="10" not-null="true" />
-        </property>
-        <property name="dateChanged" type="date">
-            <column name="date_changed" length="10" />
-        </property>
-    </class>
+<hibernate-mapping package="org.openmrs.module.feedback">
+  <class name="org.openmrs.module.feedback.FeedbackFeedback" table="feedback_feedback">
+    <id name="feedbackId" type="java.lang.Integer">
+      <column name="feedback_id"/>
+      <generator class="native"/>
+    </id>
+    <property name="creator" type="int">
+      <column name="creator" not-null="true"/>
+    </property>
+    <property name="subject" type="string">
+      <column name="subject" not-null="true"/>
+    </property>
+    <property name="content" type="string">
+      <column length="5000" name="content" not-null="true"/>
+    </property>
+    <property name="severity" type="string">
+      <column length="25" name="severity" not-null="true"/>
+    </property>
+    <property name="comment" type="string">
+      <column length="5000" name="comment"/>
+    </property>
+    <property name="status" type="string">
+      <column length="25" name="status"/>
+    </property>
+    <property name="dateCreated" type="date">
+      <column length="10" name="date_created" not-null="true"/>
+    </property>
+    <property name="dateChanged" type="date">
+      <column length="10" name="date_changed"/>
+    </property>
+  </class>
 </hibernate-mapping>

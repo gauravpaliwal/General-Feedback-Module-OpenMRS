@@ -1,5 +1,7 @@
 package org.openmrs.module.feedback.web;
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,12 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.feedback.FeedbackSeverity;
 import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.module.feedback.FeedbackStatus;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-public class AddSeverityFormController extends SimpleFormController {
+public class AddStatusFormController extends SimpleFormController {
 	
     /** Logger for this class and subclasses */
     protected final Log log = LogFactory.getLog(getClass());
@@ -26,20 +27,12 @@ public class AddSeverityFormController extends SimpleFormController {
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
-                    FeedbackSeverity s = new FeedbackSeverity() ;
-                    s.setSeverity(request.getParameter("response")) ;
-                    service.createFeedbackSeverity(s) ;
-                    s = service.getFeedbackSeverity(2) ;
-                    FeedbackSeverity k = new FeedbackSeverity() ;
                     FeedbackStatus x = new FeedbackStatus() ;
-                    x.setStatus("FsCk");
+                    x.setStatus( request.getParameter("response") );
                     service.createFeedbackStatus(x) ;
-                    FeedbackSeverity m = new FeedbackSeverity() ;
-                    m = service.getFeedbackSeverity( 3 ) ;
-   /*               service.updateFeedbackSeverity(m); */
-                    
-                    
-                    
+                    FeedbackStatus s = new FeedbackStatus()  ;
+                    s = service.getFeedbackStatus(2) ;
+
                 }
                 			
 		String text = "Not used";
@@ -56,8 +49,7 @@ public class AddSeverityFormController extends SimpleFormController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
-		map.put("severities", hService.getSeverities()) ;
-		
+		map.put("statuses", hService.getStatuses() ) ;		
 		return map;
 		
 	}

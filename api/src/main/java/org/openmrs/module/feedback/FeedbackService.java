@@ -21,6 +21,8 @@ public interface FeedbackService {
 	@Authorized({"Add Hello World Response"})
 	public void createHelloWorldResponse(HelloWorldResponse saying) throws APIException;
         public void createFeedbackSeverity (FeedbackSeverity feedbackSeverity) throws APIException;
+        public void createFeedbackStatus (FeedbackStatus feedbackstatus ) throws APIException;
+        public void createFeedbackPredefinedSubject (FeedbackPredefinedSubject feedbackPredefinedSubject ) throws APIException;
 
 	/**
 	 * Get response by internal identifier
@@ -32,6 +34,9 @@ public interface FeedbackService {
 	@Authorized({"View Hello World Response"})
 	@Transactional(readOnly=true)
 	public HelloWorldResponse getHelloWorldResponse(Integer sayingId) throws APIException;
+        public FeedbackSeverity getFeedbackSeverity(Integer index) throws APIException;
+        public FeedbackStatus getFeedbackStatus(Integer index) throws APIException;
+        public FeedbackPredefinedSubject createFeedbackPredefinedSubject (Integer index) throws APIException;
 
 	/**
 	 * Save response
@@ -41,8 +46,14 @@ public interface FeedbackService {
 	 */
 	@Authorized({"Edit Hello World Response"})
 	public void updateHelloWorldResponse(HelloWorldResponse response) throws APIException;
+        public void updateFeedbackSeverity(FeedbackSeverity severity) throws APIException;
+        public void updateFeedbackStatus(FeedbackStatus status) throws APIException;
+        public void updateFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException;
 
 	@Authorized({"View Hello World Response"})
 	public List<HelloWorldResponse> getResponses() throws APIException;
         public List<FeedbackSeverity> getSeverities() throws APIException;
+        public List<FeedbackStatus> getStatuses() throws APIException;
+        public List<FeedbackPredefinedSubject> getPredefinedSubjects() throws APIException;
+
 }

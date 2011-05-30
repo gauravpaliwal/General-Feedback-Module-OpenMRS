@@ -21,7 +21,8 @@ public class AdminList extends AdministrationSectionExt {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("module/feedback/addSeverity.form", "Add Severity Level");
-		
+		map.put("module/feedback/addStatus.form", "Add Status");
+
 		return map;
 	}
 	

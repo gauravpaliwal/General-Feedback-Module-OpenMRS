@@ -3,7 +3,6 @@ package org.openmrs.module.feedback;
 /**
  * Feedback Module Severity
  * 
- * @author Gaurav Paliwal
  * @version 1.0
  */
 

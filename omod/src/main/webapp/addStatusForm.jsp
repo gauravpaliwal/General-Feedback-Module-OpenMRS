@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 
-<openmrs:require privilege="Add Hello World Response" otherwise="/login.htm" redirect="/module/feedback/addResponse.form" />
+<openmrs:require privilege="Add Hello World Response" otherwise="/login.htm" redirect="/module/feedback/addStatus.form" />
 	
 <%@ include file="/WEB-INF/template/header.jsp" %>
 
@@ -23,10 +23,10 @@
         <td width="100" ><h4>Index</h4></td>
         <td width="100"><h4>Severity Level</h4></td>
     </tr>
-<c:forEach items="${severities}" var="severityObj">
+<c:forEach items="${statuses}" var="statusObj">
     <tr>
-        <td>${severityObj.index} </td>
-        <td>${severityObj.severity} </td>
+        <td>${statusObj.index} </td>
+        <td>${statusObj.status} </td>
     </tr>
 
 </c:forEach>

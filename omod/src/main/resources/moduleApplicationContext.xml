@@ -9,14 +9,21 @@
         <property name="mappings">
             <props>
 				<prop key="/module/feedback/addSeverity.form">addSeverityForm</prop>
-		</props>
-		</property>
+                                <prop key="/module/feedback/addStatus.form">addStatusForm</prop>
+            </props>
+	</property>
 	</bean>
 
 	<bean id="addSeverityForm" class="org.openmrs.module.feedback.web.AddSeverityFormController">
 		<property name="commandName"><value>helloWorldObject</value></property>
 		<property name="formView"><value>/module/feedback/addSeverityForm</value></property>
 		<property name="successView"><value>redirect:addSeverity.form</value></property>
+	</bean>
+        
+        <bean id="addStatusForm" class="org.openmrs.module.feedback.web.AddStatusFormController">
+		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="formView"><value>/module/feedback/addStatusForm</value></property>
+		<property name="successView"><value>redirect:addStatus.form</value></property>
 	</bean>
 	
 	<bean parent="serviceContext">

@@ -10,7 +10,7 @@ public class FeedbackSeverity  implements java.io.Serializable {
 
     public static final long serialVersionUID = 113222232L;
 
-     private int index;
+     private int feedbackSeverityId;
      private String severity;
      
      /*Default Contructor*/
@@ -20,17 +20,17 @@ public class FeedbackSeverity  implements java.io.Serializable {
     
     /*Constructor with the parameter*/
 
-    public FeedbackSeverity(int index, String severity) {
-       this.index = index;
+    public FeedbackSeverity(int feedbackSeverityId, String severity) {
+       this.feedbackSeverityId = feedbackSeverityId;
        this.severity = severity;
     }
    
-    public int getIndex() {
-        return this.index;
+    public int getfeedbackSeverityId() {
+        return this.feedbackSeverityId;
     }
     
-    public void setIndex(int index) {
-        this.index = index;
+    public void setfeedbackSeverityId(int feedbackSeverityId) {
+        this.feedbackSeverityId = feedbackSeverityId;
     }
     public String getSeverity() {
         return this.severity;

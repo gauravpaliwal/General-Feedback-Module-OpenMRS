@@ -6,7 +6,7 @@ package org.openmrs.module.feedback;
 public class FeedbackStatus  implements java.io.Serializable {
 
 
-     private Integer index;
+     private Integer feedbackStatusId;
      private String status;
 
     /*
@@ -23,12 +23,12 @@ public class FeedbackStatus  implements java.io.Serializable {
        this.status = status;
     }
    
-    public Integer getIndex() {
-        return this.index;
+    public Integer getfeedbackStatusId() {
+        return this.feedbackStatusId;
     }
     
-    public void setIndex(Integer index) {
-        this.index = index;
+    public void setfeedbackStatusId(Integer feedbackStatusId) {
+        this.feedbackStatusId = feedbackStatusId;
     }
     public String getStatus() {
         return this.status;

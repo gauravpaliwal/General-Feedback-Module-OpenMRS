@@ -22,13 +22,13 @@ public class AddStatusFormController extends SimpleFormController {
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
 		
-		System.out.println(request.getParameter( "response" )) ; 
-                if (request.getParameter("response") != null)
+		System.out.println(request.getParameter( "status" )) ; 
+                if (request.getParameter("status") != null)
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     FeedbackStatus x = new FeedbackStatus() ;
-                    x.setStatus( request.getParameter("response") );
+                    x.setStatus( request.getParameter("status") );
                     service.createFeedbackStatus(x) ;
                     FeedbackStatus s = new FeedbackStatus()  ;
                     s = service.getFeedbackStatus(2) ;

@@ -15,13 +15,13 @@
 			Creating the feedback_severity table
 		</comment>
 		<createTable tableName="feedback_severity">
-			<column name="index" type="int">
+			<column name="feedback_severity_id" type="int">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="severity" type="varchar(50)"/>
 			
 		</createTable>                
-                <addAutoIncrement tableName="feedback_severity" columnName="index" columnDataType="int"/>
+                <addAutoIncrement tableName="feedback_severity" columnName="feedback_severity_id" columnDataType="int"/>
         </changeSet>
         
         <changeSet id="feedback-2011-05-28-11:02" author="gauravpaliwal">
@@ -32,12 +32,12 @@
 			Creating the feedback_status table
 		</comment>
 		<createTable tableName="feedback_status">
-			<column name="index" type="int">
+			<column name="feedback_status_id" type="int">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="status" type="varchar(50)"/>			
 		</createTable>                
-                <addAutoIncrement tableName="feedback_status" columnName="index" columnDataType="int"/>
+                <addAutoIncrement tableName="feedback_status" columnName="feedback_status_id" columnDataType="int"/>
         </changeSet>
 
        
@@ -49,12 +49,12 @@
 			Creating the feedback_predefined_subject table
 		</comment>
 		<createTable tableName="feedback_predefined_subject">
-			<column name="index" type="int">
+			<column name="feedback_predefined_subject_id" type="int">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="subject" type="varchar(50)"/>			
 		</createTable>                
-                <addAutoIncrement tableName="feedback_predefined_subject" columnName="index" columnDataType="int"/>
+                <addAutoIncrement tableName="feedback_predefined_subject" columnName="feedback_predefined_subject_id" columnDataType="int"/>
         </changeSet>    
         
         <changeSet id="feedback-2011-05-28-11:28" author="gauravpaliwal">

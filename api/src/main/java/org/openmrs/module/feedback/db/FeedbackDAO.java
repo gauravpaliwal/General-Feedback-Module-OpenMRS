@@ -24,6 +24,7 @@ public interface FeedbackDAO {
 	public void createHelloWorldResponse(HelloWorldResponse helloWorldResponse) throws DAOException;
         public void createFeedbackSeverity(FeedbackSeverity feedbackSeverity) throws DAOException;
         public void createFeedbackStatus(FeedbackStatus feedbackStatus) throws DAOException;
+        public void createFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws DAOException;
 
 	/**
 	 * Get helloWorldResponse by internal identifier
@@ -33,8 +34,10 @@ public interface FeedbackDAO {
 	 * @throws DAOException
 	 */
 	public HelloWorldResponse getHelloWorldResponse(Integer helloWorldResponseId) throws DAOException;
-        public FeedbackSeverity getFeedbackSeverity (Integer index) throws DAOException;
-        public FeedbackStatus getFeedbackStatus (Integer index) throws DAOException;
+        public FeedbackSeverity getFeedbackSeverity (Integer feedbackSeverityId) throws DAOException;
+        public FeedbackStatus getFeedbackStatus (Integer feedbackStatusId) throws DAOException;
+        public FeedbackPredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId) throws DAOException;
+
 	/**
 	 * Update helloWorldResponse 
 	 * 
@@ -44,10 +47,14 @@ public interface FeedbackDAO {
 	public void updateHelloWorldResponse(HelloWorldResponse helloWorldResponse) throws DAOException;
 	public void updateFeedbackSeverity(FeedbackSeverity feedbackSeverity) throws DAOException ;
 	public void updateFeedbackStatus(FeedbackStatus feedbackStatus) throws DAOException ;
+        public void updateFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws DAOException ;
 
 	public List<HelloWorldResponse> getResponses() throws DAOException;
         public List<FeedbackSeverity> getSeverities() throws DAOException ;
         public List<FeedbackStatus> getStatuses() throws DAOException ;
+        public List<FeedbackPredefinedSubject> getPredefinedSubjects() throws DAOException ;
 
-    public void createFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject);
+        public void deleteFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws DAOException ;
+
+
 }

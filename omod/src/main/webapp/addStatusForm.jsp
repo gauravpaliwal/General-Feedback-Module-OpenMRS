@@ -8,8 +8,8 @@
 
 <form method="post">
 
-	<spring:message code="feedback.addSeverity"/>: 
-	<input type="text" name="response" value="" />
+	<spring:message code="feedback.addStatus"/>: 
+	<input type="text" name="status" value="" />
 	
 	<br/><br/>
 	
@@ -17,15 +17,15 @@
 
 </form>
 
-<h3><spring:message code="feedback.severities"/></h3>
+<h3><spring:message code="feedback.statuses"/></h3>
 <table border="0">
     <tr>
         <td width="100" ><h4>Index</h4></td>
-        <td width="100"><h4>Severity Level</h4></td>
+        <td width="100"><h4>Status</h4></td>
     </tr>
 <c:forEach items="${statuses}" var="statusObj">
     <tr>
-        <td>${statusObj.index} </td>
+        <td>${statusObj.feedbackStatusId} </td>
         <td>${statusObj.status} </td>
     </tr>
 

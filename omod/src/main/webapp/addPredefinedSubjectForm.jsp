@@ -6,10 +6,10 @@
 
 <br/>
 
-<form method="post">
+<form method="get">
 
-	<spring:message code="feedback.addSeverity"/>: 
-	<input type="text" name="severity" value="" />
+	<spring:message code="feedback.addPredefinedSubject"/>: 
+	<input type="text" name="predefinedsubject" value="" />
 	
 	<br/><br/>
 	
@@ -17,16 +17,16 @@
 
 </form>
 
-<h3><spring:message code="feedback.severities"/></h3>
+<h3><spring:message code="feedback.predefinedsubjects"/></h3>
 <table border="0">
     <tr>
         <td width="100" ><h4>Index</h4></td>
-        <td width="100"><h4>Severity Level</h4></td>
+        <td width="200"><h4>Predefined Subject</h4></td>
     </tr>
-<c:forEach items="${severities}" var="severityObj">
+<c:forEach items="${predefinedsubjects}" var="predefinedsubjectObj">
     <tr>
-        <td>${severityObj.feedbackSeverityId} </td>
-        <td>${severityObj.severity} </td>
+        <td>${predefinedsubjectObj.feedbackPredefinedSubjectId} </td>
+        <td>${predefinedsubjectObj.subject} </td>
     </tr>
 
 </c:forEach>

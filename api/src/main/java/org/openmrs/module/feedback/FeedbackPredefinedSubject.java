@@ -7,7 +7,7 @@ package org.openmrs.module.feedback;
 public class FeedbackPredefinedSubject  implements java.io.Serializable {
 
 
-     private Integer index;
+     private Integer feedbackPredefinedSubjectId;
      private String subject;
 
      /*
@@ -24,12 +24,12 @@ public class FeedbackPredefinedSubject  implements java.io.Serializable {
        this.subject = subject;
     }
    
-    public Integer getIndex() {
-        return this.index;
+    public Integer getfeedbackPredefinedSubjectId() {
+        return this.feedbackPredefinedSubjectId;
     }
     
-    public void setIndex(Integer index) {
-        this.index = index;
+    public void setfeedbackPredefinedSubjectId(Integer feedbackPredefinedSubjectId) {
+        this.feedbackPredefinedSubjectId = feedbackPredefinedSubjectId;
     }
     public String getSubject() {
         return this.subject;

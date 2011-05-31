@@ -34,9 +34,10 @@ public interface FeedbackService {
 	@Authorized({"View Hello World Response"})
 	@Transactional(readOnly=true)
 	public HelloWorldResponse getHelloWorldResponse(Integer sayingId) throws APIException;
-        public FeedbackSeverity getFeedbackSeverity(Integer index) throws APIException;
-        public FeedbackStatus getFeedbackStatus(Integer index) throws APIException;
-        public FeedbackPredefinedSubject createFeedbackPredefinedSubject (Integer index) throws APIException;
+        public FeedbackSeverity getFeedbackSeverity(Integer feedbackSeverityId) throws APIException;
+        public FeedbackStatus getFeedbackStatus(Integer feedbackStatusId) throws APIException;
+        public FeedbackPredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId ) throws APIException;
+
 
 	/**
 	 * Save response
@@ -49,6 +50,9 @@ public interface FeedbackService {
         public void updateFeedbackSeverity(FeedbackSeverity severity) throws APIException;
         public void updateFeedbackStatus(FeedbackStatus status) throws APIException;
         public void updateFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException;
+        
+        public void deleteFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException;
+
 
 	@Authorized({"View Hello World Response"})
 	public List<HelloWorldResponse> getResponses() throws APIException;

@@ -10,6 +10,7 @@
             <props>
 				<prop key="/module/feedback/addSeverity.form">addSeverityForm</prop>
                                 <prop key="/module/feedback/addStatus.form">addStatusForm</prop>
+                                <prop key="/module/feedback/addPredefinedSubject.form">addPredefinedSubjectForm</prop>
             </props>
 	</property>
 	</bean>
@@ -24,6 +25,12 @@
 		<property name="commandName"><value>helloWorldObject</value></property>
 		<property name="formView"><value>/module/feedback/addStatusForm</value></property>
 		<property name="successView"><value>redirect:addStatus.form</value></property>
+	</bean>
+        
+        <bean id="addPredefinedSubjectForm" class="org.openmrs.module.feedback.web.AddPredefinedSubjectFormController">
+		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="formView"><value>/module/feedback/addPredefinedSubjectForm</value></property>
+		<property name="successView"><value>redirect:addPredefinedSubject.form</value></property>
 	</bean>
 	
 	<bean parent="serviceContext">

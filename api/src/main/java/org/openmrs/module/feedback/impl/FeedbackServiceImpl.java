@@ -66,11 +66,15 @@ public class FeedbackServiceImpl implements FeedbackService {
 		return getHelloWorldDAO().getHelloWorldResponse(helloWorldResponseId);
 	}
         
-        public FeedbackSeverity getFeedbackSeverity (Integer index) throws APIException {
-		return getHelloWorldDAO().getFeedbackSeverity(index) ;
+        public FeedbackSeverity getFeedbackSeverity (Integer feedbackSeverityId) throws APIException {
+		return getHelloWorldDAO().getFeedbackSeverity(feedbackSeverityId) ;
 	}
-        public FeedbackStatus getFeedbackStatus (Integer index) throws APIException {
-		return getHelloWorldDAO().getFeedbackStatus (index) ;
+        public FeedbackStatus getFeedbackStatus (Integer feedbackStatusId) throws APIException {
+		return getHelloWorldDAO().getFeedbackStatus (feedbackStatusId) ;
+	}
+        
+        public FeedbackPredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId) throws APIException {
+		return getHelloWorldDAO().getFeedbackPredefinedSubject (feedbackPredefinedSubjectId) ;
 	}
 
 	/**
@@ -90,6 +94,10 @@ public class FeedbackServiceImpl implements FeedbackService {
         public void updateFeedbackStatus (FeedbackStatus feedbackStatus) throws APIException {
                 getHelloWorldDAO().updateFeedbackStatus(feedbackStatus) ;
         }
+        
+        public void updateFeedbackPredefinedSubject (FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException {
+                getHelloWorldDAO().updateFeedbackPredefinedSubject (feedbackPredefinedSubject) ;
+        }
 	/**
 	 * Get helloWorldResponses
 	 * 
@@ -106,6 +114,15 @@ public class FeedbackServiceImpl implements FeedbackService {
         public List<FeedbackStatus> getStatuses() throws APIException {
 		return getHelloWorldDAO().getStatuses();
 	}
+        public List<FeedbackPredefinedSubject> getPredefinedSubjects () throws APIException {
+		return getHelloWorldDAO().getPredefinedSubjects();
+	}
+
+    public void deleteFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException {
+                getHelloWorldDAO().deleteFeedbackPredefinedSubject(feedbackPredefinedSubject); 
+    }
+
+
 
     
 	

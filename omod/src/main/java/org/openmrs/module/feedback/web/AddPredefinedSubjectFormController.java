@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.feedback.FeedbackSeverity;
+import org.openmrs.module.feedback.FeedbackPredefinedSubject;
 import org.openmrs.module.feedback.FeedbackService;
-import org.openmrs.module.feedback.FeedbackStatus;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-public class AddSeverityFormController extends SimpleFormController {
+public class AddPredefinedSubjectFormController extends SimpleFormController {
 	
     /** Logger for this class and subclasses */
     protected final Log log = LogFactory.getLog(getClass());
@@ -21,25 +20,16 @@ public class AddSeverityFormController extends SimpleFormController {
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
 		
-		System.out.println(request.getParameter( "severity" )) ; 
-                if (request.getParameter("severity") != null)
+		System.out.println(request.getParameter( "predefinedsubject" )) ; 
+                if (request.getParameter("predefinedsubject") != null)
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
-                    FeedbackSeverity s = new FeedbackSeverity() ;
-                    s.setSeverity(request.getParameter("severity")) ;
-                    service.createFeedbackSeverity(s) ;
-                    s = service.getFeedbackSeverity(2) ;
-                    FeedbackSeverity k = new FeedbackSeverity() ;
-                    FeedbackStatus x = new FeedbackStatus() ;
-                    x.setStatus("FsCk");
-                    service.createFeedbackStatus(x) ;
-                    FeedbackSeverity m = new FeedbackSeverity() ;
-                    m = service.getFeedbackSeverity( 3 ) ;
-   /*               service.updateFeedbackSeverity(m); */
-                    
-                    
-                    
+                    FeedbackPredefinedSubject s = new FeedbackPredefinedSubject() ;
+                    s.setSubject(request.getParameter("predefinedsubject")) ;
+                    service.createFeedbackPredefinedSubject(s) ;
+
+        
                 }
                 			
 		String text = "Not used";
@@ -56,8 +46,7 @@ public class AddSeverityFormController extends SimpleFormController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
-		map.put("severities", hService.getSeverities()) ;
-		
+		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
 		return map;
 		
 	}

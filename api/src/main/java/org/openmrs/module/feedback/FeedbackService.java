@@ -51,9 +51,11 @@ public interface FeedbackService {
         public void updateFeedbackStatus(FeedbackStatus status) throws APIException;
         public void updateFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException;
         
-        public void deleteFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException;
+        public void deleteFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException;        
+        public void deleteFeedbackStatus (FeedbackStatus feedbackStatus) throws APIException;
+        public void deleteFeedbackSeverity (FeedbackSeverity feedbackSeverity) throws APIException;
 
-
+        
 	@Authorized({"View Hello World Response"})
 	public List<HelloWorldResponse> getResponses() throws APIException;
         public List<FeedbackSeverity> getSeverities() throws APIException;

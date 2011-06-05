@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.feedback.FeedbackPredefinedSubject;
+import org.openmrs.module.feedback.FeedbackStatus ;
 import org.openmrs.module.feedback.FeedbackService;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-public class PredefinedSubjectFormController extends SimpleFormController {
+public class StatusFormController extends SimpleFormController {
 	
     /** Logger for this class and subclasses */
     protected final Log log = LogFactory.getLog(getClass());
@@ -22,18 +22,18 @@ public class PredefinedSubjectFormController extends SimpleFormController {
             
                         Object o = Context.getService(FeedbackService.class);
                         FeedbackService service = (FeedbackService)o;                 
-                    if ( (String)request.getParameter("predefinedsubjectid") == "" || service.getFeedbackPredefinedSubject(Integer.parseInt(request.getParameter("predefinedsubjectid"))) == null )
+                    if ( (String)request.getParameter("feedbackStatusId") == "" || service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) == null )
                 {
                     System.out.println ("Nothing to do elemented already deleted") ;
                     
                 } 
                     
-                  else if (request.getParameter("predefinedsubjectid") != null && request.getParameter("delete")!= null )
+                  else if (request.getParameter("feedbackStatusId") != null && request.getParameter("delete")!= null )
                     {
                         
-                        FeedbackPredefinedSubject s = new FeedbackPredefinedSubject() ;
-                        s = service.getFeedbackPredefinedSubject(Integer.parseInt(request.getParameter("predefinedsubjectid"))) ;
-                        service.deleteFeedbackPredefinedSubject( s );
+                        FeedbackStatus s = new FeedbackStatus() ;
+                        s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
+                        service.deleteFeedbackStatus( s );
                     }
                 
                 
@@ -53,25 +53,27 @@ public class PredefinedSubjectFormController extends SimpleFormController {
 		Object o = Context.getService(FeedbackService.class);
                 FeedbackService service = (FeedbackService)o;    
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
-                if ( (String)req.getParameter("predefinedsubjectid") == "" ||  service.getFeedbackPredefinedSubject(Integer.parseInt(req.getParameter("predefinedsubjectid"))) == null )
+                if ( (String)req.getParameter("feedbackStatusId") == "" ||  service.getFeedbackStatus(Integer.parseInt(req.getParameter("feedbackStatusId"))) == null )
                 {
                     System.out.println ("Nothing to do, element  already deleted") ;
-                    FeedbackPredefinedSubject s = new FeedbackPredefinedSubject() ;
-                    map.put("predefinedsubjects" , s ) ;
+                    FeedbackStatus s = new FeedbackStatus() ;
+                    map.put("statuses" , s ) ;
                     map.put("status" , "Element deleted or Do not Exists") ;
                     return map ;
                 }
-                else if (req.getParameter("predefinedsubjectid") != null)
+                else if (req.getParameter("feedbackStatusId") != null)
                 {
                                  
-                    FeedbackPredefinedSubject s = new FeedbackPredefinedSubject() ;
-                    s = service.getFeedbackPredefinedSubject(Integer.parseInt(req.getParameter("predefinedsubjectid"))) ;
-                    map.put("predefinedsubjects" , s ) ;
+                    FeedbackStatus  s = new FeedbackStatus () ;
+                    s = service.getFeedbackStatus(Integer.parseInt(req.getParameter("feedbackStatusId"))) ;
+                    System.out.println(s.getfeedbackStatusId()) ;
+                    System.out.println("fddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd") ;
+                    map.put("statuses" , s ) ;
                     map.put("status" , "") ;
                     return map ;
                     
                 }
-		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
+		map.put("statuses", hService.getStatuses()) ;
 		return map;
 		
 	}

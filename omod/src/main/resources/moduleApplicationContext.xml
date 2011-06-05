@@ -11,6 +11,10 @@
 				<prop key="/module/feedback/addSeverity.form">addSeverityForm</prop>
                                 <prop key="/module/feedback/addStatus.form">addStatusForm</prop>
                                 <prop key="/module/feedback/addPredefinedSubject.form">addPredefinedSubjectForm</prop>
+                                <prop key="/module/feedback/predefinedSubject.form">predefinedSubjectForm</prop>
+                                <prop key="/module/feedback/severity.form">severityForm</prop>
+                                <prop key="/module/feedback/status.form">statusForm</prop>
+
             </props>
 	</property>
 	</bean>
@@ -32,7 +36,25 @@
 		<property name="formView"><value>/module/feedback/addPredefinedSubjectForm</value></property>
 		<property name="successView"><value>redirect:addPredefinedSubject.form</value></property>
 	</bean>
+        
+        <bean id="predefinedSubjectForm" class="org.openmrs.module.feedback.web.PredefinedSubjectFormController">
+		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="formView"><value>/module/feedback/predefinedSubjectForm</value></property>
+		<property name="successView"><value>redirect:predefinedSubject.form</value></property>
+	</bean>
+        
+        <bean id="severityForm" class="org.openmrs.module.feedback.web.SeverityFormController">
+		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="formView"><value>/module/feedback/severityForm</value></property>
+		<property name="successView"><value>redirect:Severity.form</value></property>
+	</bean>
 	
+        <bean id="statusForm" class="org.openmrs.module.feedback.web.StatusFormController">
+		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="formView"><value>/module/feedback/statusForm</value></property>
+		<property name="successView"><value>redirect:Status.form</value></property>
+	</bean>
+        
 	<bean parent="serviceContext">
 		<property name="moduleService">
 			<list>

@@ -4,33 +4,34 @@
 	
 <%@ include file="/WEB-INF/template/header.jsp" %>
 
+<b class="boxHeader"><spring:message code="feedback.predefinedsubjects"/></b>
+<div class="box" >
+<table cellpadding="2" cellspacing="0">
+    <tr  class='evenRow'>
+        <th width="100" ><h4>Index</h4></th>
+        <th width="200"><h4>Predefined Subject</h4></th>
+    </tr>
+<c:forEach items="${predefinedsubjects}" var="predefinedsubjectObj">
+    <tr>
+        <td>${predefinedsubjectObj.feedbackPredefinedSubjectId} </td>
+        <td><a href="/openmrs/module/feedback/predefinedSubject.form?predefinedsubjectid=${predefinedsubjectObj.feedbackPredefinedSubjectId}">${predefinedsubjectObj.subject}</a></td>
+    </tr>
+
+</c:forEach>
+</table> 
+</div>
 <br/>
 
-<form method="get">
+
+<form method="post">
 
 	<spring:message code="feedback.addPredefinedSubject"/>: 
 	<input type="text" name="predefinedsubject" value="" />
 	
 	<br/><br/>
 	
-	<input type="submit" value="<spring:message code="general.save" />" />
+	<input type="submit" value="<spring:message code="feedback.addPredefinedSubject" />" />
 
 </form>
-
-<h3><spring:message code="feedback.predefinedsubjects"/></h3>
-<table border="0">
-    <tr>
-        <td width="100" ><h4>Index</h4></td>
-        <td width="200"><h4>Predefined Subject</h4></td>
-    </tr>
-<c:forEach items="${predefinedsubjects}" var="predefinedsubjectObj">
-    <tr>
-        <td>${predefinedsubjectObj.feedbackPredefinedSubjectId} </td>
-        <td>${predefinedsubjectObj.subject} </td>
-    </tr>
-
-</c:forEach>
-</table> 
-<br/>
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

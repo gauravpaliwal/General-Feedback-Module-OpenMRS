@@ -29,17 +29,7 @@ public class AddSeverityFormController extends SimpleFormController {
                     FeedbackSeverity s = new FeedbackSeverity() ;
                     s.setSeverity(request.getParameter("severity")) ;
                     service.createFeedbackSeverity(s) ;
-                    s = service.getFeedbackSeverity(2) ;
-                    FeedbackSeverity k = new FeedbackSeverity() ;
-                    FeedbackStatus x = new FeedbackStatus() ;
-                    x.setStatus("FsCk");
-                    service.createFeedbackStatus(x) ;
-                    FeedbackSeverity m = new FeedbackSeverity() ;
-                    m = service.getFeedbackSeverity( 3 ) ;
-   /*               service.updateFeedbackSeverity(m); */
-                    
-                    
-                    
+              
                 }
                 			
 		String text = "Not used";

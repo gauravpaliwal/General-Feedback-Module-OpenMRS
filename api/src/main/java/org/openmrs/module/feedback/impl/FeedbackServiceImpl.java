@@ -122,8 +122,14 @@ public class FeedbackServiceImpl implements FeedbackService {
                 getHelloWorldDAO().deleteFeedbackPredefinedSubject(feedbackPredefinedSubject); 
     }
 
-
-
+    public void deleteFeedbackStatus(FeedbackStatus feedbackStatus) throws APIException {
+                getHelloWorldDAO().deleteFeedbackStatus(feedbackStatus) ;
+    }
     
-	
+    public void deleteFeedbackSeverity(FeedbackSeverity feedbackSeverity) throws APIException {
+                getHelloWorldDAO().deleteFeedbackSeverity(feedbackSeverity); 
+    }
+
+   
+    
 }

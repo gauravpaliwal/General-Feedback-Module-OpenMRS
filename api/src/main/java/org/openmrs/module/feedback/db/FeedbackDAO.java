@@ -55,6 +55,8 @@ public interface FeedbackDAO {
         public List<FeedbackPredefinedSubject> getPredefinedSubjects() throws DAOException ;
 
         public void deleteFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws DAOException ;
+        public void deleteFeedbackStatus(FeedbackStatus feedbackStatus) throws DAOException ;
+        public void deleteFeedbackSeverity(FeedbackSeverity feedbackSeverity) throws DAOException ;
 
 
 }

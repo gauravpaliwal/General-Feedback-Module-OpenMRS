@@ -4,27 +4,28 @@
 	
 <%@ include file="/WEB-INF/template/header.jsp" %>
 
-<br/>
 
-<h3><spring:message code="feedback.predefinedsubjects"/></h3>
-<table border="0">
-    <tr>
+<b class="boxHeader"><spring:message code="feedback.predefinedsubjects"/></b>
+<div class="box" >
+<table cellpadding="2" cellspacing="0">
+    <tr  class='evenRow'>
         <td width="100" ><h4>Index</h4></td>
-        <td width="200"><h4>Predefined Subject</h4></td>
+        <td width="200"><h4>Status</h4></td>
     </tr>
-
     <tr>
-        <td>${predefinedsubjects.feedbackPredefinedSubjectId} </td>
-        <td>${predefinedsubjects.subject} </td>
+        <td>${statuses.feedbackStatusId} </td>
+        <td>${statuses.status} </td>
     </tr>
+    ${status}
 </table> 
-<br/>
-${status}
-<br/>
+
 <form method="get">
-<INPUT TYPE=hidden NAME=predefinedsubjectid VALUE= ${predefinedsubjects.feedbackPredefinedSubjectId} >
+<INPUT TYPE=hidden NAME=feedbackStatusId VALUE=${statuses.feedbackStatusId} >
 <INPUT TYPE=hidden NAME=delete VALUE="1">
 <input type="submit" value="Delete" />
 </form>
+
+</div>
+
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

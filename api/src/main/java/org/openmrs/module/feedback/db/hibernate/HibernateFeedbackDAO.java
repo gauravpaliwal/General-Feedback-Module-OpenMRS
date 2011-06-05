@@ -110,9 +110,15 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
 	}
 
         public void deleteFeedbackPredefinedSubject (FeedbackPredefinedSubject feedbackPredefinedSubject) throws DAOException {
-                        sessionFactory.getCurrentSession().delete(feedbackPredefinedSubject);
-           
+                        sessionFactory.getCurrentSession().delete(feedbackPredefinedSubject);           
         }
 
+        public void deleteFeedbackStatus (FeedbackStatus feedbackStatus) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(feedbackStatus);          
+        }
+        
+        public void deleteFeedbackSeverity (FeedbackSeverity feedbackSeverity) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(feedbackSeverity);          
+        }
    
 }

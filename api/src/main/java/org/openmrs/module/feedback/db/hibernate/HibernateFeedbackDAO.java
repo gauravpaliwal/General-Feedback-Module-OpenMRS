@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 
 import org.openmrs.api.db.DAOException;
+import org.openmrs.module.feedback.FeedbackFeedback;
 import org.openmrs.module.feedback.FeedbackPredefinedSubject;
 import org.openmrs.module.feedback.FeedbackSeverity;
 import org.openmrs.module.feedback.FeedbackStatus;
@@ -53,6 +54,10 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
 		return (FeedbackPredefinedSubject) sessionFactory.getCurrentSession().get(FeedbackPredefinedSubject.class, feedbackPredefinedSubjectId);
 	}
         
+        public FeedbackFeedback getFeedbackFeedback (Integer feedbackFeedbackId) {
+		return (FeedbackFeedback) sessionFactory.getCurrentSession().get(FeedbackFeedback.class, feedbackFeedbackId);
+	}
+        
 	
 	public void createHelloWorldResponse(HelloWorldResponse helloWorldResponse) throws DAOException {
 		sessionFactory.getCurrentSession().saveOrUpdate(helloWorldResponse);
@@ -65,8 +70,12 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
             
             sessionFactory.getCurrentSession().saveOrUpdate(feedbackStatus);
 
-        }   
-        
+        }
+        public void createFeedbackFeedback(FeedbackFeedback feedbackFeedback) throws DAOException {
+            
+            sessionFactory.getCurrentSession().saveOrUpdate(feedbackFeedback);
+
+        } 
         public void createFeedbackPredefinedSubject (FeedbackPredefinedSubject feedbackPredefinedSubject) throws DAOException {
             
             sessionFactory.getCurrentSession().saveOrUpdate(feedbackPredefinedSubject);
@@ -94,6 +103,10 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
                         sessionFactory.getCurrentSession().delete(feedbackPredefinedSubject);
            
         }
+        public void updateFeedbackFeedback (FeedbackFeedback feedbackFeedback) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(feedbackFeedback);
+           
+        }
 	
 	@SuppressWarnings("unchecked")
 	public List<HelloWorldResponse> getResponses() throws DAOException {
@@ -108,6 +121,11 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
         public List<FeedbackPredefinedSubject> getPredefinedSubjects() throws DAOException {
 		return sessionFactory.getCurrentSession().createCriteria(FeedbackPredefinedSubject.class).list();
 	}
+        
+        public List<FeedbackFeedback> getFeedbacks() throws DAOException {
+		return sessionFactory.getCurrentSession().createCriteria(FeedbackFeedback.class).list();
+	}
+        
 
         public void deleteFeedbackPredefinedSubject (FeedbackPredefinedSubject feedbackPredefinedSubject) throws DAOException {
                         sessionFactory.getCurrentSession().delete(feedbackPredefinedSubject);           
@@ -120,5 +138,10 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
         public void deleteFeedbackSeverity (FeedbackSeverity feedbackSeverity) throws DAOException {
                         sessionFactory.getCurrentSession().delete(feedbackSeverity);          
         }
+        
+        public void deleteFeedbackFeedback (FeedbackFeedback feedbackFeedback) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(feedbackFeedback);          
+        }
+
    
 }

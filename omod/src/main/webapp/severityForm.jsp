@@ -4,27 +4,53 @@
 	
 <%@ include file="/WEB-INF/template/header.jsp" %>
 
+<div id="openmrs_msg"><c:out value="${status}"/></div>
 <br/>
+<ul id="menu">
+                <li class="first">
+                        <a href="../../admin/index.htm">Admin</a>
+                </li>
+                
+                <li>
+                        <a href="../../module/feedback/addPredefinedSubject.form">Add Predefined Subject</a>
+                </li>
+	
+		<li>
+			<a href="../../module/feedback/addSeverity.form">Add Severity Level</a>
+		</li>
 
-<h3><spring:message code="feedback.predefinedsubjects"/></h3>
-<table border="0">
-    <tr>
+		<li >
+			<a href="../../module/feedback/addStatus.form">Add Status</a>
+		</li>	
+                <li>
+			<a href="../../module/feedback/addFeedback.form">Submit Feedback</a>
+		</li>
+</ul>
+<h2>Edit Severity</h2>
+
+<b class="boxHeader"><spring:message code="feedback.severities"/></b>
+<div class="box" >
+<table cellpadding="2" cellspacing="0">
+    <tr  class='evenRow'>
         <td width="100" ><h4>Index</h4></td>
         <td width="200"><h4>Severity</h4></td>
     </tr>
-
+    
     <tr>
-        <td>${severity.feedbackSeverityId} </td>
-        <td>${severity.severity} </td>
+        <td><c:out value="${severity.feedbackSeverityId}"/> </td>
+        <td><c:out value="${severity.severity}"/></td>
     </tr>
+        
+   <br/>
+
 </table> 
-<br/>
-${status}
-<br/>
-<form method="get">
-<INPUT TYPE=hidden NAME=feedbackSeverityId VALUE= ${severity.feedbackSeverityId} >
+    <br/>
+    <form method="get">
+<INPUT TYPE=hidden NAME=feedbackSeverityId VALUE= <c:out value="${severity.feedbackSeverityId}"/> >
 <INPUT TYPE=hidden NAME=delete VALUE="1">
 <input type="submit" value="Delete" />
 </form>
+</div>
+
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

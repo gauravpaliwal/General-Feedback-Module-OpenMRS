@@ -23,7 +23,7 @@ public interface FeedbackService {
         public void createFeedbackSeverity (FeedbackSeverity feedbackSeverity) throws APIException;
         public void createFeedbackStatus (FeedbackStatus feedbackstatus ) throws APIException;
         public void createFeedbackPredefinedSubject (FeedbackPredefinedSubject feedbackPredefinedSubject ) throws APIException;
-
+        public void createFeedbackFeedback (FeedbackFeedback feedbackFeedback) throws APIException;
 	/**
 	 * Get response by internal identifier
 	 * 

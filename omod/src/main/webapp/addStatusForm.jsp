@@ -4,6 +4,29 @@
 	
 <%@ include file="/WEB-INF/template/header.jsp" %>
 
+<ul id="menu">
+                <li class="first">
+                        <a href="../../admin/index.htm">Admin</a>
+                </li>
+                
+                <li>
+                        <a href="../../module/feedback/addPredefinedSubject.form">Add Predefined Subject</a>
+                </li>
+	
+		<li>
+			<a href="../../module/feedback/addSeverity.form">Add Severity Level</a>
+		</li>
+
+		<li class="active">
+			<a href="../../module/feedback/addStatus.form">Add Status</a>
+		</li>	
+                <li>
+			<a href="../../module/feedback/addFeedback.form">Submit Feedback</a>
+		</li>
+</ul>
+<h2>Status Management</h2>
+
+
 <b class="boxHeader"><spring:message code="feedback.statuses"/></b>
 <div class="box" >
 <table cellpadding="2" cellspacing="0">
@@ -13,8 +36,8 @@
     </tr>
 <c:forEach items="${statuses}" var="statusObj">
     <tr>
-        <td>${statusObj.feedbackStatusId} </td>
-        <td><a href="/openmrs/module/feedback/status.form?feedbackStatusId=${statusObj.feedbackStatusId}">${statusObj.status}</a></td>   
+        <td><c:out value="${statusObj.feedbackStatusId} "/></td>
+        <td><a href="/openmrs/module/feedback/status.form?feedbackStatusId=<c:out value="${statusObj.feedbackStatusId}"/>"><c:out value="${statusObj.status}"/></a></td>   
     </tr>
 
 </c:forEach>

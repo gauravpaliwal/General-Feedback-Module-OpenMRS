@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.APIException;
+import org.openmrs.module.feedback.FeedbackFeedback;
 import org.openmrs.module.feedback.FeedbackPredefinedSubject;
 import org.openmrs.module.feedback.FeedbackSeverity;
 import org.openmrs.module.feedback.HelloWorldResponse;
@@ -55,6 +56,12 @@ public class FeedbackServiceImpl implements FeedbackService {
         public void createFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException {
 		getHelloWorldDAO().createFeedbackPredefinedSubject(feedbackPredefinedSubject);
 	}
+        
+        public void createFeedbackFeedback(FeedbackFeedback feedbackFeedback) throws APIException {
+		getHelloWorldDAO().createFeedbackFeedback(feedbackFeedback);
+	}
+        
+        
 	/**
 	 * Get helloWorldResponse by internal identifier
 	 * 
@@ -75,6 +82,10 @@ public class FeedbackServiceImpl implements FeedbackService {
         
         public FeedbackPredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId) throws APIException {
 		return getHelloWorldDAO().getFeedbackPredefinedSubject (feedbackPredefinedSubjectId) ;
+	}
+        
+        public FeedbackFeedback getFeedbackFeedback (Integer feedbackFeedbackId) throws APIException {
+		return getHelloWorldDAO().getFeedbackFeedback (feedbackFeedbackId) ;
 	}
 
 	/**
@@ -98,6 +109,10 @@ public class FeedbackServiceImpl implements FeedbackService {
         public void updateFeedbackPredefinedSubject (FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException {
                 getHelloWorldDAO().updateFeedbackPredefinedSubject (feedbackPredefinedSubject) ;
         }
+        
+        public void updateFeedbackFeedback (FeedbackFeedback feedbackFeedback) throws APIException {
+                getHelloWorldDAO().updateFeedbackFeedback (feedbackFeedback) ;
+        }
 	/**
 	 * Get helloWorldResponses
 	 * 
@@ -117,19 +132,25 @@ public class FeedbackServiceImpl implements FeedbackService {
         public List<FeedbackPredefinedSubject> getPredefinedSubjects () throws APIException {
 		return getHelloWorldDAO().getPredefinedSubjects();
 	}
+        public List<FeedbackFeedback> getFeedbacks () throws APIException {
+		return getHelloWorldDAO().getFeedbacks();
+	}
 
-    public void deleteFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException {
+        public void deleteFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException {
                 getHelloWorldDAO().deleteFeedbackPredefinedSubject(feedbackPredefinedSubject); 
-    }
+        }
 
-    public void deleteFeedbackStatus(FeedbackStatus feedbackStatus) throws APIException {
+        public void deleteFeedbackStatus(FeedbackStatus feedbackStatus) throws APIException {
                 getHelloWorldDAO().deleteFeedbackStatus(feedbackStatus) ;
-    }
+        }
     
-    public void deleteFeedbackSeverity(FeedbackSeverity feedbackSeverity) throws APIException {
+        public void deleteFeedbackSeverity(FeedbackSeverity feedbackSeverity) throws APIException {
                 getHelloWorldDAO().deleteFeedbackSeverity(feedbackSeverity); 
-    }
+        }
 
+        public void deleteFeedbackFeedback (FeedbackFeedback feedbackFeedback) throws APIException {
+                getHelloWorldDAO().deleteFeedbackFeedback (feedbackFeedback); 
+        }
    
     
 }

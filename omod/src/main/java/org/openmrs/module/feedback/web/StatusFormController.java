@@ -58,7 +58,7 @@ public class StatusFormController extends SimpleFormController {
                     System.out.println ("Nothing to do, element  already deleted") ;
                     FeedbackStatus s = new FeedbackStatus() ;
                     map.put("statuses" , s ) ;
-                    map.put("status" , "Element deleted or Do not Exists") ;
+                    map.put("status" , "Element Deleted or Do not Exists") ;
                     return map ;
                 }
                 else if (req.getParameter("feedbackStatusId") != null)

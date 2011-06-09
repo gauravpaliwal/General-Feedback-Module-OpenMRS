@@ -21,14 +21,14 @@ public class AddFeedbackFormController extends SimpleFormController {
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
 		
-                if (request.getParameter("subject") != null )
+                if (request.getParameter("subject") != null && request.getParameter("severity") != null  && request.getParameter("feedback") != null  )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     FeedbackFeedback s = new FeedbackFeedback() ;
                     s.setSubject(request.getParameter("subject"));
                     s.setSeverity(request.getParameter("severity"));
-                    s.setContent(request.getParameter("feedback"));
+                    s.setContent( request.getParameter("feedback") );
                     s.setCreator(Context.getAuthenticatedUser().getUserId() );
                     Calendar c = Calendar.getInstance() ;
                     s.setDateCreated( c.getTime() ) ;

@@ -23,10 +23,10 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                         Object o = Context.getService(FeedbackService.class);
                         FeedbackService service = (FeedbackService)o;                 
                     if ( (String)request.getParameter("predefinedsubjectid") == "" || service.getFeedbackPredefinedSubject(Integer.parseInt(request.getParameter("predefinedsubjectid"))) == null )
-                {
-                    System.out.println ("Nothing to do elemented already deleted") ;
+                    {
+                        System.out.println ("Nothing to do elemented already deleted") ;
                     
-                } 
+                    } 
                     
                   else if (request.getParameter("predefinedsubjectid") != null && request.getParameter("delete")!= null )
                     {
@@ -58,7 +58,7 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                     System.out.println ("Nothing to do, element  already deleted") ;
                     FeedbackPredefinedSubject s = new FeedbackPredefinedSubject() ;
                     map.put("predefinedsubjects" , s ) ;
-                    map.put("status" , "Element deleted or Do not Exists") ;
+                    map.put("status" , "Element Deleted or Do not Exists") ;
                     return map ;
                 }
                 else if (req.getParameter("predefinedsubjectid") != null)

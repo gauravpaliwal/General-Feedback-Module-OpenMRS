@@ -58,7 +58,7 @@ public class SeverityFormController extends SimpleFormController {
                     System.out.println ("Nothing to do, element  already deleted") ;
                     FeedbackSeverity s = new FeedbackSeverity() ;
                     map.put("feedbackSeverityId" , s ) ;
-                    map.put("status" , "Element deleted or Do not Exists") ;
+                    map.put("status" , "Element Deleted or Do not Exists") ;
                     return map ;
                 }
                 else if (req.getParameter("feedbackSeverityId") != null)

@@ -61,5 +61,7 @@ public interface FeedbackService {
         public List<FeedbackSeverity> getSeverities() throws APIException;
         public List<FeedbackStatus> getStatuses() throws APIException;
         public List<FeedbackPredefinedSubject> getPredefinedSubjects() throws APIException;
+        public List<FeedbackFeedback> getFeedbacks () throws APIException ;
+
 
 }

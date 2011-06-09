@@ -24,6 +24,7 @@ public class AdminList extends AdministrationSectionExt {
 		map.put("module/feedback/addStatus.form", "Add Status");
                 map.put("module/feedback/addPredefinedSubject.form", "Add Predefined Subject");
                 map.put("module/feedback/addFeedback.form", "Submit Feedback");
+                map.put("module/feedback/feedback.list", "Manage Feedbacks");
 
                 return map;
 	}

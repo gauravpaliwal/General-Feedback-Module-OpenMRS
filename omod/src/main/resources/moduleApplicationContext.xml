@@ -15,6 +15,7 @@
                                 <prop key="/module/feedback/severity.form">severityForm</prop>
                                 <prop key="/module/feedback/status.form">statusForm</prop>
                                 <prop key="/module/feedback/addFeedback.form">addFeedbackForm</prop>
+                                <prop key="/module/feedback/feedback.list">feedbackList</prop>
 
 
             </props>
@@ -61,6 +62,12 @@
 		<property name="commandName"><value>helloWorldObject</value></property>
 		<property name="formView"><value>/module/feedback/addFeedbackForm</value></property>
 		<property name="successView"><value>redirect:addFeedback.form</value></property>
+	</bean>
+        
+         <bean id="feedbackList" class="org.openmrs.module.feedback.web.FeedbackListController">
+		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="formView"><value>/module/feedback/feedbackList</value></property>
+		<property name="successView"><value>redirect:feedback.list</value></property>
 	</bean>
         
 	<bean parent="serviceContext">

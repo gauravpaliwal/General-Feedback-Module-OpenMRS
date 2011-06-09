@@ -10,7 +10,6 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.FeedbackSeverity;
 import org.openmrs.module.feedback.FeedbackService;
-import org.openmrs.module.feedback.FeedbackStatus;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class AddSeverityFormController extends SimpleFormController {

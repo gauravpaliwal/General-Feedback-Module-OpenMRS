@@ -6,42 +6,28 @@
 
 <ul id="menu">
                 <li class="first">
-                        <a href="../../admin/index.htm">Admin</a>
+                        <a href="../../admin/index.htm"><spring:message code="feedback.admin"/></a>
                 </li>
                 
                 <li  class="active">
-                        <a href="../../module/feedback/addPredefinedSubject.form">Add Predefined Subject</a>
+                        <a href="../../module/feedback/addPredefinedSubject.form"><spring:message code="feedback.addPredefinedSubject"/></a>
                 </li>
 	
-		<li >
-			<a href="../../module/feedback/addSeverity.form">Add Severity Level</a>
+		<li>
+			<a href="../../module/feedback/addSeverity.form"><spring:message code="feedback.addSeverity"/></a>
 		</li>
 
 		<li >
-			<a href="../../module/feedback/addStatus.form">Add Status</a>
+			<a href="../../module/feedback/addStatus.form"><spring:message code="feedback.addStatus"/></a>
 		</li>	
                 <li>
-			<a href="../../module/feedback/addFeedback.form">Submit Feedback</a>
+			<a href="../../module/feedback/addFeedback.form"><spring:message code="feedback.addFeedback"/></a>
+		</li>
+                <li>
+			<a href="../../module/feedback/feedback.list"><spring:message code="feedback.manageFeedback"/></a>
 		</li>
 </ul>
-<h2>Predefined Subject Management</h2>
-<b class="boxHeader"><spring:message code="feedback.predefinedsubjects"/></b>
-<div class="box" >
-<table cellpadding="2" cellspacing="0">
-    <tr  class='evenRow'>
-        <th width="100" ><h4>Index</h4></th>
-        <th width="200"><h4>Predefined Subject</h4></th>
-    </tr>
-<c:forEach items="${predefinedsubjects}" var="predefinedsubjectObj">
-    <tr>
-        <td><c:out value="${predefinedsubjectObj.feedbackPredefinedSubjectId}"/></td>
-        <td><a href="/openmrs/module/feedback/predefinedSubject.form?predefinedsubjectid=<c:out value="${predefinedsubjectObj.feedbackPredefinedSubjectId} "/>"><c:out value="${predefinedsubjectObj.subject} "/></a></td>
-    </tr>
-    
-</c:forEach>
-</table> 
-</div>
-<br/>
+<h2><spring:message code="feedback.addPredefinedSubject"/></h2>
 
 
 <form method="post">
@@ -54,5 +40,28 @@
 	<input type="submit" value="<spring:message code="feedback.addPredefinedSubject" />" />
 
 </form>
+        
+        <br/>
+
+<b class="boxHeader"><spring:message code="feedback.predefinedsubjects"/></b>
+
+<div class="box" >
+    
+    <table>
+        <tr>
+            <th width="100"><spring:message code="feedback.index"/></th>
+            <th width="200"><spring:message code="feedback.predefinedSubject"/></th>
+        </tr>
+        <c:forEach items="${predefinedsubjects}" var="predefinedsubjectObj"  varStatus="loopStatus">
+            <tr class="${loopStatus.index % 2 == 0 ? 'evenRow' : 'oddRow'}">
+                <td><c:out value="${predefinedsubjectObj.feedbackPredefinedSubjectId}"/></td>
+                <td><a href="/openmrs/module/feedback/predefinedSubject.form?predefinedsubjectid=<c:out value="${predefinedsubjectObj.feedbackPredefinedSubjectId} "/>"><c:out value="${predefinedsubjectObj.subject} "/></a></td>
+            </tr>
+    
+        </c:forEach>
+    </table> 
+</div>
+
+
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

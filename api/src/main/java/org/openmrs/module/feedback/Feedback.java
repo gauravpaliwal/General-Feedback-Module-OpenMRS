@@ -16,17 +16,20 @@ package org.openmrs.module.feedback;
 
 
 import java.util.Date;
+import org.openmrs.Auditable;
 import org.openmrs.BaseOpenmrsObject;
+import org.openmrs.User;
 
 /*
         Pojo file for feedback_feedback relation in Feedback Module
 */
 
-public class Feedback extends BaseOpenmrsObject  implements java.io.Serializable {
+public class Feedback extends BaseOpenmrsObject  implements  Auditable {
 
 
      private Integer feedbackId;
-     private int creator;
+     private User creator;
+     private User changedBy ;
      private String subject;
      private String content;
      private String severity;
@@ -46,8 +49,7 @@ public class Feedback extends BaseOpenmrsObject  implements java.io.Serializable
            Constructor with all arguments
      */
 	
-    public Feedback(int creator, String subject, String content, String severity, Date dateCreated) {
-        this.creator = creator;
+    public Feedback( String subject, String content, String severity, Date dateCreated) {
         this.subject = subject;
         this.content = content;
         this.severity = severity;
@@ -58,8 +60,7 @@ public class Feedback extends BaseOpenmrsObject  implements java.io.Serializable
            Default constructor with arguments that can't be Null
      */
     
-    public Feedback(int creator, String subject, String content, String severity, String comment, String status, Date dateCreated, Date dateChanged) {
-       this.creator = creator;
+    public Feedback( String subject, String content, String severity, String comment, String status, Date dateCreated, Date dateChanged) {
        this.subject = subject;
        this.content = content;
        this.severity = severity;
@@ -75,13 +76,6 @@ public class Feedback extends BaseOpenmrsObject  implements java.io.Serializable
     
     public void setFeedbackId(Integer feedbackId) {
         this.feedbackId = feedbackId;
-    }
-    public int getCreator() {
-        return this.creator;
-    }
-    
-    public void setCreator(int creator) {
-        this.creator = creator;
     }
     public String getSubject() {
         return this.subject;
@@ -139,6 +133,22 @@ public class Feedback extends BaseOpenmrsObject  implements java.io.Serializable
 
     public void setId(Integer feedbackId) {
         this.feedbackId = feedbackId ;
+    }
+
+    public User getCreator() {
+        return this.creator ;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator ;
+    }
+
+    public User getChangedBy() {
+        return this.changedBy ;
+    }
+
+    public void setChangedBy(User creator) {
+        this.changedBy = creator ;
     }
 
 

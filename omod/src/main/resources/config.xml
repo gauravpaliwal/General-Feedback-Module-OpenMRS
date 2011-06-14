@@ -3,17 +3,17 @@
 
 <module configVersion="1.0">
 	
-	<!-- Basic Module Properties -->
+	<!-- Feedback Module Properties -->
 	<id>feedback</id>
 	<name>General Feedback Mechanism</name>
 	<version>1.0.0</version>
-	<package>org.openmrs.module.feedback</package>
+	<package>org.openmrs.module.@MODULE_ID@</package>
 	<author>Gaurav Paliwal</author>
 	<description>
 			General Feedback Mechanism Module
 	</description>
 
-	<activator>org.openmrs.module.feedback.FeedbackActivator</activator>
+	<activator>@MODULE_PACKAGE@.FeedbackActivator</activator>
 	
 	<require_version>1.6</require_version>
 	<require_modules>
@@ -28,7 +28,7 @@
 	<!-- Extensions -->
 	<extension>
 		<point>org.openmrs.admin.list</point>
-		<class>org.openmrs.module.feedback.extension.html.AdminList</class>
+		<class>@MODULE_PACKAGE@.extension.html.AdminList</class>
 	</extension>
 	
 	<!-- /Extensions -->

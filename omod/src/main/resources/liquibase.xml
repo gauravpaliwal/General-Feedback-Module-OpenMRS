@@ -66,7 +66,7 @@
 			<not><tableExists tableName="feedback_feedback"/></not>
 		</preConditions>
 		<comment>
-			Creating the feedback_predefined_subject table
+			Creating the feedback_feedback table
 		</comment>
 		<createTable tableName="feedback_feedback">
 			<column name="feedback_id" type="int">
@@ -74,6 +74,9 @@
 			</column>
 			<column name="creator" type="int">                 
                                 <constraints nullable="false"/>
+                        </column>
+                        <column name="changed_by" type="int">                 
+                                <constraints nullable="true"/>
                         </column>
                         <column name="subject" type="varchar(255)">
                                 <constraints nullable="false"/>

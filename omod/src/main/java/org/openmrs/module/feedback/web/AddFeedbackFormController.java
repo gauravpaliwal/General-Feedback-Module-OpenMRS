@@ -43,7 +43,6 @@ public class AddFeedbackFormController extends SimpleFormController {
                     s.setSubject(request.getParameter("subject"));
                     s.setSeverity(request.getParameter("severity"));
                     s.setContent( request.getParameter("feedback") );
-                    s.setCreator(Context.getAuthenticatedUser().getUserId() );
                     s.setDateCreated( new Date() ) ;
                     service.saveFeedbackFeedback(s) ;
 

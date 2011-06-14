@@ -78,7 +78,7 @@
 					<property name="transactionManager"><ref bean="transactionManager"/></property>
 					<property name="target">
 						<bean class="org.openmrs.module.feedback.impl.FeedbackServiceImpl">
-							<property name="helloWorldDAO">
+							<property name="FeedbackdDAO">
 								<bean class="org.openmrs.module.feedback.db.hibernate.HibernateFeedbackDAO">
 									<property name="sessionFactory"><ref bean="sessionFactory"/></property>	
 								</bean>

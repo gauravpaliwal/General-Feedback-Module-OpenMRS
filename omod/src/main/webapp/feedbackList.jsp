@@ -18,7 +18,7 @@
             <c:forEach items="${feedbacks}" var="feedbackObj" varStatus="loopStatus">
                 <tr class="${loopStatus.index % 2 == 0 ? 'evenRow' : 'oddRow'}">
                     <td><c:out value="${feedbackObj.feedbackId} "/> </td>
-                    <td><c:out value="${feedbackObj.creator} "/> </td>
+                    <td><c:out value="${feedbackObj.creator.username} "/> </td>
                     <td><c:out value="${feedbackObj.subject} "/> </td>
                     <td><c:out value="${feedbackObj.severity} "/> </td>
                     <td><c:out value="${feedbackObj.status} "/> </td>

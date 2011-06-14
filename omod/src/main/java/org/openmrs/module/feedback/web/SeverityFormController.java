@@ -1,3 +1,17 @@
+/**
+ * The contents of this file are subject to the OpenMRS Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ * http://license.openmrs.org
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations
+ * under the License.
+ *
+ * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+ */
+
 package org.openmrs.module.feedback.web;
 
 import java.util.HashMap;
@@ -8,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.feedback.FeedbackSeverity;
+import org.openmrs.module.feedback.Severity;
 import org.openmrs.module.feedback.FeedbackService;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
@@ -31,7 +45,7 @@ public class SeverityFormController extends SimpleFormController {
                   else if (request.getParameter("feedbackSeverityId") != null && request.getParameter("delete")!= null )
                     {
                         
-                        FeedbackSeverity s = new FeedbackSeverity() ;
+                        Severity s = new Severity() ;
                         s = service.getFeedbackSeverity(Integer.parseInt(request.getParameter("feedbackSeverityId"))) ;
                         service.deleteFeedbackSeverity( s );
                     }
@@ -56,7 +70,7 @@ public class SeverityFormController extends SimpleFormController {
                 if ( (String)req.getParameter("feedbackSeverityId") == "" ||  service.getFeedbackSeverity(Integer.parseInt(req.getParameter("feedbackSeverityId"))) == null )
                 {
                     System.out.println ("Nothing to do, element  already deleted") ;
-                    FeedbackSeverity s = new FeedbackSeverity() ;
+                    Severity s = new Severity() ;
                     map.put("feedbackSeverityId" , s ) ;
                     map.put("status" , "Element Deleted or Do not Exists") ;
                     return map ;
@@ -64,7 +78,7 @@ public class SeverityFormController extends SimpleFormController {
                 else if (req.getParameter("feedbackSeverityId") != null)
                 {
                                  
-                    FeedbackSeverity s = new FeedbackSeverity() ;
+                    Severity s = new Severity() ;
                     s = service.getFeedbackSeverity(Integer.parseInt(req.getParameter("feedbackSeverityId"))) ;
                     map.put("severity" , s ) ;
                     map.put("status" , "") ;

@@ -19,6 +19,7 @@
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="severity" type="varchar(50)"/>
+                        <column name="uuid" type="varchar(38)"/>
 			
 		</createTable>                
                 <addAutoIncrement tableName="feedback_severity" columnName="feedback_severity_id" columnDataType="int"/>
@@ -35,7 +36,9 @@
 			<column name="feedback_status_id" type="int">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
-			<column name="status" type="varchar(50)"/>			
+			<column name="status" type="varchar(50)"/>
+                        <column name="uuid" type="varchar(38)"/>
+
 		</createTable>                
                 <addAutoIncrement tableName="feedback_status" columnName="feedback_status_id" columnDataType="int"/>
         </changeSet>
@@ -52,7 +55,8 @@
 			<column name="feedback_predefined_subject_id" type="int">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
-			<column name="subject" type="varchar(50)"/>			
+			<column name="subject" type="varchar(50)"/>	
+                        <column name="uuid" type="varchar(38)"/>
 		</createTable>                
                 <addAutoIncrement tableName="feedback_predefined_subject" columnName="feedback_predefined_subject_id" columnDataType="int"/>
         </changeSet>    
@@ -86,6 +90,7 @@
                             <constraints nullable="false"/>
                         </column>
                         <column name="date_changed" type="date" />
+                        <column name="uuid" type="varchar(38)"/>
 		</createTable>                
                 <addAutoIncrement tableName="feedback_feedback" columnName="feedback_id" columnDataType="int"/>
         </changeSet>  

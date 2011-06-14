@@ -1,13 +1,28 @@
+/**
+ * The contents of this file are subject to the OpenMRS Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ * http://license.openmrs.org
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations
+ * under the License.
+ *
+ * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+ */
+
 package org.openmrs.module.feedback;
 
 
 import java.util.Date;
+import org.openmrs.BaseOpenmrsObject;
 
 /*
         Pojo file for feedback_feedback relation in Feedback Module
 */
 
-public class FeedbackFeedback  implements java.io.Serializable {
+public class Feedback extends BaseOpenmrsObject  implements java.io.Serializable {
 
 
      private Integer feedbackId;
@@ -24,14 +39,14 @@ public class FeedbackFeedback  implements java.io.Serializable {
            Default no arguement constructor
      */
 
-    public FeedbackFeedback() {
+    public Feedback() {
     }
 
      /*
            Constructor with all arguments
      */
 	
-    public FeedbackFeedback(int creator, String subject, String content, String severity, Date dateCreated) {
+    public Feedback(int creator, String subject, String content, String severity, Date dateCreated) {
         this.creator = creator;
         this.subject = subject;
         this.content = content;
@@ -43,7 +58,7 @@ public class FeedbackFeedback  implements java.io.Serializable {
            Default constructor with arguments that can't be Null
      */
     
-    public FeedbackFeedback(int creator, String subject, String content, String severity, String comment, String status, Date dateCreated, Date dateChanged) {
+    public Feedback(int creator, String subject, String content, String severity, String comment, String status, Date dateCreated, Date dateChanged) {
        this.creator = creator;
        this.subject = subject;
        this.content = content;
@@ -116,6 +131,14 @@ public class FeedbackFeedback  implements java.io.Serializable {
     
     public void setDateChanged(Date dateChanged) {
         this.dateChanged = dateChanged;
+    }
+
+    public Integer getId() {
+        return this.feedbackId;
+    }
+
+    public void setId(Integer feedbackId) {
+        this.feedbackId = feedbackId ;
     }
 
 

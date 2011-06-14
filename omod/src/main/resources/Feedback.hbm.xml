@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.openmrs.module.feedback">
-  <class name="org.openmrs.module.feedback.FeedbackFeedback" table="feedback_feedback">
+  <class name="org.openmrs.module.feedback.Feedback" table="feedback_feedback">
     <id name="feedbackId" type="java.lang.Integer">
       <column name="feedback_id"/>
       <generator class="native"/>
@@ -30,5 +30,6 @@
     <property name="dateChanged" type="date">
       <column length="10" name="date_changed"/>
     </property>
+    <property name="uuid" type="string" length="38" not-null="true" />
   </class>
 </hibernate-mapping>

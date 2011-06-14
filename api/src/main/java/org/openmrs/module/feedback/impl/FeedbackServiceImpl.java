@@ -40,11 +40,11 @@ public class FeedbackServiceImpl implements FeedbackService {
 	
 	public FeedbackServiceImpl() {	}
 	
-	private FeedbackDAO getHelloWorldDAO() {
+	private FeedbackDAO getFeedbackdDAO() {
 		return dao;
 	}
 	
-	public void setHelloWorldDAO(FeedbackDAO dao) {
+	public void setFeedbackdDAO(FeedbackDAO dao) {
 		this.dao = dao;
 	}
 	
@@ -56,102 +56,86 @@ public class FeedbackServiceImpl implements FeedbackService {
 	 */
         
         public void saveFeedbackSeverity(Severity feedbackSeverity) throws APIException {
-		getHelloWorldDAO().saveFeedbackSeverity(feedbackSeverity);
+		getFeedbackdDAO().saveFeedbackSeverity(feedbackSeverity);
 	}
         
         public void saveFeedbackStatus(Status feedbackStatus) throws APIException {
-		getHelloWorldDAO().saveFeedbackStatus(feedbackStatus);
+		getFeedbackdDAO().saveFeedbackStatus(feedbackStatus);
 	}
         
         public void saveFeedbackPredefinedSubject(PredefinedSubject feedbackPredefinedSubject) throws APIException {
-		getHelloWorldDAO().saveFeedbackPredefinedSubject(feedbackPredefinedSubject);
+		getFeedbackdDAO().saveFeedbackPredefinedSubject(feedbackPredefinedSubject);
 	}
         
         public void saveFeedbackFeedback(Feedback feedbackFeedback) throws APIException {
-		getHelloWorldDAO().saveFeedbackFeedback(feedbackFeedback);
+		getFeedbackdDAO().saveFeedbackFeedback(feedbackFeedback);
 	}
         
         
-	/**
-	 * Get helloWorldResponse by internal identifier
-	 * 
-	 * @param helloWorldResponseId internal helloWorldResponse identifier
-	 * @return helloWorldResponse with given internal identifier
-	 * @throws APIException
-	 */
+
   
         public Severity getFeedbackSeverity (Integer feedbackSeverityId) throws APIException {
-		return getHelloWorldDAO().getFeedbackSeverity(feedbackSeverityId) ;
+		return getFeedbackdDAO().getFeedbackSeverity(feedbackSeverityId) ;
 	}
         public Status getFeedbackStatus (Integer feedbackStatusId) throws APIException {
-		return getHelloWorldDAO().getFeedbackStatus (feedbackStatusId) ;
+		return getFeedbackdDAO().getFeedbackStatus (feedbackStatusId) ;
 	}
         
         public PredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId) throws APIException {
-		return getHelloWorldDAO().getFeedbackPredefinedSubject (feedbackPredefinedSubjectId) ;
+		return getFeedbackdDAO().getFeedbackPredefinedSubject (feedbackPredefinedSubjectId) ;
 	}
         
         public Feedback getFeedbackFeedback (Integer feedbackFeedbackId) throws APIException {
-		return getHelloWorldDAO().getFeedbackFeedback (feedbackFeedbackId) ;
+		return getFeedbackdDAO().getFeedbackFeedback (feedbackFeedbackId) ;
 	}
 
-	/**
-	 * Update helloWorldResponse 
-	 * 
-	 * @param helloWorldResponse to be updated
-	 * @throws APIException
-	 */
+
 
 	public void updateFeedbackSeverity(Severity feedbackSeverity) throws APIException {
-                getHelloWorldDAO().updateFeedbackSeverity(feedbackSeverity);
+                getFeedbackdDAO().updateFeedbackSeverity(feedbackSeverity);
         }
         
         public void updateFeedbackStatus (Status feedbackStatus) throws APIException {
-                getHelloWorldDAO().updateFeedbackStatus(feedbackStatus) ;
+                getFeedbackdDAO().updateFeedbackStatus(feedbackStatus) ;
         }
         
         public void updateFeedbackPredefinedSubject (PredefinedSubject feedbackPredefinedSubject) throws APIException {
-                getHelloWorldDAO().updateFeedbackPredefinedSubject (feedbackPredefinedSubject) ;
+                getFeedbackdDAO().updateFeedbackPredefinedSubject (feedbackPredefinedSubject) ;
         }
         
         public void updateFeedbackFeedback (Feedback feedbackFeedback) throws APIException {
-                getHelloWorldDAO().updateFeedbackFeedback (feedbackFeedback) ;
+                getFeedbackdDAO().updateFeedbackFeedback (feedbackFeedback) ;
         }
-	/**
-	 * Get helloWorldResponses
-	 * 
-	 * @return helloWorldResponse list
-	 * @throws APIException
-	 */
+
 
          public List<Severity> getSeverities() throws APIException {
-		return getHelloWorldDAO().getSeverities();
+		return getFeedbackdDAO().getSeverities();
 	}
          
         public List<Status> getStatuses() throws APIException {
-		return getHelloWorldDAO().getStatuses();
+		return getFeedbackdDAO().getStatuses();
 	}
         public List<PredefinedSubject> getPredefinedSubjects () throws APIException {
-		return getHelloWorldDAO().getPredefinedSubjects();
+		return getFeedbackdDAO().getPredefinedSubjects();
 	}
         public List<Feedback> getFeedbacks () throws APIException {
-		return getHelloWorldDAO().getFeedbacks();
+		return getFeedbackdDAO().getFeedbacks();
 	}
 
         public void deleteFeedbackPredefinedSubject(PredefinedSubject feedbackPredefinedSubject) throws APIException {
-                getHelloWorldDAO().deleteFeedbackPredefinedSubject(feedbackPredefinedSubject); 
+                getFeedbackdDAO().deleteFeedbackPredefinedSubject(feedbackPredefinedSubject); 
         }
 
         public void deleteFeedbackStatus(Status feedbackStatus) throws APIException {
-                getHelloWorldDAO().deleteFeedbackStatus(feedbackStatus) ;
+                getFeedbackdDAO().deleteFeedbackStatus(feedbackStatus) ;
         }
     
         public void deleteFeedbackSeverity(Severity feedbackSeverity) throws APIException {
-                getHelloWorldDAO().deleteFeedbackSeverity(feedbackSeverity); 
+                getFeedbackdDAO().deleteFeedbackSeverity(feedbackSeverity); 
         }
 
         public void deleteFeedbackFeedback (Feedback feedbackFeedback) throws APIException {
-                getHelloWorldDAO().deleteFeedbackFeedback (feedbackFeedback); 
+                getFeedbackdDAO().deleteFeedbackFeedback (feedbackFeedback); 
         }
 
     public void createHelloWorldResponse(HelloWorldResponse saying) throws APIException {

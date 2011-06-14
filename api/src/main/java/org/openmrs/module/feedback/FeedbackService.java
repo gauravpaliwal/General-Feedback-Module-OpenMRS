@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface FeedbackService {
 
-	public void setHelloWorldDAO(FeedbackDAO dao);
+	public void setFeedbackdDAO(FeedbackDAO dao);
 
 	/**
 	 * Saves (creates) a new feedback module data

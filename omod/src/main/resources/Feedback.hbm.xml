@@ -6,9 +6,8 @@
       <column name="feedback_id"/>
       <generator class="native"/>
     </id>
-    <property name="creator" type="int">
-      <column name="creator" not-null="true"/>
-    </property>
+    <many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator"/>
+    <many-to-one name="changedBy" class="org.openmrs.User" column="changed_by"/>
     <property name="subject" type="string">
       <column name="subject" not-null="true"/>
     </property>
@@ -24,12 +23,9 @@
     <property name="status" type="string">
       <column length="25" name="status"/>
     </property>
-    <property name="dateCreated" type="date">
-      <column length="10" name="date_created" not-null="true"/>
-    </property>
-    <property name="dateChanged" type="date">
-      <column length="10" name="date_changed"/>
-    </property>
+    <property name="dateCreated" type="java.util.Date"  column="date_created" not-null="true" length="19" />
+    <property name="dateChanged" type="java.util.Date"  column="date_changed" length="19" />
     <property name="uuid" type="string" length="38" not-null="true" />
   </class>
+
 </hibernate-mapping>

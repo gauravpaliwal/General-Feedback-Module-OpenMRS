@@ -6,15 +6,15 @@
 	<artifactId>feedback-parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>General Feedback Mechanishm Module</name>
-	<description>Parent project for Hello World Module</description>
+	<name>General Feedback Mechanism Module</name>
+	<description>Parent project for General Feedback Mechanism Module</description>
 
-	<url>http://openmrs.org</url>
+	<url>http://wiki.openmrs.org/display/docs/Feedback+Module</url>
 
 	<scm>
-		<connection>scm:svn:http://svn.openmrs.org/openmrs-modules/helloworld/trunk/</connection>
-		<developerConnection>scm:svn:http://svn.openmrs.org/openmrs-modules/helloworld/trunk/</developerConnection>
-		<url>http://svn.openmrs.org/openmrs-modules/helloworld/trunk/</url>
+		<connection>scm:svn:http://svn.openmrs.org/openmrs-modules/feedback/trunk/</connection>
+		<developerConnection>scm:svn:http://svn.openmrs.org/openmrs-modules/feedback/trunk/</developerConnection>
+		<url>http://svn.openmrs.org/openmrs-modules/feedback/trunk/</url>
 	</scm>
 
 	<modules>

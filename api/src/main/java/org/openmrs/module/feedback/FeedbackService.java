@@ -1,3 +1,17 @@
+/**
+ * The contents of this file are subject to the OpenMRS Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ * http://license.openmrs.org
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations
+ * under the License.
+ *
+ * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+ */
+
 package org.openmrs.module.feedback;
 
 import java.util.List;
@@ -18,12 +32,11 @@ public interface FeedbackService {
 	 * @param saying to be created
 	 * @throws APIException
 	 */
-	@Authorized({"Add Hello World Response"})
-	public void createHelloWorldResponse(HelloWorldResponse saying) throws APIException;
-        public void createFeedbackSeverity (FeedbackSeverity feedbackSeverity) throws APIException;
-        public void createFeedbackStatus (FeedbackStatus feedbackstatus ) throws APIException;
-        public void createFeedbackPredefinedSubject (FeedbackPredefinedSubject feedbackPredefinedSubject ) throws APIException;
-        public void createFeedbackFeedback (FeedbackFeedback feedbackFeedback) throws APIException;
+	@Authorized({"Add Feedback Criteria"})
+        public void saveFeedbackSeverity (Severity feedbackSeverity) throws APIException;
+        public void saveFeedbackStatus (Status feedbackstatus ) throws APIException;
+        public void saveFeedbackPredefinedSubject (PredefinedSubject feedbackPredefinedSubject ) throws APIException;
+        public void saveFeedbackFeedback (Feedback feedbackFeedback) throws APIException;
 	/**
 	 * Get response by internal identifier
 	 * 
@@ -31,12 +44,11 @@ public interface FeedbackService {
 	 * @return response with given internal identifier
 	 * @throws APIException
 	 */
-	@Authorized({"View Hello World Response"})
+	@Authorized({"View Feedback Criteria"})
 	@Transactional(readOnly=true)
-	public HelloWorldResponse getHelloWorldResponse(Integer sayingId) throws APIException;
-        public FeedbackSeverity getFeedbackSeverity(Integer feedbackSeverityId) throws APIException;
-        public FeedbackStatus getFeedbackStatus(Integer feedbackStatusId) throws APIException;
-        public FeedbackPredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId ) throws APIException;
+        public Severity getFeedbackSeverity(Integer feedbackSeverityId) throws APIException;
+        public Status getFeedbackStatus(Integer feedbackStatusId) throws APIException;
+        public PredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId ) throws APIException;
 
 
 	/**
@@ -45,23 +57,21 @@ public interface FeedbackService {
 	 * @param response to be updated
 	 * @throws APIException
 	 */
-	@Authorized({"Edit Hello World Response"})
-	public void updateHelloWorldResponse(HelloWorldResponse response) throws APIException;
-        public void updateFeedbackSeverity(FeedbackSeverity severity) throws APIException;
-        public void updateFeedbackStatus(FeedbackStatus status) throws APIException;
-        public void updateFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException;
+	@Authorized({"Edit Feedback Criteria"})
+        public void updateFeedbackSeverity(Severity severity) throws APIException;
+        public void updateFeedbackStatus(Status status) throws APIException;
+        public void updateFeedbackPredefinedSubject(PredefinedSubject feedbackPredefinedSubject) throws APIException;
         
-        public void deleteFeedbackPredefinedSubject(FeedbackPredefinedSubject feedbackPredefinedSubject) throws APIException;        
-        public void deleteFeedbackStatus (FeedbackStatus feedbackStatus) throws APIException;
-        public void deleteFeedbackSeverity (FeedbackSeverity feedbackSeverity) throws APIException;
+        public void deleteFeedbackPredefinedSubject(PredefinedSubject feedbackPredefinedSubject) throws APIException;        
+        public void deleteFeedbackStatus (Status feedbackStatus) throws APIException;
+        public void deleteFeedbackSeverity (Severity feedbackSeverity) throws APIException;
 
-        
-	@Authorized({"View Hello World Response"})
-	public List<HelloWorldResponse> getResponses() throws APIException;
-        public List<FeedbackSeverity> getSeverities() throws APIException;
-        public List<FeedbackStatus> getStatuses() throws APIException;
-        public List<FeedbackPredefinedSubject> getPredefinedSubjects() throws APIException;
-        public List<FeedbackFeedback> getFeedbacks () throws APIException ;
+        @Transactional(readOnly=true)
+	@Authorized({"View Feedback Criteria"})
+        public List<Severity> getSeverities() throws APIException;
+        public List<Status> getStatuses() throws APIException;
+        public List<PredefinedSubject> getPredefinedSubjects() throws APIException;
+        public List<Feedback> getFeedbacks () throws APIException ;
 
 
 }

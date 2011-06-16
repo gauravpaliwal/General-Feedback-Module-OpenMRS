@@ -49,6 +49,7 @@ public interface FeedbackService {
         public Severity getFeedbackSeverity(Integer feedbackSeverityId) throws APIException;
         public Status getFeedbackStatus(Integer feedbackStatusId) throws APIException;
         public PredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId ) throws APIException;
+        public Feedback getFeedbackFeedback (Integer feedbackId ) throws APIException;
 
 
 	/**

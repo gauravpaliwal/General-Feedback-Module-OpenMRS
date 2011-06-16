@@ -16,8 +16,7 @@
                                 <prop key="/module/feedback/status.form">statusForm</prop>
                                 <prop key="/module/feedback/addFeedback.form">addFeedbackForm</prop>
                                 <prop key="/module/feedback/feedback.list">feedbackList</prop>
-
-
+                                <prop key="/module/feedback/feedback.form">feedbackForm</prop>
             </props>
 	</property>
 	</bean>
@@ -69,6 +68,13 @@
 		<property name="formView"><value>/module/feedback/feedbackList</value></property>
 		<property name="successView"><value>redirect:feedback.list</value></property>
 	</bean>
+        
+        <bean id="feedbackForm" class="org.openmrs.module.feedback.web.FeedbackFormController">
+		<property name="commandName"><value>feedbackId</value></property>
+		<property name="formView"><value>/module/feedback/feedbackForm</value></property>
+		<property name="successView"><value>redirect:feedback.form</value></property>
+	</bean>
+        
         
 	<bean parent="serviceContext">
 		<property name="moduleService">

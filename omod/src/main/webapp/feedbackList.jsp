@@ -17,13 +17,13 @@
             </tr>
             <c:forEach items="${feedbacks}" var="feedbackObj" varStatus="loopStatus">
                 <tr class="${loopStatus.index % 2 == 0 ? 'evenRow' : 'oddRow'}">
-                    <td><c:out value="${feedbackObj.feedbackId} "/> </td>
-                    <td><c:out value="${feedbackObj.creator.username} "/> </td>
+                    <td><a href="/openmrs/module/feedback/feedback.form?feedbackId=<c:out value="${feedbackObj.feedbackId}"/>"><c:out value="${feedbackObj.feedbackId}"/></a></td>
+                    <td><c:out value="${feedbackObj.creator} "/> </td>
                     <td><c:out value="${feedbackObj.subject} "/> </td>
                     <td><c:out value="${feedbackObj.severity} "/> </td>
                     <td><c:out value="${feedbackObj.status} "/> </td>
                     <td><c:out value="${feedbackObj.dateCreated} "/> </td>
-                </tr>    
+                </tr>      
             </c:forEach>    
         </table>
    </div>

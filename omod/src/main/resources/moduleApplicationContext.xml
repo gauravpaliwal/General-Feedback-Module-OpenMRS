@@ -20,7 +20,11 @@
             </props>
 	</property>
 	</bean>
-
+    <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="900000"/>
+    </bean>
 	<bean id="addSeverityForm" class="org.openmrs.module.feedback.web.AddSeverityFormController">
 		<property name="commandName"><value>helloWorldObject</value></property>
 		<property name="formView"><value>/module/feedback/addSeverityForm</value></property>

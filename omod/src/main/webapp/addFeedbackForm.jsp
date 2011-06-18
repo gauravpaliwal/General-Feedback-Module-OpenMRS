@@ -2,7 +2,7 @@
 
 <h2><spring:message code="feedback.addFeedback"/></h2>
 
-<form method="get">
+<form method="post"  enctype="multipart/form-data">
 <b class="boxHeader"><spring:message code="feedback.submit"/></b>
     <div class="box" >
     <table>
@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td><spring:message code="feedback.attachment"/> </td>
-            <td><input type="file" name="attachment" size="40"> </input> </td>   
+            <td><input type="file" name="file" size="40"> </input> </td>   
         </tr>
     </table>
         <br/>

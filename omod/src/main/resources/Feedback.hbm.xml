@@ -26,6 +26,7 @@
     <property name="dateCreated" type="java.util.Date"  column="date_created" not-null="true" length="19" />
     <property name="dateChanged" type="java.util.Date"  column="date_changed" length="19" />
     <property name="uuid" type="string" length="38" not-null="true" />
+    <property name="message" type="binary" column="attachment" not-null="false" />
   </class>
 
 </hibernate-mapping>

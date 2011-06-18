@@ -69,7 +69,7 @@
                                     <c:if test="${empty feedback.status}">
 
             
-            <input TYPE=hidden NAME=feedbackId VALUE= <c:out value="${feedback.feedbackId}"/> >
+            <input type=hidden name=feedbackId value= <c:out value="${feedback.feedbackId}"/> >
             <input type="submit" value="<spring:message code="feedback.comment" />" />
                 
                         </c:if>

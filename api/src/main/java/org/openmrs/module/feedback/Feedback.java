@@ -37,7 +37,7 @@ public class Feedback extends BaseOpenmrsObject  implements  Auditable {
      private String status;
      private Date dateCreated;
      private Date dateChanged;
-     
+     private byte[] message ;
      /*
            Default no arguement constructor
      */
@@ -151,7 +151,14 @@ public class Feedback extends BaseOpenmrsObject  implements  Auditable {
         this.changedBy = creator ;
     }
 
+    public byte[] getMessage() {
+		return message;
+	}
 
+
+	public void setMessage(byte[] message) {
+		this.message = message;
+	}
 
 
 }

@@ -25,6 +25,8 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Feedback;
 import org.openmrs.module.feedback.FeedbackService;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class AddFeedbackFormController extends SimpleFormController {
@@ -44,9 +46,12 @@ public class AddFeedbackFormController extends SimpleFormController {
                     s.setSeverity(request.getParameter("severity"));
                     s.setContent( request.getParameter("feedback") );
                     s.setDateCreated( new Date() ) ;
-                    service.saveFeedbackFeedback(s) ;
-
-        
+                    if (request instanceof MultipartHttpServletRequest) {
+                    MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+                    MultipartFile file = (MultipartFile) multipartRequest.getFile("file");
+                    s.setMessage(file.getBytes());
+                    }
+                    
                 }
                 			
 		String text = "Not used";

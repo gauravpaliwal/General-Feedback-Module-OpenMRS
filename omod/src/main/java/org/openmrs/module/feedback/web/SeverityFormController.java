@@ -37,10 +37,10 @@ public class SeverityFormController extends SimpleFormController {
                         Object o = Context.getService(FeedbackService.class);
                         FeedbackService service = (FeedbackService)o;                 
                     if ( (String)request.getParameter("feedbackSeverityId") == "" || service.getFeedbackSeverity(Integer.parseInt(request.getParameter("feedbackSeverityId"))) == null )
-                {
-                    System.out.println ("Nothing to do elemented already deleted") ;
+                        {
+                            System.out.println ("Nothing to do elemented already deleted") ;
                     
-                } 
+                        } 
                     
                   else if (request.getParameter("feedbackSeverityId") != null && request.getParameter("delete")!= null )
                     {
@@ -48,6 +48,15 @@ public class SeverityFormController extends SimpleFormController {
                         Severity s = new Severity() ;
                         s = service.getFeedbackSeverity(Integer.parseInt(request.getParameter("feedbackSeverityId"))) ;
                         service.deleteFeedbackSeverity( s );
+                    }
+                    
+                    else if (request.getParameter("feedbackSeverityId") != null && request.getParameter("save")!= null )
+                    {
+                        
+                        Severity s = new Severity() ;
+                        s = service.getFeedbackSeverity(Integer.parseInt(request.getParameter("feedbackSeverityId"))) ;
+                        s.setSeverity( request.getParameter("severity") );
+                        service.saveFeedbackSeverity(s);
                     }
                 
                 

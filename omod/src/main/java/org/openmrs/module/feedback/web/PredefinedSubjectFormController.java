@@ -49,6 +49,15 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                         s = service.getFeedbackPredefinedSubject(Integer.parseInt(request.getParameter("predefinedsubjectid"))) ;
                         service.deleteFeedbackPredefinedSubject( s );
                     }
+                    
+                   else if (request.getParameter("predefinedsubjectid") != null && request.getParameter("save")!= null )
+                    {
+                        
+                        PredefinedSubject s = new PredefinedSubject() ;
+                        s = service.getFeedbackPredefinedSubject(Integer.parseInt(request.getParameter("predefinedsubjectid"))) ;
+                        s.setSubject(request.getParameter("predefinedsubject") );
+                        service.saveFeedbackPredefinedSubject(s);
+                    }
                 
                 
                 			

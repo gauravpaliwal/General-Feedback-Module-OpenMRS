@@ -37,10 +37,10 @@ public class StatusFormController extends SimpleFormController {
                         Object o = Context.getService(FeedbackService.class);
                         FeedbackService service = (FeedbackService)o;                 
                     if ( (String)request.getParameter("feedbackStatusId") == "" || service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) == null )
-                {
-                    System.out.println ("Nothing to do elemented already deleted") ;
+                    {
+                        System.out.println ("Nothing to do elemented already deleted") ;
                     
-                } 
+                    } 
                     
                   else if (request.getParameter("feedbackStatusId") != null && request.getParameter("delete")!= null )
                     {
@@ -48,6 +48,15 @@ public class StatusFormController extends SimpleFormController {
                         Status s = new Status() ;
                         s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
                         service.deleteFeedbackStatus( s );
+                    }
+                    
+                    else if (request.getParameter("feedbackStatusId") != null && request.getParameter("save")!= null )
+                    {
+                        
+                        Status s = new Status() ;
+                        s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
+                        s.setStatus(request.getParameter("status") );
+                        service.saveFeedbackStatus(s);
                     }
                 
                 

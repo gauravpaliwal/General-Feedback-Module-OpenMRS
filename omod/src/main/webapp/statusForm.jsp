@@ -4,6 +4,8 @@
 
 <b class="boxHeader"><spring:message code="feedback.statuses"/></b>
 <div class="box" >
+        <form method="get">
+
 <table cellpadding="2" cellspacing="0">
     <tr>
         <th width="100"><spring:message code="feedback.index"/></th>
@@ -11,16 +13,25 @@
     </tr>
     <tr  class="evenRow">
         <td><c:out value="${statuses.feedbackStatusId}"/> </td>
-        <td> <c:out value="${statuses.status}"/> </td>
+        <td> <input type="text" name="status" value="${statuses.status}" /> </td>
     </tr>    
-</table> 
-    
-    <br/>
+    <tr>
+        <td>
+        <input type=hidden name=feedbackStatusId value=<c:out value="${statuses.feedbackStatusId}"/>>
+        <input type=hidden name=save value="1">
+        <input type="submit" value="Save" />
+        </form>    
+        </td>
+        <td>
+
     <form method="get">
         <input type=hidden name=feedbackStatusId value=<c:out value="${statuses.feedbackStatusId}"/>>
         <input type=hidden name=delete value="1">
         <input type="submit" value="Delete" />
-    </form>    
+                </td>
+    </form> 
+        </tr>    
+</table> 
 
 
 </div>

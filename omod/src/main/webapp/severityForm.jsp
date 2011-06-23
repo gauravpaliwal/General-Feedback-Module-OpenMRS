@@ -1,11 +1,13 @@
-<%@ include file="local_header.jsp"%>
+<%@ include file="local_header.jsp"%>    
 
-    
+
 <h2><spring:message code="feedback.editSeverity"/></h2>
 
 <b class="boxHeader"><spring:message code="feedback.severities"/></b>
 
 <div class="box" >
+    <form method="get">
+        <input type=hidden name=feedbackSeverityId value= <c:out value="${severity.feedbackSeverityId}"/> >
     <table>
         <tr>
             <th width="100"><spring:message code="feedback.index"/></th>
@@ -13,17 +15,25 @@
         </tr>
         <tr  class="evenRow">
             <td><c:out value="${severity.feedbackSeverityId}"/> </td>
-            <td><c:out value="${severity.severity}"/></td>
+            <td><input type="text" name="severity" value="${severity.severity}" /></td>
         </tr>
-    </table> 
-    <br/>
-    <form method="get">
-        <input TYPE=hidden name=feedbackSeverityId value= <c:out value="${severity.feedbackSeverityId}"/> >
-        <input TYPE=hidden name=delete value="1">
-        <input type="submit" value="Delete" />
+        <tr>    
+            <td>
+                <input type=hidden name=save value="1">
+                <input type="submit" value="Save" />
+            </td>
     </form>
-    
+
+    <form method="get">
+        <input type=hidden name=feedbackSeverityId value= <c:out value="${severity.feedbackSeverityId}"/> >
+        <input type=hidden name=delete value="1">
+        <td>
+            <input type="submit" value="Delete" />
+        </td>        
+        </tr>
+    </form>
+    </table> 
 </div>
-
-
+        
+        
 <%@ include file="/WEB-INF/template/footer.jsp" %>

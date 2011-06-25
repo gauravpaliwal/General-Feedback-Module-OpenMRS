@@ -25,7 +25,7 @@
     <c:forEach items="${statuses}" var="statusObj"  varStatus="loopStatus">
         <tr  class="${loopStatus.index % 2 == 0 ? 'evenRow' : 'oddRow'}">
             <td><c:out value="${statusObj.feedbackStatusId} "/></td>
-            <td><a href="/openmrs/module/feedback/status.form?feedbackStatusId=<c:out value="${statusObj.feedbackStatusId}"/>"><c:out value="${statusObj.status}"/></a></td>   
+            <td><a href="<openmrs:contextPath/>/module/feedback/status.form?feedbackStatusId=<c:out value="${statusObj.feedbackStatusId}"/>"><c:out value="${statusObj.status}"/></a></td>   
         </tr>
     </c:forEach>
         

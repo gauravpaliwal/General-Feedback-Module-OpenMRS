@@ -6,6 +6,8 @@
 <b class="boxHeader"><spring:message code="feedback.severities"/></b>
 
 <div class="box" >
+<c:if test="${empty status}"> 
+
     <form method="get">
         <input type=hidden name=feedbackSeverityId value= <c:out value="${severity.feedbackSeverityId}"/> >
     <table>
@@ -23,16 +25,17 @@
                 <input type="submit" value="Save" />
             </td>
     </form>
-
-    <form method="get">
-        <input type=hidden name=feedbackSeverityId value= <c:out value="${severity.feedbackSeverityId}"/> >
-        <input type=hidden name=delete value="1">
-        <td>
-            <input type="submit" value="Delete" />
-        </td>        
+            <td>
+                <form method="get">
+                    <input type=hidden name=feedbackSeverityId value= <c:out value="${severity.feedbackSeverityId}"/> >
+                    <input type=hidden name=delete value="1">
+                    <input type="submit" value="Delete" />
+                </form>
+            </td>        
         </tr>
-    </form>
     </table> 
+</c:if>
+
 </div>
         
         

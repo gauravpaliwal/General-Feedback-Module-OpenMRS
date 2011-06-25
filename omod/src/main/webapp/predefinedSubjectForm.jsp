@@ -6,37 +6,37 @@
 <b class="boxHeader"><spring:message code="feedback.predefinedsubjects"/></b>
 
 <div class="box" >
-    
+<c:if test="${empty status}"> 
     <table>
         <tr>
             <th width="100"><spring:message code="feedback.index"/></th>
             <th width="200"><spring:message code="feedback.predefinedSubject"/></th>
         </tr>
         <form method="get">
-        <tr class="evenRow">
-            <td><c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> </td>
-            <td><input type="text" name="predefinedsubject" value="${predefinedsubjects.subject}"/></td>
-        </tr>
-                <tr>
-                            <input TYPE=hidden name=predefinedsubjectid value= <c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> >
-
+            <tr class="evenRow">
+                <td><c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> </td>
+                <td><input type="text" name="predefinedsubject" value="${predefinedsubjects.subject}"/></td>
+            </tr>
+            <tr>
+                <input TYPE=hidden name=predefinedsubjectid value= <c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> >
                 <input TYPE=hidden name=save value="1">
                 <td>
-        <input type="submit" value="Save" />
-                        </td>
-
-    </form>
+                    <input type="submit" value="Save" />
+                </td>
+        </form>
    
-    <form method="get">
+        <form method="get">
         <input TYPE=hidden name=predefinedsubjectid value= <c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> >
         <input TYPE=hidden name=delete value="1">
-        <td>
-        <input type="submit" value="Delete" />
-        </td>
+                <td>
+                    <input type="submit" value="Delete" />
+                </td>
     </form>
-                        <tr>
+             </tr>
 
-</table> 
+    </table> 
+</c:if>
+
 </div>
 
 

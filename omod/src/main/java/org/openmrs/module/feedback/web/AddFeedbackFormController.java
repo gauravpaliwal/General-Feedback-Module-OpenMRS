@@ -44,14 +44,30 @@ public class AddFeedbackFormController extends SimpleFormController {
                     Feedback s = new Feedback() ;
                     s.setSubject(request.getParameter("subject"));
                     s.setSeverity(request.getParameter("severity"));
-                    s.setContent( request.getParameter("feedback") );
-                    s.setDateCreated( new Date() ) ;
-                    if (request instanceof MultipartHttpServletRequest) {
-                    MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-                    MultipartFile file = (MultipartFile) multipartRequest.getFile("file");
-                    s.setMessage(file.getBytes());
+                    
+                    StackTraceElement[] c = Thread.currentThread().getStackTrace() ;
+                    String feedback =    request.getParameter("feedback")  ;
+                    for (int i = 0 ; i < c.length ; i++ ){
+                        feedback = feedback + "\n" + c[i].getFileName() + c[i].getMethodName() + c[i].getClass() + c[i].getLineNumber() ;
+                    }
+                    if (feedback.length() >4000 )
+                    {
+                        s.setContent( feedback.substring (0, 4000) );
+                    }
+                    else
+                    {
+                        s.setContent( feedback );
                     }
                     
+                    s.setDateCreated( new Date() ) ;
+                    if (request instanceof MultipartHttpServletRequest) 
+                    {
+                        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+                        MultipartFile file = (MultipartFile) multipartRequest.getFile("file");
+                        s.setMessage(file.getBytes());
+                    }
+                    
+                    service.saveFeedbackFeedback(s) ;                
                 }
                 			
 		String text = "Not used";

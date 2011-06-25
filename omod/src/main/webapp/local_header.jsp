@@ -11,7 +11,7 @@
 
 <c:if test="${!empty status}"> 
     
-    <div id="openmrs_msg"><c:out value="${status}"/></div>
+    <div id="openmrs_msg"><spring:message code="${status}"/></div>
     
 </c:if>
     
@@ -31,17 +31,17 @@
 
 
         </li>
-                <li 
+        <li 
             <c:if test='<%= request.getRequestURI().contains("addStatus") %>'>class="active"</c:if>>
                         <a href="<openmrs:contextPath/>/module/feedback/addStatus.form"><spring:message code="feedback.addStatus"/></a>
 
         </li>
-                <li 
+        <li 
             <c:if test='<%= request.getRequestURI().contains("addFeedback") %>'>class="active"</c:if>>
                         <a href="<openmrs:contextPath/>/module/feedback/addFeedback.form"><spring:message code="feedback.addFeedback"/></a>
 
         </li>
-                <li 
+        <li 
             <c:if test='<%= request.getRequestURI().contains("feedback/feedback") %>'>class="active"</c:if>>
                         <a href="<openmrs:contextPath/>/module/feedback/feedback.list"><spring:message code="feedback.manageFeedback"/></a>
 

@@ -13,7 +13,7 @@
         
 </form>
         
-        <br/>
+<br/>
 
 <b class="boxHeader"><spring:message code="feedback.severities"/></b>
 <div class="box" >

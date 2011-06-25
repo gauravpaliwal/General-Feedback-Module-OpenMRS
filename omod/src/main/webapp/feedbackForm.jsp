@@ -38,8 +38,8 @@
                 <td>            
                     <select name="status">
                         <c:forEach items="${status}" var="statusObj" >
-                        <option value="<c:out value="${statusObj.status}"/>"> <c:out value="${statusObj.status}"/> </option>      
-                    </c:forEach>
+                            <option value="<c:out value="${statusObj.status}"/>"> <c:out value="${statusObj.status}"/> </option>      
+                        </c:forEach>
                     </select> 
                 </td>
             </tr>
@@ -66,13 +66,10 @@
  
         </table>
             
-                                    <c:if test="${empty feedback.status}">
-
-            
+        <c:if test="${empty feedback.status}">          
             <input type=hidden name=feedbackId value= <c:out value="${feedback.feedbackId}"/> >
-            <input type="submit" value="<spring:message code="feedback.comment" />" />
-                
-                        </c:if>
+            <input type="submit" value="<spring:message code="feedback.comment" />" />                
+        </c:if>
                 
    </div>
 </form>

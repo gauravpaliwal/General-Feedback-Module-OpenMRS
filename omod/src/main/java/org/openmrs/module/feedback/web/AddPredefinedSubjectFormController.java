@@ -33,20 +33,33 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
 
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
+            
+                String text = "Not used";
 		
-		System.out.println(request.getParameter( "predefinedsubject" )) ; 
-                if (request.getParameter("predefinedsubject") != null)
+                if (request.getParameter("predefinedsubject") != null && !"".equals(request.getParameter("predefinedsubject")) )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     PredefinedSubject s = new PredefinedSubject() ;
-                    s.setSubject(request.getParameter("predefinedsubject")) ;
-                    service.saveFeedbackPredefinedSubject(s) ;
-
+                    /** This makes sure that the Predefined Subject value always remain less then or equal to 50*/
+                    
+                    if ( request.getParameter("predefinedsubject").length()>50 )
+                    {
+                        s.setSubject((request.getParameter("predefinedsubject")).substring( 1, 50 ) ) ;
         
+                    }
+                    else 
+                    {
+                         s.setSubject(request.getParameter("predefinedsubject") ) ;
+                    }
+                     
+                    service.saveFeedbackPredefinedSubject(s) ;
+                    
+                    /** Notifies to the Controller that the predefined subject has been successfully added with the help of get status param */
+                    text = "added";
+
                 }
-                			
-		String text = "Not used";
+                
 		
 		log.debug("Returning hello world text: " + text);
 		
@@ -61,8 +74,18 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
 		
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
+                if ("added".equals(req.getParameter("status")))
+                {
+                        map.put("status" , "feedback.notification.predefinedSubject.added" ) ;
+                }
+                else
+                {
+                    map.put("status" , "" ) ;
+                }
 		return map;
 		
 	}
 	
 }
+        
+        

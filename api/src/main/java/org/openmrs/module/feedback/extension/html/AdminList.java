@@ -34,9 +34,9 @@ public class AdminList extends AdministrationSectionExt {
 		
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		
+                map.put("module/feedback/addPredefinedSubject.form", "feedback.addPredefinedSubject");
 		map.put("module/feedback/addSeverity.form", "feedback.addSeverity");
 		map.put("module/feedback/addStatus.form", "feedback.addStatus");
-                map.put("module/feedback/addPredefinedSubject.form", "feedback.addPredefinedSubject");
                 map.put("module/feedback/addFeedback.form", "feedback.submit");
                 map.put("module/feedback/feedback.list", "feedback.manageFeedback");
 

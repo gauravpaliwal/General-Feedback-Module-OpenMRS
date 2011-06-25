@@ -41,7 +41,20 @@ public class AddStatusFormController extends SimpleFormController {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     Status x = new Status() ;
-                    x.setStatus( request.getParameter("status") );
+                                        
+                       
+                    /** This makes sure that the status value always remain less then or equal to 50*/
+                    
+                    if ( request.getParameter("status").length()>50 )
+                    {
+                        x.setStatus((request.getParameter("status")).substring( 1, 50 ) ) ;
+        
+                    }
+                    else 
+                    {
+                         x.setStatus(request.getParameter("status") ) ;
+                    }
+                     
                     service.saveFeedbackStatus(x) ;
                 }
                 			

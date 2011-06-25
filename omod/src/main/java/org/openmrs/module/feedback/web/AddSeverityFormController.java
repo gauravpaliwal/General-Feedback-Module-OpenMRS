@@ -33,20 +33,36 @@ public class AddSeverityFormController extends SimpleFormController {
 
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
+            
+                String text = "Not used";
 		
-		System.out.println(request.getParameter( "severity" )) ; 
-                if (request.getParameter("severity") != null)
+                if (request.getParameter("severity") != null && !"".equals(request.getParameter("severity")) )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     Severity s = new Severity() ;
-                    s.setSeverity(request.getParameter("severity")) ;
+                    
+                    
+                    /** This makes sure that the Severity value always remain less then or equal to 50*/
+                    
+                    if ( request.getParameter("severity").length()>50 )
+                    {
+                        s.setSeverity((request.getParameter("severity")).substring( 1, 50 ) ) ;
+        
+                    }
+                    else 
+                    {
+                         s.setSeverity(request.getParameter("severity") ) ;
+                    }
+                     
                     service.saveFeedbackSeverity(s) ;
+                    
+                                        
+                    /** Notifies to the Controller that the predefined subject has been successfully added with the help of get status param */
+                    text = "added";
               
                 }
-                			
-		String text = "Not used";
-		
+                				
 		log.debug("Returning hello world text: " + text);
 		
 		return text;
@@ -60,7 +76,14 @@ public class AddSeverityFormController extends SimpleFormController {
 		
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("severities", hService.getSeverities()) ;
-		
+		if ("added".equals(req.getParameter("status")))
+                {
+                        map.put("status" , "feedback.notification.severity.added" ) ;
+                }
+                else
+                {
+                    map.put("status" , "" ) ;
+                }
 		return map;
 		
 	}

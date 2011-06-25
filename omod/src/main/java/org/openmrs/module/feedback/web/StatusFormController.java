@@ -36,7 +36,7 @@ public class StatusFormController extends SimpleFormController {
             
                         Object o = Context.getService(FeedbackService.class);
                         FeedbackService service = (FeedbackService)o;                 
-                    if ( (String)request.getParameter("feedbackStatusId") == "" || service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) == null )
+                    if ( "".equals((String)request.getParameter("feedbackStatusId")) || service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) == null )
                     {
                         System.out.println ("Nothing to do elemented already deleted") ;
                     
@@ -55,8 +55,20 @@ public class StatusFormController extends SimpleFormController {
                         
                         Status s = new Status() ;
                         s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
-                        s.setStatus(request.getParameter("status") );
-                        service.saveFeedbackStatus(s);
+                        
+                    /** This makes sure that the status value always remain less then or equal to 50*/
+                    
+                    if ( request.getParameter("status").length()>50 )
+                    {
+                        s.setStatus((request.getParameter("status")).substring( 1, 50 ) ) ;
+        
+                    }
+                    else 
+                    {
+                         s.setStatus(request.getParameter("status") ) ;
+                    }
+                     
+                    service.saveFeedbackStatus(s) ;
                     }
                 
                 
@@ -76,12 +88,11 @@ public class StatusFormController extends SimpleFormController {
 		Object o = Context.getService(FeedbackService.class);
                 FeedbackService service = (FeedbackService)o;    
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
-                if ( (String)req.getParameter("feedbackStatusId") == "" ||  service.getFeedbackStatus(Integer.parseInt(req.getParameter("feedbackStatusId"))) == null )
+                if ( "".equals((String)req.getParameter("feedbackStatusId")) ||  service.getFeedbackStatus(Integer.parseInt(req.getParameter("feedbackStatusId"))) == null )
                 {
-                    System.out.println ("Nothing to do, element  already deleted") ;
                     Status s = new Status() ;
                     map.put("statuses" , s ) ;
-                    map.put("status" , "Element Deleted or Do not Exists") ;
+                    map.put("status" , "feedback.notification.status.delete") ;
                     return map ;
                 }
                 else if (req.getParameter("feedbackStatusId") != null)

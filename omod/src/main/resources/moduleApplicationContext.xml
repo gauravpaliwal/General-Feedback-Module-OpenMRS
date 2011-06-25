@@ -26,7 +26,7 @@
         <property name="maxUploadSize" value="900000"/>
     </bean>
 	<bean id="addSeverityForm" class="org.openmrs.module.feedback.web.AddSeverityFormController">
-		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="commandName"><value>status</value></property>
 		<property name="formView"><value>/module/feedback/addSeverityForm</value></property>
 		<property name="successView"><value>redirect:addSeverity.form</value></property>
 	</bean>
@@ -38,13 +38,13 @@
 	</bean>
         
         <bean id="addPredefinedSubjectForm" class="org.openmrs.module.feedback.web.AddPredefinedSubjectFormController">
-		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="commandName"><value>status</value></property>
 		<property name="formView"><value>/module/feedback/addPredefinedSubjectForm</value></property>
 		<property name="successView"><value>redirect:addPredefinedSubject.form</value></property>
 	</bean>
         
         <bean id="predefinedSubjectForm" class="org.openmrs.module.feedback.web.PredefinedSubjectFormController">
-		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="commandName"><value>status</value></property>
 		<property name="formView"><value>/module/feedback/predefinedSubjectForm</value></property>
 		<property name="successView"><value>redirect:predefinedSubject.form</value></property>
 	</bean>

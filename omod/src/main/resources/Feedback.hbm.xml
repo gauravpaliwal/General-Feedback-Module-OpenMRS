@@ -6,8 +6,8 @@
       <column name="feedback_id"/>
       <generator class="native"/>
     </id>
-    <many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator"/>
-    <many-to-one name="changedBy" class="org.openmrs.User" column="changed_by"/>
+    <many-to-one class="org.openmrs.User" column="creator" name="creator" not-null="true"/>
+    <many-to-one class="org.openmrs.User" column="changed_by" name="changedBy"/>
     <property name="subject" type="string">
       <column name="subject" not-null="true"/>
     </property>
@@ -23,10 +23,9 @@
     <property name="status" type="string">
       <column length="25" name="status"/>
     </property>
-    <property name="dateCreated" type="java.util.Date"  column="date_created" not-null="true" length="19" />
-    <property name="dateChanged" type="java.util.Date"  column="date_changed" length="19" />
-    <property name="uuid" type="string" length="38" not-null="true" />
-    <property name="message" type="binary" column="attachment" not-null="false" />
+    <property column="date_created" length="19" name="dateCreated" not-null="true" type="java.util.Date"/>
+    <property column="date_changed" length="19" name="dateChanged" type="java.util.Date"/>
+    <property length="38" name="uuid" not-null="true" type="string"/>
+    <property column="attachment" name="message" not-null="false" type="binary"/>
   </class>
-
 </hibernate-mapping>

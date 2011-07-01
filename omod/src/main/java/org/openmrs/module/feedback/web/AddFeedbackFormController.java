@@ -36,7 +36,10 @@ public class AddFeedbackFormController extends SimpleFormController {
 
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
-		
+            
+            /*To check wheather or not the subject , severity and feedback is empty or not*/
+		String text = "";
+
                 if (request.getParameter("subject") != null && request.getParameter("severity") != null  && request.getParameter("feedback") != null  )
                 {
                     Object o = Context.getService(FeedbackService.class);
@@ -45,11 +48,15 @@ public class AddFeedbackFormController extends SimpleFormController {
                     s.setSubject(request.getParameter("subject"));
                     s.setSeverity(request.getParameter("severity"));
                     
+                    /*To get the Stacktrace of the page from which the feedback is submitted*/
+                    
                     StackTraceElement[] c = Thread.currentThread().getStackTrace() ;
                     String feedback =    request.getParameter("feedback")  ;
                     for (int i = 0 ; i < c.length ; i++ ){
                         feedback = feedback + "\n" + c[i].getFileName() + c[i].getMethodName() + c[i].getClass() + c[i].getLineNumber() ;
                     }
+                    
+                    /*The feedback content length can't be greater then the 5000 characters , in case it is more then that then it is truncated to the first 5000 characters*/
                     if (feedback.length() >4000 )
                     {
                         s.setContent( feedback.substring (0, 4000) );
@@ -58,19 +65,21 @@ public class AddFeedbackFormController extends SimpleFormController {
                     {
                         s.setContent( feedback );
                     }
-                    
+                    /*set the date on which feedback is created*/
                     s.setDateCreated( new Date() ) ;
+                    
+                    /*file upload in multiplerequest*/
                     if (request instanceof MultipartHttpServletRequest) 
                     {
                         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
                         MultipartFile file = (MultipartFile) multipartRequest.getFile("file");
                         s.setMessage(file.getBytes());
                     }
-                    
-                    service.saveFeedbackFeedback(s) ;                
+                    /*Save the Feedback*/
+                    service.saveFeedbackFeedback(s) ;  
+                    text = "saved";
                 }
-                			
-		String text = "Not used";
+                /*Reserved for future use for showing that the data is saved and the feedback is submitted*/			
 		
 		log.debug("Returning hello world text: " + text);
 		
@@ -82,10 +91,14 @@ public class AddFeedbackFormController extends SimpleFormController {
 	protected Map referenceData(HttpServletRequest req) throws Exception {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+		/*Return List of Predefined Subjects and Severities for the feedback submission form*/
+                
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
                 map.put("severities", hService.getSeverities() ) ;		
+                if ("saved".equals(req.getParameter("status"))) {
+                      map.put("status", "feedback.notification.feedback.save" ) ;		
+                }
                 return map;
 		
 	}

@@ -29,7 +29,8 @@ public class FeedbackListController extends SimpleFormController {
 	
     /** Logger for this class and subclasses */
     protected final Log log = LogFactory.getLog(getClass());
-
+        /*Not in use*/
+    
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
 		
@@ -46,7 +47,7 @@ public class FeedbackListController extends SimpleFormController {
 	protected Map referenceData(HttpServletRequest req) throws Exception {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+		/*It sends the list of all the feedback submitted till now*/
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("feedbacks", hService.getFeedbacks() ) ;
                 return map;

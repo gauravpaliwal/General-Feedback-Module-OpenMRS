@@ -5,7 +5,8 @@
   
 <beans>
 	
-    <bean id="helloworldUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <bean id="feedbackUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="order"><value>1</value></property> 
         <property name="mappings">
             <props>
 				<prop key="/module/feedback/addSeverity.form">addSeverityForm</prop>
@@ -17,6 +18,7 @@
                                 <prop key="/module/feedback/addFeedback.form">addFeedbackForm</prop>
                                 <prop key="/module/feedback/feedback.list">feedbackList</prop>
                                 <prop key="/module/feedback/feedback.form">feedbackForm</prop>
+                                <prop key="**/newjsp.portlet">SubmitFeedbackController</prop>
             </props>
 	</property>
 	</bean>
@@ -62,7 +64,7 @@
 	</bean>
         
         <bean id="addFeedbackForm" class="org.openmrs.module.feedback.web.AddFeedbackFormController">
-		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="commandName"><value>status</value></property>
 		<property name="formView"><value>/module/feedback/addFeedbackForm</value></property>
 		<property name="successView"><value>redirect:addFeedback.form</value></property>
 	</bean>
@@ -78,6 +80,9 @@
 		<property name="formView"><value>/module/feedback/feedbackForm</value></property>
 		<property name="successView"><value>redirect:feedback.form</value></property>
 	</bean>
+        
+        <bean id="SubmitFeedbackController" class="org.openmrs.module.feedback.web.SubmitFeedbackController">
+        </bean>
         
         
 	<bean parent="serviceContext">

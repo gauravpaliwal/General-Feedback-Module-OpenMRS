@@ -34,47 +34,43 @@ public class SeverityFormController extends SimpleFormController {
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
             
-                        Object o = Context.getService(FeedbackService.class);
-                        FeedbackService service = (FeedbackService)o;                 
+                    String text = "Not used";
+                    Object o = Context.getService(FeedbackService.class);
+                    FeedbackService service = (FeedbackService)o;                 
                     if ( "".equals((String)request.getParameter("feedbackSeverityId")) || service.getFeedbackSeverity(Integer.parseInt(request.getParameter("feedbackSeverityId"))) == null )
-                        {
-                            System.out.println ("Nothing to do elemented already deleted") ;
-                    
+                        {   /*Just for statistics that the elemented is deleted already or do not exists*/
+                            System.out.println ("Nothing to do elemented already deleted") ;                    
                         } 
-                    
-                  else if (request.getParameter("feedbackSeverityId") != null && request.getParameter("delete")!= null )
-                    {
-                        
-                        Severity s = new Severity() ;
-                        s = service.getFeedbackSeverity(Integer.parseInt(request.getParameter("feedbackSeverityId"))) ;
-                        service.deleteFeedbackSeverity( s );
-                    }
-                    
+                    /*This is to tell that the item will be deleted incase delete is submitted*/
+                    else if (request.getParameter("feedbackSeverityId") != null && request.getParameter("delete")!= null )
+                        {                       
+                            Severity s = new Severity() ;
+                            s = service.getFeedbackSeverity(Integer.parseInt(request.getParameter("feedbackSeverityId"))) ;
+                            service.deleteFeedbackSeverity( s );
+                        }
+                    /*save the severity*/
                     else if (request.getParameter("feedbackSeverityId") != null && request.getParameter("save")!= null )
-                    {
+                        {
                         
-                        Severity s = new Severity() ;
-                        s = service.getFeedbackSeverity(Integer.parseInt(request.getParameter("feedbackSeverityId"))) ;
+                            Severity s = new Severity() ;
+                            s = service.getFeedbackSeverity(Integer.parseInt(request.getParameter("feedbackSeverityId"))) ;
+                            text = "saved";
                         
-                         /** This makes sure that the Severity value always remain less then or equal to 50*/
+                            /** This makes sure that the Severity value always remain less then or equal to 50*/
                     
-                    if ( request.getParameter("severity").length()>50 )
-                    {
-                        s.setSeverity((request.getParameter("severity")).substring( 1, 50 ) ) ;
-        
-                    }
-                    else 
-                    {
-                         s.setSeverity(request.getParameter("severity") ) ;
-                    }
+                            if ( request.getParameter("severity").length()>50 )
+                                {
+                                    s.setSeverity((request.getParameter("severity")).substring( 1, 50 ) ) ;        
+                                }
+                            else 
+                                {
+                                    s.setSeverity(request.getParameter("severity") ) ;
+                                }
                      
-                    service.saveFeedbackSeverity(s) ;
-                    }
+                            service.saveFeedbackSeverity(s) ;
+                        }
                 
-                
-                			
-		String text = "Not used";
-		
+                         		
 		log.debug("Returning hello world text: " + text);
 		
 		return text;
@@ -88,26 +84,25 @@ public class SeverityFormController extends SimpleFormController {
 		Object o = Context.getService(FeedbackService.class);
                 FeedbackService service = (FeedbackService)o;    
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
+                
+                /*To display the message that the severity has been deleted*/
                 if ( "".equals((String)req.getParameter("feedbackSeverityId")) ||  service.getFeedbackSeverity(Integer.parseInt(req.getParameter("feedbackSeverityId"))) == null )
                 {
-                    System.out.println ("Nothing to do, element  already deleted") ;
                     Severity s = new Severity() ;
                     map.put("feedbackSeverityId" , s ) ;
                     map.put("status" , "feedback.notification.severity.deleted") ;
                     return map ;
                 }
-                else if (req.getParameter("feedbackSeverityId") != null)
+                else
                 {
-                                 
+                    /*Return the severity with the specific feedbackID*/             
                     Severity s = new Severity() ;
                     s = service.getFeedbackSeverity(Integer.parseInt(req.getParameter("feedbackSeverityId"))) ;
                     map.put("severity" , s ) ;
                     map.put("status" , "") ;
                     return map ;
-                    
                 }
-		map.put("severity", hService.getSeverities()) ;
-		return map;
+
 		
 	}
 	

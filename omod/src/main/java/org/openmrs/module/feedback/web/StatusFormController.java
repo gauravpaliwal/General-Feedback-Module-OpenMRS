@@ -34,44 +34,40 @@ public class StatusFormController extends SimpleFormController {
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
             
-                        Object o = Context.getService(FeedbackService.class);
-                        FeedbackService service = (FeedbackService)o;                 
+                    Object o = Context.getService(FeedbackService.class);
+                    FeedbackService service = (FeedbackService)o;                 
                     if ( "".equals((String)request.getParameter("feedbackStatusId")) || service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) == null )
-                    {
-                        System.out.println ("Nothing to do elemented already deleted") ;
-                    
-                    } 
-                    
-                  else if (request.getParameter("feedbackStatusId") != null && request.getParameter("delete")!= null )
-                    {
-                        
-                        Status s = new Status() ;
-                        s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
-                        service.deleteFeedbackStatus( s );
-                    }
-                    
+                        {   /*Just for the statistics*/
+                            System.out.println ("Nothing to do elemented already deleted") ;
+                        } 
+                    /*Delete the data incase delete has been selected by the user*/
+                    else if (request.getParameter("feedbackStatusId") != null && request.getParameter("delete")!= null )
+                        {
+                            Status s = new Status() ;
+                            s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
+                            service.deleteFeedbackStatus( s );
+                        }
+                    /*Saves the data incase save has been selected by the user*/
                     else if (request.getParameter("feedbackStatusId") != null && request.getParameter("save")!= null )
-                    {
+                        {
                         
-                        Status s = new Status() ;
-                        s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
+                            Status s = new Status() ;
+                            s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
                         
-                    /** This makes sure that the status value always remain less then or equal to 50*/
+                            /** This makes sure that the status value always remain less then or equal to 50*/
                     
-                    if ( request.getParameter("status").length()>50 )
-                    {
-                        s.setStatus((request.getParameter("status")).substring( 1, 50 ) ) ;
-        
-                    }
-                    else 
-                    {
-                         s.setStatus(request.getParameter("status") ) ;
-                    }
+                            if ( request.getParameter("status").length()>50 )
+                                {
+                                    s.setStatus((request.getParameter("status")).substring( 1, 50 ) ) ;
+                                }
+                            else 
+                                {
+                                    s.setStatus(request.getParameter("status") ) ;
+                                }   
                      
-                    service.saveFeedbackStatus(s) ;
-                    }
-                
-                
+                            service.saveFeedbackStatus(s) ;
+                        }
+                                
                 			
 		String text = "Not used";
 		
@@ -88,6 +84,8 @@ public class StatusFormController extends SimpleFormController {
 		Object o = Context.getService(FeedbackService.class);
                 FeedbackService service = (FeedbackService)o;    
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
+                
+                /*Tells wheather the data is deleted or not*/
                 if ( "".equals((String)req.getParameter("feedbackStatusId")) ||  service.getFeedbackStatus(Integer.parseInt(req.getParameter("feedbackStatusId"))) == null )
                 {
                     Status s = new Status() ;
@@ -95,19 +93,17 @@ public class StatusFormController extends SimpleFormController {
                     map.put("status" , "feedback.notification.status.delete") ;
                     return map ;
                 }
-                else if (req.getParameter("feedbackStatusId") != null)
-                {
-                                 
+                /*Otherwise return the data based on the input*/
+                else
+                {                                 
                     Status  s = new Status () ;
                     s = service.getFeedbackStatus(Integer.parseInt(req.getParameter("feedbackStatusId"))) ;
                     System.out.println(s.getfeedbackStatusId()) ;
                     map.put("statuses" , s ) ;
                     map.put("status" , "") ;
-                    return map ;
-                    
+                    return map ;                   
                 }
-		map.put("statuses", hService.getStatuses()) ;
-		return map;
+
 		
 	}
 	

@@ -1,8 +1,8 @@
-<%@ include file="local_header.jsp"%>
+<%@ include file="/WEB-INF/template/include.jsp" %>
 
-<h2><spring:message code="feedback.addFeedback"/></h2>
-
-<form method="post"  enctype="multipart/form-data">
+<div id="dialog" title="Submit Feedback Form">
+    
+<form action="<openmrs:contextPath/>/module/feedback/addFeedback.form" method="post"  enctype="multipart/form-data" >
 <b class="boxHeader"><spring:message code="feedback.submit"/></b>
     <div class="box" >
     <table>
@@ -10,7 +10,7 @@
             <td><spring:message code="feedback.subject"/> </td>
             <td>
             <select name="subject">
-                <c:forEach items="${predefinedsubjects}" var="predefinedsubjectObj" >
+                <c:forEach items="${model.predefinedsubjects}" var="predefinedsubjectObj" >
                     <option value="<c:out value="${predefinedsubjectObj.subject}"/>"> <c:out value="${predefinedsubjectObj.subject}"/> </option>      
                 </c:forEach>
             </select>
@@ -20,7 +20,7 @@
             <td><spring:message code="feedback.severity"/>  </td>        
             <td>
                 <select name="severity">
-                    <c:forEach items="${severities}" var="severityObj">
+                    <c:forEach items="${model.severities}" var="severityObj">
                         <option value="<c:out value="${severityObj.severity}"/>"> <c:out value="${severityObj.severity}"/> </option>      
                     </c:forEach>
                 </select>
@@ -44,4 +44,6 @@
     </div>
 </form>
 
-<%@ include file="/WEB-INF/template/footer.jsp" %>
+
+</div>
+

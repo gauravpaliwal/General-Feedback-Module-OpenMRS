@@ -35,14 +35,13 @@ public class AddSeverityFormController extends SimpleFormController {
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
             
                 String text = "Not used";
-		
+		/*This checks to make sure that severity can't be empty or NULL*/
                 if (request.getParameter("severity") != null && !"".equals(request.getParameter("severity")) )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     Severity s = new Severity() ;
-                    
-                    
+                                       
                     /** This makes sure that the Severity value always remain less then or equal to 50*/
                     
                     if ( request.getParameter("severity").length()>50 )
@@ -55,10 +54,9 @@ public class AddSeverityFormController extends SimpleFormController {
                          s.setSeverity(request.getParameter("severity") ) ;
                     }
                      
-                    service.saveFeedbackSeverity(s) ;
-                    
+                    service.saveFeedbackSeverity(s) ;                  
                                         
-                    /** Notifies to the Controller that the predefined subject has been successfully added with the help of get status param */
+                    /** Notifies to the Controller that the predefined subject has been successfully added with the help of getStatus */
                     text = "added";
               
                 }
@@ -75,7 +73,10 @@ public class AddSeverityFormController extends SimpleFormController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
+                /*To list all the severites on the add severity page */
 		map.put("severities", hService.getSeverities()) ;
+                /*TO update the status that the severity has been successfully saved*/
+                
 		if ("added".equals(req.getParameter("status")))
                 {
                         map.put("status" , "feedback.notification.severity.added" ) ;

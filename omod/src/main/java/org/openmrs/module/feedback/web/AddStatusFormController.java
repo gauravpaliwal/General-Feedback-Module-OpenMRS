@@ -15,7 +15,6 @@
 package org.openmrs.module.feedback.web;
 
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,20 +34,19 @@ public class AddStatusFormController extends SimpleFormController {
 
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
-		
-		if (request.getParameter("status") != null)
+                /*To make sure that the status is neither NULL nor empty*/
+            
+		if (request.getParameter("status") != null && !"".equals(request.getParameter("status")) )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
-                    Status x = new Status() ;
-                                        
+                    Status x = new Status() ;                                      
                        
                     /** This makes sure that the status value always remain less then or equal to 50*/
                     
                     if ( request.getParameter("status").length()>50 )
                     {
-                        x.setStatus((request.getParameter("status")).substring( 1, 50 ) ) ;
-        
+                        x.setStatus((request.getParameter("status")).substring( 1, 50 ) ) ;        
                     }
                     else 
                     {
@@ -70,7 +68,7 @@ public class AddStatusFormController extends SimpleFormController {
 	protected Map referenceData(HttpServletRequest req) throws Exception {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+		/*Return the list of all the saved statuses that will be diaplayed on the Add Status page*/
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("statuses", hService.getStatuses() ) ;	
                 

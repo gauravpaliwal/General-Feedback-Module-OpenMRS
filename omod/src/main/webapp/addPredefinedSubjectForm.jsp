@@ -2,7 +2,7 @@
 
 <h2><spring:message code="feedback.addPredefinedSubject"/></h2>
 
-
+<openmrs:portlet url="newjsp" id="SubmitFeedbackController" moduleId="feedback" />
 <form method="post">
 
 	<spring:message code="feedback.addPredefinedSubject"/>: 

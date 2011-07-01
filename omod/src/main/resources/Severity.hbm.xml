@@ -5,7 +5,7 @@
     <id column="feedback_severity_id" name="feedbackSeverityId" type="int">
       <generator class="native"/>
     </id>
-    <property name="uuid" type="string" length="38" not-null="true" />
+    <property length="38" name="uuid" not-null="true" type="string"/>
     <property name="severity" type="java.lang.String">
     </property>
   </class>

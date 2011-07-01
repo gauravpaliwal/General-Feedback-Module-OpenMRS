@@ -35,14 +35,15 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
             
                 String text = "Not used";
-		
+		/*The Subject can't be NULL or an empty string*/
                 if (request.getParameter("predefinedsubject") != null && !"".equals(request.getParameter("predefinedsubject")) )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     PredefinedSubject s = new PredefinedSubject() ;
-                    /** This makes sure that the Predefined Subject value always remain less then or equal to 50*/
                     
+                    /** This makes sure that the Predefined Subject value always remain less then or equal to 50*/
+                   
                     if ( request.getParameter("predefinedsubject").length()>50 )
                     {
                         s.setSubject((request.getParameter("predefinedsubject")).substring( 1, 50 ) ) ;
@@ -74,13 +75,14 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
 		
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
+                /*Display the message that the content is saved*/
                 if ("added".equals(req.getParameter("status")))
                 {
                         map.put("status" , "feedback.notification.predefinedSubject.added" ) ;
                 }
                 else
                 {
-                    map.put("status" , "" ) ;
+                        map.put("status" , "" ) ;
                 }
 		return map;
 		

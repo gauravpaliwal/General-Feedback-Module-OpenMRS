@@ -26,10 +26,25 @@
 	<!-- /Basic Module Properties -->
 	
 	<!-- Extensions -->
+        
+        <!-- To include the fdbk.js -->	
+	<extension>
+		<point>org.openmrs.headerFullIncludeExt</point>
+		<class>@MODULE_PACKAGE@.extension.html.HeaderInclude</class>
+	</extension>
+        
+        <!-- To include the Options on the Admin page -->	
 	<extension>
 		<point>org.openmrs.admin.list</point>
 		<class>@MODULE_PACKAGE@.extension.html.AdminList</class>
 	</extension>
+        
+        <!-- To include the PopUp link on every page -->	
+        <extension>
+		<point>org.openmrs.headerFull.userBar</point>
+		<class>@MODULE_PACKAGE@.extension.html.FeedbackForm</class>
+	</extension>
+
 	
 	<!-- /Extensions -->
 				

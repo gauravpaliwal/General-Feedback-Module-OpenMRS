@@ -18,7 +18,7 @@
                                 <prop key="/module/feedback/addFeedback.form">addFeedbackForm</prop>
                                 <prop key="/module/feedback/feedback.list">feedbackList</prop>
                                 <prop key="/module/feedback/feedback.form">feedbackForm</prop>
-                                <prop key="**/newjsp.portlet">SubmitFeedbackController</prop>
+                                <prop key="**/submitFeedbackController.portlet">SubmitFeedbackController</prop>
             </props>
 	</property>
 	</bean>

@@ -9,7 +9,6 @@
     <property name="subject" type="string">
       <column length="50" name="subject"/>
     </property>
-    <property name="uuid" type="string" length="38" not-null="true" />
-
+    <property length="38" name="uuid" not-null="true" type="string"/>
   </class>
 </hibernate-mapping>

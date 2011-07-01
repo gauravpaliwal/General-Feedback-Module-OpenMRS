@@ -41,24 +41,24 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                     
                     if ( "".equals((String)request.getParameter("predefinedsubjectid")) || service.getFeedbackPredefinedSubject(Integer.parseInt(request.getParameter("predefinedsubjectid"))) == null )
                     {
+                        /*Just log this for the statistics */
                         System.out.println ("feedback.notification.predefinedSubject.deleted") ;
                     
                     } 
                     
-                  else if (request.getParameter("predefinedsubjectid") != null && request.getParameter("delete")!= null )
+                    else if (request.getParameter("predefinedsubjectid") != null && request.getParameter("delete")!= null )
                     {
-                        
+                        /*delete the element*/
                         PredefinedSubject s = new PredefinedSubject() ;
                         s = service.getFeedbackPredefinedSubject(Integer.parseInt(request.getParameter("predefinedsubjectid"))) ;
                         service.deleteFeedbackPredefinedSubject( s );
                     }
                     
-                   else if (request.getParameter("predefinedsubjectid") != null && request.getParameter("save")!= null )
+                    else if (request.getParameter("predefinedsubjectid") != null && request.getParameter("save")!= null )
                     {
-                        
+                        /*save the element*/
                         PredefinedSubject s = new PredefinedSubject() ;
                         s = service.getFeedbackPredefinedSubject(Integer.parseInt(request.getParameter("predefinedsubjectid"))) ;
-                        
                         
                         /** This makes sure that the Predefined Subject value always remain less then or equal to 50*/
                     
@@ -71,12 +71,10 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                         {
                             s.setSubject(request.getParameter("predefinedsubject") ) ;
                         }
-                     
-                        service.saveFeedbackPredefinedSubject(s) ;
-                              
+                        /*Service Method to save the data*/
+                        service.saveFeedbackPredefinedSubject(s) ;                              
                     }
-                
-        		
+                        		
 		log.debug("Returning hello world text: " + text);
 		
 		return text;
@@ -90,6 +88,8 @@ public class PredefinedSubjectFormController extends SimpleFormController {
 		Object o = Context.getService(FeedbackService.class);
                 FeedbackService service = (FeedbackService)o;    
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
+                
+                /*Predefined Subject is deleted incase the subject with predefinedID is not found*/
                 if ( "".equals((String)req.getParameter("predefinedsubjectid")) ||  service.getFeedbackPredefinedSubject(Integer.parseInt(req.getParameter("predefinedsubjectid"))) == null )
                 {
                     PredefinedSubject s = new PredefinedSubject() ;
@@ -97,21 +97,17 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                     map.put("status" , "feedback.notification.predefinedSubject.deleted") ;
                     return map ;
                 }
-                
-                else if (req.getParameter("predefinedsubjectid") != null)
-                {                                 
+                /*Otherwise give the data about the predefined subject*/
+                else 
+                {   
                     PredefinedSubject s = new PredefinedSubject() ;
                     s = service.getFeedbackPredefinedSubject(Integer.parseInt(req.getParameter("predefinedsubjectid"))) ;
                     map.put("predefinedsubjects" , s ) ;
                     map.put("status" , "") ;
-                    return map ;    
-                } 
-                else
-                {   
-                    map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
-                    map.put("status" , "feedback.notification.predefinedSubject.saved") ;
-                    return map ;    
+                    return map ;   
                 }
+
+                
 		
 	}
 	

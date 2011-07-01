@@ -19,7 +19,7 @@ public class FeedbackFormController extends SimpleFormController {
 
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
-		
+		/* Make sure that neither the status not the comment is empty or Null*/
                 if (request.getParameter("status") != null && request.getParameter("comment") != null  )
                 {
                     Object o = Context.getService(FeedbackService.class);
@@ -33,7 +33,7 @@ public class FeedbackFormController extends SimpleFormController {
                 			
 		String feedbackId = request.getParameter("feedbackId" ) ;
 		
-		log.debug("Returning hello world text: " + feedbackId);
+		log.debug("Returning feedback text: " + feedbackId);
 		
 		return feedbackId;
 		
@@ -45,11 +45,12 @@ public class FeedbackFormController extends SimpleFormController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
+                /*Make sure that the feedback ID is not empty*/
                 if ( req.getParameter("feedbackId" )  != null)
-                {
+                {   
+                    /*This return the feedback object and status to the feedbackform page.*/
                     map.put("feedback", hService.getFeedbackFeedback( (Integer.parseInt (req.getParameter("feedbackId" ) )) ) ) ;		
-                    map.put("status", hService.getStatuses() ) ;		
-
+                    map.put("statuses", hService.getStatuses() ) ;		
                 }
                 
                  return map;

@@ -6,7 +6,7 @@
       <column name="feedback_status_id"/>
       <generator class="native"/>
     </id>
-    <property name="uuid" type="string" length="38" not-null="true" />
+    <property length="38" name="uuid" not-null="true" type="string"/>
     <property name="status" type="string">
       <column length="50" name="status"/>
     </property>

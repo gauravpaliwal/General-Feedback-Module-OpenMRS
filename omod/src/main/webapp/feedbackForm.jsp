@@ -37,7 +37,7 @@
                 <th width="400"><spring:message code="feedback.status"/></th>
                 <td>            
                     <select name="status">
-                        <c:forEach items="${status}" var="statusObj" >
+                        <c:forEach items="${statuses}" var="statusObj" >
                             <option value="<c:out value="${statusObj.status}"/>"> <c:out value="${statusObj.status}"/> </option>      
                         </c:forEach>
                     </select> 

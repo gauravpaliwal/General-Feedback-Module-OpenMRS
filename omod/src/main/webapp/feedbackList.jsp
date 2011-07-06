@@ -8,7 +8,6 @@
         <table>
 
             <tr>
-                <th width="100"><spring:message code="feedback.feedbackId"/></th>
                 <th width="300"><spring:message code="feedback.creator"/></th>
                 <th width="400"><spring:message code="feedback.subject"/></th>
                 <th width="300"><spring:message code="feedback.severity"/></th>
@@ -17,9 +16,8 @@
             </tr>
             <c:forEach items="${feedbacks}" var="feedbackObj" varStatus="loopStatus">
                 <tr class="${loopStatus.index % 2 == 0 ? 'evenRow' : 'oddRow'}">
-                    <td><a href="/openmrs/module/feedback/feedback.form?feedbackId=<c:out value="${feedbackObj.feedbackId}"/>"><c:out value="${feedbackObj.feedbackId}"/></a></td>
                     <td><c:out value="${feedbackObj.creator} "/> </td>
-                    <td><c:out value="${feedbackObj.subject} "/> </td>
+                    <td><a href="<openmrs:contextPath/>/module/feedback/feedback.form?feedbackId=<c:out value="${feedbackObj.feedbackId}"/>"><c:out value="${feedbackObj.subject} "/> </td>
                     <td><c:out value="${feedbackObj.severity} "/> </td>
                     <td><c:out value="${feedbackObj.status} "/> </td>
                     <td><c:out value="${feedbackObj.dateCreated} "/> </td>

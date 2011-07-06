@@ -89,8 +89,17 @@ public class Feedback extends BaseOpenmrsObject  implements  Auditable {
     }
     
     public void setContent(String content) {
+        if (content.length() >65000 )
+            {
+                this.content =  content.substring (0, 65000) ;
+            }
+        else
+            {
+                this.content = content ;
+            }
         this.content = content;
     }
+    
     public String getSeverity() {
         return this.severity;
     }
@@ -153,12 +162,11 @@ public class Feedback extends BaseOpenmrsObject  implements  Auditable {
 
     public byte[] getMessage() {
 		return message;
-	}
+    }
 
-
-	public void setMessage(byte[] message) {
+    public void setMessage(byte[] message) {
 		this.message = message;
-	}
+    }
 
 
 }

@@ -24,11 +24,10 @@ public class FeedbackFormController extends SimpleFormController {
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                       
-                    Feedback s = new Feedback() ;
-                    s = service.getFeedbackFeedback((Integer.parseInt (request.getParameter("feedbackId" ) ))) ;
+                    Feedback s = service.getFeedback((Integer.parseInt (request.getParameter("feedbackId" ) ))) ;
                     s.setStatus( request.getParameter("status"));
                     s.setComment( request.getParameter("comment"));
-                    service.saveFeedbackFeedback( s );
+                    service.saveFeedback( s );
                 }
                 			
 		String feedbackId = request.getParameter("feedbackId" ) ;
@@ -49,7 +48,7 @@ public class FeedbackFormController extends SimpleFormController {
                 if ( req.getParameter("feedbackId" )  != null)
                 {   
                     /*This return the feedback object and status to the feedbackform page.*/
-                    map.put("feedback", hService.getFeedbackFeedback( (Integer.parseInt (req.getParameter("feedbackId" ) )) ) ) ;		
+                    map.put("feedback", hService.getFeedback( (Integer.parseInt (req.getParameter("feedbackId" ) )) ) ) ;		
                     map.put("statuses", hService.getStatuses() ) ;		
                 }
                 

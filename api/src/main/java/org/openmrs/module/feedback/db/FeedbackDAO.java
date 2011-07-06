@@ -34,10 +34,10 @@ public interface FeedbackDAO {
 	 * @param GeneralFeedbackModule to be created
 	 * @throws DAOException
 	 */
-        public void saveFeedbackSeverity(Severity feedbackSeverity) throws DAOException;
-        public void saveFeedbackStatus(Status feedbackStatus) throws DAOException;
-        public void saveFeedbackPredefinedSubject(PredefinedSubject feedbackPredefinedSubject) throws DAOException;
-        public void saveFeedbackFeedback( Feedback feedbackFeedback) throws DAOException;
+        public void saveSeverity(Severity Severity) throws DAOException;
+        public void saveStatus(Status Status) throws DAOException;
+        public void savePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException;
+        public void saveFeedback( Feedback Feedback) throws DAOException;
 
 	/**
 	 * Get GeneralFeedbackModule by internal identifier
@@ -46,10 +46,10 @@ public interface FeedbackDAO {
 	 * @return GeneralFeedbackModule with given internal identifier
 	 * @throws DAOException
 	 */
-        public Severity getFeedbackSeverity (Integer feedbackSeverityId) throws DAOException;
-        public Status getFeedbackStatus (Integer feedbackStatusId) throws DAOException;
-        public PredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId) throws DAOException;
-        public Feedback getFeedbackFeedback (Integer feedbackFeedbackId) throws DAOException;
+        public Severity getSeverity (Integer SeverityId) throws DAOException;
+        public Status getStatus (Integer StatusId) throws DAOException;
+        public PredefinedSubject getPredefinedSubject (Integer PredefinedSubjectId) throws DAOException;
+        public Feedback getFeedback (Integer FeedbackId) throws DAOException;
 
 	/**
 	 * Update GeneralFeedbackModule 
@@ -57,10 +57,10 @@ public interface FeedbackDAO {
 	 * @param GeneralFeedbackModule to be updated
 	 * @throws DAOException
 	 */
-	public void updateFeedbackSeverity(Severity feedbackSeverity) throws DAOException ;
-	public void updateFeedbackStatus(Status feedbackStatus) throws DAOException ;
-        public void updateFeedbackPredefinedSubject(PredefinedSubject feedbackPredefinedSubject) throws DAOException ;
-        public void updateFeedbackFeedback (Feedback feedbackFeedback) throws DAOException ;
+	public void updateSeverity(Severity Severity) throws DAOException ;
+	public void updateStatus(Status Status) throws DAOException ;
+        public void updatePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException ;
+        public void updateFeedback (Feedback Feedback) throws DAOException ;
 
         public List<Severity> getSeverities() throws DAOException ;
         public List<Status> getStatuses() throws DAOException ;
@@ -68,10 +68,10 @@ public interface FeedbackDAO {
         public List<Feedback> getFeedbacks() throws DAOException ;
 
 
-        public void deleteFeedbackPredefinedSubject(PredefinedSubject feedbackPredefinedSubject) throws DAOException ;
-        public void deleteFeedbackStatus(Status feedbackStatus) throws DAOException ;
-        public void deleteFeedbackSeverity(Severity feedbackSeverity) throws DAOException ;
-        public void deleteFeedbackFeedback(Feedback feedbackFeedback) throws DAOException ;
+        public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException ;
+        public void deleteStatus(Status Status) throws DAOException ;
+        public void deleteSeverity(Severity Severity) throws DAOException ;
+        public void deleteFeedback(Feedback Feedback) throws DAOException ;
 
 
 }

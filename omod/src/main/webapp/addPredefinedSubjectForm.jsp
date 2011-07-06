@@ -2,7 +2,6 @@
 
 <h2><spring:message code="feedback.addPredefinedSubject"/></h2>
 
-<openmrs:portlet url="newjsp" id="SubmitFeedbackController" moduleId="feedback" />
 <form method="post">
 
 	<spring:message code="feedback.addPredefinedSubject"/>: 
@@ -21,12 +20,10 @@
 <div class="box" >    
     <table>
         <tr>
-            <th width="60"><spring:message code="feedback.index"/></th>
             <th width="320"><spring:message code="feedback.predefinedSubject"/></th>
         </tr>
         <c:forEach items="${predefinedsubjects}" var="predefinedsubjectObj"  varStatus="loopStatus">
             <tr class="${loopStatus.index % 2 == 0 ? 'evenRow' : 'oddRow'}">
-                <td><c:out value="${predefinedsubjectObj.feedbackPredefinedSubjectId}"/></td>
                 <td><a href ="<openmrs:contextPath/>/module/feedback/predefinedSubject.form?predefinedsubjectid=<c:out value="${predefinedsubjectObj.feedbackPredefinedSubjectId} "/>"><c:out value="${predefinedsubjectObj.subject} "/></a></td>
             </tr>
     

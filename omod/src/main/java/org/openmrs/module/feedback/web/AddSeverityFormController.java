@@ -43,18 +43,10 @@ public class AddSeverityFormController extends SimpleFormController {
                     Severity s = new Severity() ;
                                        
                     /** This makes sure that the Severity value always remain less then or equal to 50*/
-                    
-                    if ( request.getParameter("severity").length()>50 )
-                    {
-                        s.setSeverity((request.getParameter("severity")).substring( 1, 50 ) ) ;
-        
-                    }
-                    else 
-                    {
-                         s.setSeverity(request.getParameter("severity") ) ;
-                    }
-                     
-                    service.saveFeedbackSeverity(s) ;                  
+                                  
+                    s.setSeverity(request.getParameter("severity") ) ;
+                                         
+                    service.saveSeverity(s) ;                  
                                         
                     /** Notifies to the Controller that the predefined subject has been successfully added with the help of getStatus */
                     text = "added";

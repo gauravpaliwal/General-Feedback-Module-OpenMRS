@@ -19,12 +19,10 @@
 <div class="box" >
     <table cellpadding="2" cellspacing="0">
         <tr>
-            <th width="100" ><spring:message code="feedback.index"/></th>
             <th width="400"><spring:message code="feedback.status"/></th>
         </tr>
     <c:forEach items="${statuses}" var="statusObj"  varStatus="loopStatus">
         <tr  class="${loopStatus.index % 2 == 0 ? 'evenRow' : 'oddRow'}">
-            <td><c:out value="${statusObj.feedbackStatusId} "/></td>
             <td><a href="<openmrs:contextPath/>/module/feedback/status.form?feedbackStatusId=<c:out value="${statusObj.feedbackStatusId}"/>"><c:out value="${statusObj.status}"/></a></td>   
         </tr>
     </c:forEach>

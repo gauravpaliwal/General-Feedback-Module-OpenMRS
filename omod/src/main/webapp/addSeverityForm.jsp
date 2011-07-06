@@ -19,13 +19,11 @@
 <div class="box" >
     <table>
         <tr>
-            <th width="100"><spring:message code="feedback.index"/></th>
             <th width="400"><spring:message code="feedback.severity"/></th>
         </tr>
         <c:forEach items="${severities}" var="severityObj"  varStatus="loopStatus">
             <tr class="${loopStatus.index % 2 == 0 ? 'evenRow' : 'oddRow'}">
-                <td><c:out value="${severityObj.feedbackSeverityId} "/> </td>
-                <td><a href="/openmrs/module/feedback/severity.form?feedbackSeverityId=<c:out value="${severityObj.feedbackSeverityId} "/>"><c:out value="${severityObj.severity} "/></a></td>       
+                <td><a href="<openmrs:contextPath/>/module/feedback/severity.form?feedbackSeverityId=<c:out value="${severityObj.feedbackSeverityId} "/>"><c:out value="${severityObj.severity} "/></a></td>       
             </tr>    
         </c:forEach>
     </table> 

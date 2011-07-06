@@ -43,18 +43,9 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
                     PredefinedSubject s = new PredefinedSubject() ;
                     
                     /** This makes sure that the Predefined Subject value always remain less then or equal to 50*/
-                   
-                    if ( request.getParameter("predefinedsubject").length()>50 )
-                    {
-                        s.setSubject((request.getParameter("predefinedsubject")).substring( 1, 50 ) ) ;
-        
-                    }
-                    else 
-                    {
-                         s.setSubject(request.getParameter("predefinedsubject") ) ;
-                    }
-                     
-                    service.saveFeedbackPredefinedSubject(s) ;
+                    s.setSubject(request.getParameter("predefinedsubject") ) ;
+                                      
+                    service.savePredefinedSubject(s) ;
                     
                     /** Notifies to the Controller that the predefined subject has been successfully added with the help of get status param */
                     text = "added";

@@ -37,7 +37,7 @@ public class PredefinedSubject  extends BaseOpenmrsObject implements java.io.Ser
     */
 
     public PredefinedSubject(String subject) {
-       this.subject = subject;
+        this.subject = subject;    
     }
    
     public Integer getfeedbackPredefinedSubjectId() {
@@ -52,7 +52,14 @@ public class PredefinedSubject  extends BaseOpenmrsObject implements java.io.Ser
     }
     
     public void setSubject(String subject) {
-        this.subject = subject;
+    if ( subject.length()>50 )
+        {
+            this.subject = subject.substring( 1, 50 )  ;
+        }
+    else 
+        {
+            this.subject = subject;
+        }
     }
 
     public Integer getId() {

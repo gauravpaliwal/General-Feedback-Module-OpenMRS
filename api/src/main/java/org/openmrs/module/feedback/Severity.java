@@ -51,7 +51,15 @@ public class Severity extends BaseOpenmrsObject implements java.io.Serializable 
     }
     
     public void setSeverity(String severity) {
-        this.severity = severity;
+        if ( severity.length()>50 )
+            {
+                this.severity = severity.substring( 1, 50 ) ;
+        
+            }
+            else 
+            {
+                this.severity = severity;
+            }                
     }
 
 

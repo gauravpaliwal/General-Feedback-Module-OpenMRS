@@ -24,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Status ;
 import org.openmrs.module.feedback.FeedbackService;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class StatusFormController extends SimpleFormController {
@@ -35,37 +36,28 @@ public class StatusFormController extends SimpleFormController {
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
             
                     Object o = Context.getService(FeedbackService.class);
-                    FeedbackService service = (FeedbackService)o;                 
-                    if ( "".equals((String)request.getParameter("feedbackStatusId")) || service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) == null )
+                    FeedbackService service = (FeedbackService)o;   
+                    String feedbackStatusId = request.getParameter("feedbackStatusId") ;
+                    
+                    if ( !StringUtils.hasLength(feedbackStatusId) || service.getStatus(Integer.parseInt(feedbackStatusId)) == null )
                         {   /*Just for the statistics*/
                             System.out.println ("Nothing to do elemented already deleted") ;
                         } 
                     /*Delete the data incase delete has been selected by the user*/
-                    else if (request.getParameter("feedbackStatusId") != null && request.getParameter("delete")!= null )
+                    else if (feedbackStatusId != null && request.getParameter("delete")!= null )
                         {
-                            Status s = new Status() ;
-                            s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
-                            service.deleteFeedbackStatus( s );
+                            Status s = service.getStatus(Integer.parseInt(feedbackStatusId)) ;
+                            service.deleteStatus( s );
                         }
                     /*Saves the data incase save has been selected by the user*/
-                    else if (request.getParameter("feedbackStatusId") != null && request.getParameter("save")!= null )
+                    else if (feedbackStatusId != null && request.getParameter("save")!= null )
                         {
                         
-                            Status s = new Status() ;
-                            s = service.getFeedbackStatus(Integer.parseInt(request.getParameter("feedbackStatusId"))) ;
+                            Status s = service.getStatus(Integer.parseInt(feedbackStatusId)) ;
                         
                             /** This makes sure that the status value always remain less then or equal to 50*/
-                    
-                            if ( request.getParameter("status").length()>50 )
-                                {
-                                    s.setStatus((request.getParameter("status")).substring( 1, 50 ) ) ;
-                                }
-                            else 
-                                {
-                                    s.setStatus(request.getParameter("status") ) ;
-                                }   
-                     
-                            service.saveFeedbackStatus(s) ;
+                            s.setStatus(request.getParameter("status") ) ;
+                            service.saveStatus(s) ;
                         }
                                 
                 			
@@ -83,10 +75,12 @@ public class StatusFormController extends SimpleFormController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Object o = Context.getService(FeedbackService.class);
                 FeedbackService service = (FeedbackService)o;    
-		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
+		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);                                    
+                String feedbackStatusId = req.getParameter("feedbackStatusId") ;
+
                 
                 /*Tells wheather the data is deleted or not*/
-                if ( "".equals((String)req.getParameter("feedbackStatusId")) ||  service.getFeedbackStatus(Integer.parseInt(req.getParameter("feedbackStatusId"))) == null )
+                if ( !StringUtils.hasLength( feedbackStatusId) ||  service.getStatus(Integer.parseInt(feedbackStatusId)) == null )
                 {
                     Status s = new Status() ;
                     map.put("statuses" , s ) ;
@@ -96,8 +90,7 @@ public class StatusFormController extends SimpleFormController {
                 /*Otherwise return the data based on the input*/
                 else
                 {                                 
-                    Status  s = new Status () ;
-                    s = service.getFeedbackStatus(Integer.parseInt(req.getParameter("feedbackStatusId"))) ;
+                    Status  s = service.getStatus(Integer.parseInt(feedbackStatusId)) ;
                     System.out.println(s.getfeedbackStatusId()) ;
                     map.put("statuses" , s ) ;
                     map.put("status" , "") ;

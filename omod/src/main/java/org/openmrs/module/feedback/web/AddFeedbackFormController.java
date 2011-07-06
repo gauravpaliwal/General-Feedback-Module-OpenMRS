@@ -14,7 +14,6 @@
 
 package org.openmrs.module.feedback.web;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,16 +56,8 @@ public class AddFeedbackFormController extends SimpleFormController {
                     }
                     
                     /*The feedback content length can't be greater then the 5000 characters , in case it is more then that then it is truncated to the first 5000 characters*/
-                    if (feedback.length() >4000 )
-                    {
-                        s.setContent( feedback.substring (0, 4000) );
-                    }
-                    else
-                    {
-                        s.setContent( feedback );
-                    }
-                    /*set the date on which feedback is created*/
-                    s.setDateCreated( new Date() ) ;
+
+                    s.setContent( feedback );
                     
                     /*file upload in multiplerequest*/
                     if (request instanceof MultipartHttpServletRequest) 
@@ -76,7 +67,7 @@ public class AddFeedbackFormController extends SimpleFormController {
                         s.setMessage(file.getBytes());
                     }
                     /*Save the Feedback*/
-                    service.saveFeedbackFeedback(s) ;  
+                    service.saveFeedback(s) ;  
                     text = "saved";
                 }
                 /*Reserved for future use for showing that the data is saved and the feedback is submitted*/			

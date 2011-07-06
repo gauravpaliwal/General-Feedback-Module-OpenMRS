@@ -53,59 +53,59 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
 	 * @see org.openmrs.api.db.HelloWorldResponseService#getHelloWorldResponse(java.lang.Long)
 	 */
         
-        public Severity getFeedbackSeverity(Integer feedbackSeverityId) {
-		return (Severity) sessionFactory.getCurrentSession().get(Severity.class, feedbackSeverityId);
+        public Severity getSeverity(Integer SeverityId) {
+		return (Severity) sessionFactory.getCurrentSession().get(Severity.class, SeverityId);
 	}
         
-        public Status getFeedbackStatus(Integer feedbackStatusId) {
-		return (Status) sessionFactory.getCurrentSession().get(Status.class, feedbackStatusId);
+        public Status getStatus(Integer StatusId) {
+		return (Status) sessionFactory.getCurrentSession().get(Status.class, StatusId);
 	}
         
-        public PredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId) {
-		return (PredefinedSubject) sessionFactory.getCurrentSession().get(PredefinedSubject.class, feedbackPredefinedSubjectId);
+        public PredefinedSubject getPredefinedSubject (Integer PredefinedSubjectId) {
+		return (PredefinedSubject) sessionFactory.getCurrentSession().get(PredefinedSubject.class, PredefinedSubjectId);
 	}
         
-        public Feedback getFeedbackFeedback (Integer feedbackFeedbackId) {
-		return (Feedback) sessionFactory.getCurrentSession().get(Feedback.class, feedbackFeedbackId);
+        public Feedback getFeedback (Integer FeedbackId) {
+		return (Feedback) sessionFactory.getCurrentSession().get(Feedback.class, FeedbackId);
 	}
         
 	
 
-        public void saveFeedbackSeverity(Severity feedbackSeverity) throws DAOException {
-            sessionFactory.getCurrentSession().saveOrUpdate(feedbackSeverity);
+        public void saveSeverity(Severity Severity) throws DAOException {
+            sessionFactory.getCurrentSession().saveOrUpdate(Severity);
         }
         
-        public void saveFeedbackStatus(Status feedbackStatus) throws DAOException {
+        public void saveStatus(Status Status) throws DAOException {
             
-            sessionFactory.getCurrentSession().saveOrUpdate(feedbackStatus);
+            sessionFactory.getCurrentSession().saveOrUpdate(Status);
 
         }
-        public void saveFeedbackFeedback(Feedback feedbackFeedback) throws DAOException {
+        public void saveFeedback(Feedback Feedback) throws DAOException {
             
-            sessionFactory.getCurrentSession().saveOrUpdate(feedbackFeedback);
+            sessionFactory.getCurrentSession().saveOrUpdate(Feedback);
 
         } 
-        public void saveFeedbackPredefinedSubject (PredefinedSubject feedbackPredefinedSubject) throws DAOException {
+        public void savePredefinedSubject (PredefinedSubject PredefinedSubject) throws DAOException {
             
-            sessionFactory.getCurrentSession().saveOrUpdate(feedbackPredefinedSubject);
+            sessionFactory.getCurrentSession().saveOrUpdate(PredefinedSubject);
 
         }   
 
         
-         public void updateFeedbackSeverity(Severity feedbackSeverity) throws DAOException {
-                        sessionFactory.getCurrentSession().delete(feedbackSeverity);
+         public void updateSeverity(Severity Severity) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(Severity);
            
         }
-	public void updateFeedbackStatus(Status feedbackStatus) throws DAOException {
-                        sessionFactory.getCurrentSession().delete(feedbackStatus);
+	public void updateStatus(Status Status) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(Status);
            
         }
-        public void updateFeedbackPredefinedSubject (PredefinedSubject feedbackPredefinedSubject) throws DAOException {
-                        sessionFactory.getCurrentSession().delete(feedbackPredefinedSubject);
+        public void updatePredefinedSubject (PredefinedSubject PredefinedSubject) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(PredefinedSubject);
            
         }
-        public void updateFeedbackFeedback (Feedback feedbackFeedback) throws DAOException {
-                        sessionFactory.getCurrentSession().delete(feedbackFeedback);
+        public void updateFeedback (Feedback Feedback) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(Feedback);
            
         }
 	
@@ -126,20 +126,20 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
 	}
         
 
-        public void deleteFeedbackPredefinedSubject (PredefinedSubject feedbackPredefinedSubject) throws DAOException {
-                        sessionFactory.getCurrentSession().delete(feedbackPredefinedSubject);           
+        public void deletePredefinedSubject (PredefinedSubject PredefinedSubject) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(PredefinedSubject);           
         }
 
-        public void deleteFeedbackStatus (Status feedbackStatus) throws DAOException {
-                        sessionFactory.getCurrentSession().delete(feedbackStatus);          
+        public void deleteStatus (Status Status) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(Status);          
         }
         
-        public void deleteFeedbackSeverity (Severity feedbackSeverity) throws DAOException {
-                        sessionFactory.getCurrentSession().delete(feedbackSeverity);          
+        public void deleteSeverity (Severity Severity) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(Severity);          
         }
         
-        public void deleteFeedbackFeedback (Feedback feedbackFeedback) throws DAOException {
-                        sessionFactory.getCurrentSession().delete(feedbackFeedback);          
+        public void deleteFeedback (Feedback Feedback) throws DAOException {
+                        sessionFactory.getCurrentSession().delete(Feedback);          
         }
 
    

@@ -51,7 +51,15 @@ public class Status extends BaseOpenmrsObject implements java.io.Serializable {
     }
     
     public void setStatus(String status) {
-        this.status = status;
+        
+    if ( status.length()>50 )
+        {
+            this.status = status.substring( 1, 50 )  ;        
+        }
+    else 
+        {
+            this.status = status ;
+        }
     }
 
     public Integer getId() {

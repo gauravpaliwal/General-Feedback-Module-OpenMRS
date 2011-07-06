@@ -33,10 +33,10 @@ public interface FeedbackService {
 	 * @throws APIException
 	 */
 	@Authorized({"Add Feedback Criteria"})
-        public void saveFeedbackSeverity (Severity feedbackSeverity) throws APIException;
-        public void saveFeedbackStatus (Status feedbackstatus ) throws APIException;
-        public void saveFeedbackPredefinedSubject (PredefinedSubject feedbackPredefinedSubject ) throws APIException;
-        public void saveFeedbackFeedback (Feedback feedbackFeedback) throws APIException;
+        public void saveSeverity (Severity feedbackSeverity) throws APIException;
+        public void saveStatus (Status Status ) throws APIException;
+        public void savePredefinedSubject (PredefinedSubject PredefinedSubject ) throws APIException;
+        public void saveFeedback (Feedback Feedback) throws APIException;
 	/**
 	 * Get response by internal identifier
 	 * 
@@ -46,10 +46,10 @@ public interface FeedbackService {
 	 */
 	@Authorized({"View Feedback Criteria"})
 	@Transactional(readOnly=true)
-        public Severity getFeedbackSeverity(Integer feedbackSeverityId) throws APIException;
-        public Status getFeedbackStatus(Integer feedbackStatusId) throws APIException;
-        public PredefinedSubject getFeedbackPredefinedSubject (Integer feedbackPredefinedSubjectId ) throws APIException;
-        public Feedback getFeedbackFeedback (Integer feedbackId ) throws APIException;
+        public Severity getSeverity(Integer feedbackSeverityId) throws APIException;
+        public Status getStatus(Integer StatusId) throws APIException;
+        public PredefinedSubject getPredefinedSubject (Integer PredefinedSubjectId ) throws APIException;
+        public Feedback getFeedback (Integer feedbackId ) throws APIException;
 
 
 	/**
@@ -59,13 +59,13 @@ public interface FeedbackService {
 	 * @throws APIException
 	 */
 	@Authorized({"Edit Feedback Criteria"})
-        public void updateFeedbackSeverity(Severity severity) throws APIException;
-        public void updateFeedbackStatus(Status status) throws APIException;
-        public void updateFeedbackPredefinedSubject(PredefinedSubject feedbackPredefinedSubject) throws APIException;
+        public void updateSeverity(Severity severity) throws APIException;
+        public void updateStatus(Status status) throws APIException;
+        public void updatePredefinedSubject(PredefinedSubject PredefinedSubject) throws APIException;
         
-        public void deleteFeedbackPredefinedSubject(PredefinedSubject feedbackPredefinedSubject) throws APIException;        
-        public void deleteFeedbackStatus (Status feedbackStatus) throws APIException;
-        public void deleteFeedbackSeverity (Severity feedbackSeverity) throws APIException;
+        public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws APIException;        
+        public void deleteStatus (Status Status) throws APIException;
+        public void deleteSeverity (Severity feedbackSeverity) throws APIException;
 
         @Transactional(readOnly=true)
 	@Authorized({"View Feedback Criteria"})

@@ -7,68 +7,27 @@
  
 
  	
-	<changeSet id="feedback-2011-05-28-10:59" author="gauravpaliwal">
+	<changeSet id="feedback-2011-06-28-10:59" author="gauravpaliwal">
 		<preConditions onFail="MARK_RAN">
 			<not><tableExists tableName="feedback_severity"/></not>
+                        <not><tableExists tableName="feedback_status"/></not>
+                        <not><tableExists tableName="feedback_predefined_subject"/></not>
+                        <not><tableExists tableName="feedback_feedback"/></not>
 		</preConditions>
+                
 		<comment>
-			Creating the feedback_severity table
+			Creating the feedback module tables
 		</comment>
+                
 		<createTable tableName="feedback_severity">
 			<column name="feedback_severity_id" type="int">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="severity" type="varchar(50)"/>
-                        <column name="uuid" type="varchar(38)"/>
-			
-		</createTable>                
-                <addAutoIncrement tableName="feedback_severity" columnName="feedback_severity_id" columnDataType="int"/>
-        </changeSet>
-        
-        <changeSet id="feedback-2011-05-28-11:02" author="gauravpaliwal">
-		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="feedback_status"/></not>
-		</preConditions>
-		<comment>
-			Creating the feedback_status table
-		</comment>
-		<createTable tableName="feedback_status">
-			<column name="feedback_status_id" type="int">
-				<constraints primaryKey="true" nullable="false"/>
-			</column>
-			<column name="status" type="varchar(50)"/>
-                        <column name="uuid" type="varchar(38)"/>
-
-		</createTable>                
-                <addAutoIncrement tableName="feedback_status" columnName="feedback_status_id" columnDataType="int"/>
-        </changeSet>
-
-       
-        <changeSet id="feedback-2011-05-28-11:25" author="gauravpaliwal">
-		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="feedback_predefined_subject"/></not>
-		</preConditions>
-		<comment>
-			Creating the feedback_predefined_subject table
-		</comment>
-		<createTable tableName="feedback_predefined_subject">
-			<column name="feedback_predefined_subject_id" type="int">
-				<constraints primaryKey="true" nullable="false"/>
-			</column>
-			<column name="subject" type="varchar(50)"/>	
-                        <column name="uuid" type="varchar(38)"/>
-		</createTable>                
-                <addAutoIncrement tableName="feedback_predefined_subject" columnName="feedback_predefined_subject_id" columnDataType="int"/>
-        </changeSet>    
-        
-        <changeSet id="feedback-2011-05-28-11:28" author="gauravpaliwal">
-		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="feedback_feedback"/></not>
-		</preConditions>
-		<comment>
-			Creating the feedback_feedback table
-		</comment>
-		<createTable tableName="feedback_feedback">
+                        <column name="uuid" type="varchar(38)"/>			
+		</createTable>      
+                
+                <createTable tableName="feedback_feedback">
 			<column name="feedback_id" type="int">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
@@ -81,7 +40,7 @@
                         <column name="subject" type="varchar(255)">
                                 <constraints nullable="false"/>
                         </column>
-                        <column name="content" type="varchar(5000)">     
+                        <column name="content" type="mediumtext">     
                                 <constraints nullable="false"/>
                         </column>
                         <column name="severity" type="varchar(25)">  
@@ -94,9 +53,31 @@
                         </column>
                         <column name="date_changed" type="date" />
                         <column name="uuid" type="varchar(38)"/>
-		</createTable>                
+                        <column name="attachment" type="mediumblob"/>
+		</createTable>            
+                
+                <createTable tableName="feedback_status">
+			<column name="feedback_status_id" type="int">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="status" type="varchar(50)"/>
+                        <column name="uuid" type="varchar(38)"/>
+
+		</createTable> 
+                		<createTable tableName="feedback_predefined_subject">
+			<column name="feedback_predefined_subject_id" type="int">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="subject" type="varchar(50)"/>	
+                        <column name="uuid" type="varchar(38)"/>
+		</createTable>
+                                
+                <addAutoIncrement tableName="feedback_severity" columnName="feedback_severity_id" columnDataType="int"/>
                 <addAutoIncrement tableName="feedback_feedback" columnName="feedback_id" columnDataType="int"/>
-        </changeSet>  
+                <addAutoIncrement tableName="feedback_predefined_subject" columnName="feedback_predefined_subject_id" columnDataType="int"/>
+                <addAutoIncrement tableName="feedback_status" columnName="feedback_status_id" columnDataType="int"/>
+                
+        </changeSet>
         
- 
+
 </databaseChangeLog>

@@ -38,6 +38,8 @@ public class StatusFormController extends SimpleFormController {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;   
                     String feedbackStatusId = request.getParameter("feedbackStatusId") ;
+                    String text = "Not used";
+
                     
                     if ( !StringUtils.hasLength(feedbackStatusId) || service.getStatus(Integer.parseInt(feedbackStatusId)) == null )
                         {   /*Just for the statistics*/
@@ -61,7 +63,6 @@ public class StatusFormController extends SimpleFormController {
                         }
                                 
                 			
-		String text = "Not used";
 		
 		log.debug("Returning hello world text: " + text);
 		
@@ -84,7 +85,7 @@ public class StatusFormController extends SimpleFormController {
                 {
                     Status s = new Status() ;
                     map.put("statuses" , s ) ;
-                    map.put("status" , "feedback.notification.status.delete") ;
+                    map.put("feedbackPageMessage" , "feedback.notification.status.delete") ;
                     return map ;
                 }
                 /*Otherwise return the data based on the input*/
@@ -93,7 +94,7 @@ public class StatusFormController extends SimpleFormController {
                     Status  s = service.getStatus(Integer.parseInt(feedbackStatusId)) ;
                     System.out.println(s.getfeedbackStatusId()) ;
                     map.put("statuses" , s ) ;
-                    map.put("status" , "") ;
+                    map.put("feedbackPageMessage" , "") ;
                     return map ;                   
                 }
 

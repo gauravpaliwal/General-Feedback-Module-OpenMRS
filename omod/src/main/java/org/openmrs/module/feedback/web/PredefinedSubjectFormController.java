@@ -88,7 +88,7 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                 {
                     PredefinedSubject s = new PredefinedSubject() ;
                     map.put("predefinedsubjects" , s ) ;
-                    map.put("status" , "feedback.notification.predefinedSubject.deleted") ;
+                    map.put("feedbackPageMessage" , "feedback.notification.predefinedSubject.deleted") ;
                     return map ;
                 }
                 /*Otherwise give the data about the predefined subject*/
@@ -97,7 +97,7 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                     PredefinedSubject s = new PredefinedSubject() ;
                     s = service.getPredefinedSubject(Integer.parseInt(predefinedsubjectid)) ;
                     map.put("predefinedsubjects" , s ) ;
-                    map.put("status" , "") ;
+                    map.put("feedbackPageMessage" , "") ;
                     return map ;   
                 }
 

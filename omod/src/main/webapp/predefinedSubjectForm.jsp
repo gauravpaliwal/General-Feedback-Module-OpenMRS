@@ -6,13 +6,13 @@
 <b class="boxHeader"><spring:message code="feedback.predefinedsubjects"/></b>
 
 <div class="box" >
-<c:if test="${empty status}"> 
+<c:if test="${empty feedbackPageMessage}"> 
     <table>
         <tr>
             <th width="100"><spring:message code="feedback.index"/></th>
             <th width="200"><spring:message code="feedback.predefinedSubject"/></th>
         </tr>
-        <form method="get">
+        <form method="post">
             <tr class="evenRow">
                 <td><c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> </td>
                 <td><input type="text" name="predefinedsubject" value="${predefinedsubjects.subject}"/></td>
@@ -25,7 +25,7 @@
                 </td>
         </form>
    
-        <form method="get">
+        <form method="post">
         <input TYPE=hidden name=predefinedsubjectid value= <c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> >
         <input TYPE=hidden name=delete value="1">
                 <td>

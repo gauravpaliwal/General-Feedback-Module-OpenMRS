@@ -85,7 +85,7 @@ public class SeverityFormController extends SimpleFormController {
                 {
                     Severity s = new Severity() ;
                     map.put("SeverityId" , s ) ;
-                    map.put("status" , "feedback.notification.severity.deleted") ;
+                    map.put("feedbackPageMessage" , "feedback.notification.severity.deleted") ;
                     return map ;
                 }
                 else
@@ -93,7 +93,7 @@ public class SeverityFormController extends SimpleFormController {
                     /*Return the severity with the specific feedbackID*/             
                     Severity s =  service.getSeverity(Integer.parseInt(SeverityId)) ;
                     map.put("severity" , s ) ;
-                    map.put("status" , "") ;
+                    map.put("feedbackPageMessage" , "") ;
                     return map ;
                 }
 

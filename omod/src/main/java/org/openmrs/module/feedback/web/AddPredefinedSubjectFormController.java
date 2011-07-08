@@ -24,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.PredefinedSubject;
 import org.openmrs.module.feedback.FeedbackService;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class AddPredefinedSubjectFormController extends SimpleFormController {
@@ -36,7 +37,7 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
             
                 String text = "Not used";
 		/*The Subject can't be NULL or an empty string*/
-                if (request.getParameter("predefinedsubject") != null && !"".equals(request.getParameter("predefinedsubject")) )
+                if (request.getParameter("predefinedsubject") != null && StringUtils.hasLength(request.getParameter("predefinedsubject")) )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
@@ -47,7 +48,7 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
                                       
                     service.savePredefinedSubject(s) ;
                     
-                    /** Notifies to the Controller that the predefined subject has been successfully added with the help of get status param */
+                    /** Notifies to the Controller that the predefined subject has been successfully added with the help of get feedbackPageMessage param */
                     text = "added";
 
                 }
@@ -67,13 +68,13 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
                 /*Display the message that the content is saved*/
-                if ("added".equals(req.getParameter("status")))
+                if ("added".equals(req.getParameter("feedbackPageMessage")))
                 {
-                        map.put("status" , "feedback.notification.predefinedSubject.added" ) ;
+                        map.put("feedbackPageMessage" , "feedback.notification.predefinedSubject.added" ) ;
                 }
                 else
                 {
-                        map.put("status" , "" ) ;
+                        map.put("feedbackPageMessage" , "" ) ;
                 }
 		return map;
 		

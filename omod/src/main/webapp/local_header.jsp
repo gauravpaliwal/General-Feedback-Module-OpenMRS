@@ -9,9 +9,9 @@
 
 <openmrs:extensionPoint pointId="org.openmrs.admin.concepts.conceptDatatypeList.afterTitle" type="html" />
 
-<c:if test="${!empty status}"> 
+<c:if test="${!empty feedbackPageMessage}"> 
     
-    <div id="openmrs_msg"><spring:message code="${status}"/></div>
+    <div id="openmrs_msg"><spring:message code="${feedbackPageMessage}"/></div>
     
 </c:if>
     
@@ -46,8 +46,15 @@
                         <a href="<openmrs:contextPath/>/module/feedback/feedback.list"><spring:message code="feedback.manageFeedback"/></a>
 
         </li>
+        <openmrs:extensionPoint pointId="org.openmrs.module.feedback.localHeader" type="html">
+            <openmrs:hasPrivilege privilege="${extension.requiredPrivilege}">
+                <c:if test="${extension.portletUrl != null}">
+                    <openmrs:portlet url="${extension.portletUrl}" moduleId="${extension.moduleId}" id="${extension.portletUrl}" />
+                </c:if>
+            </openmrs:hasPrivilege>
+        </openmrs:extensionPoint> 
 
 </ul>
-
-
-    
+                        
+                        
+                                             

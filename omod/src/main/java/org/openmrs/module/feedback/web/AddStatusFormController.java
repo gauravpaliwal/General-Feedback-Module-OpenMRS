@@ -25,6 +25,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.module.feedback.Status;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class AddStatusFormController extends SimpleFormController {
@@ -34,9 +35,11 @@ public class AddStatusFormController extends SimpleFormController {
 
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
+            	String text = "Not used";
+
                 /*To make sure that the status is neither NULL nor empty*/
-            
-		if (request.getParameter("status") != null && !"".equals(request.getParameter("status")) )
+
+		if (request.getParameter("status") != null && StringUtils.hasLength(request.getParameter("status")) )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
@@ -46,9 +49,9 @@ public class AddStatusFormController extends SimpleFormController {
                     x.setStatus(request.getParameter("status") ) ;
                                          
                     service.saveStatus(x) ;
+                    text = "added" ;
                 }
                 			
-		String text = "Not used";
 		
 		log.debug("Returning hello world text: " + text);
 		
@@ -64,6 +67,15 @@ public class AddStatusFormController extends SimpleFormController {
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("statuses", hService.getStatuses() ) ;	
                 
+                /*Display the message that the content is saved*/
+                if ("added".equals(req.getParameter("feedbackPageMessage")))
+                {
+                        map.put("feedbackPageMessage" , "feedback.notification.status.added" ) ;
+                }
+                else
+                {
+                        map.put("feedbackPageMessage" , "" ) ;
+                }
 		return map;
 		
 	}

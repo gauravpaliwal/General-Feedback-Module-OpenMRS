@@ -24,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Severity;
 import org.openmrs.module.feedback.FeedbackService;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class AddSeverityFormController extends SimpleFormController {
@@ -36,7 +37,7 @@ public class AddSeverityFormController extends SimpleFormController {
             
                 String text = "Not used";
 		/*This checks to make sure that severity can't be empty or NULL*/
-                if (request.getParameter("severity") != null && !"".equals(request.getParameter("severity")) )
+                if (request.getParameter("severity") != null && StringUtils.hasLength(request.getParameter("severity")) )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
@@ -69,13 +70,13 @@ public class AddSeverityFormController extends SimpleFormController {
 		map.put("severities", hService.getSeverities()) ;
                 /*TO update the status that the severity has been successfully saved*/
                 
-		if ("added".equals(req.getParameter("status")))
+		if ("added".equals(req.getParameter("feedbackPageMessage")))
                 {
-                        map.put("status" , "feedback.notification.severity.added" ) ;
+                        map.put("feedbackPageMessage" , "feedback.notification.severity.added" ) ;
                 }
                 else
                 {
-                    map.put("status" , "" ) ;
+                    map.put("feedbackPageMessage" , "" ) ;
                 }
 		return map;
 		

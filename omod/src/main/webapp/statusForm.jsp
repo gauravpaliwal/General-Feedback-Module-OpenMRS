@@ -5,9 +5,9 @@
 <b class="boxHeader"><spring:message code="feedback.statuses"/></b>
 <div class="box" >
 
-<c:if test="${empty status}"> 
+<c:if test="${empty feedbackPageMessage}"> 
     
-<form method="get">
+<form method="post">
 
     <table cellpadding="2" cellspacing="0">
         <tr>
@@ -26,7 +26,7 @@
 </form>    
             </td>
             <td>
-                <form method="get">
+                <form method="post">
                     <input type=hidden name=feedbackStatusId value=<c:out value="${statuses.feedbackStatusId}"/>>
                     <input type=hidden name=delete value="1">
                     <input type="submit" value="Delete" />

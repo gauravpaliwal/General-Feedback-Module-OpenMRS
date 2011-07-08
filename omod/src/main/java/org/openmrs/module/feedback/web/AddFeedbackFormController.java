@@ -87,8 +87,8 @@ public class AddFeedbackFormController extends SimpleFormController {
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
                 map.put("severities", hService.getSeverities() ) ;		
-                if ("saved".equals(req.getParameter("status"))) {
-                      map.put("status", "feedback.notification.feedback.save" ) ;		
+                if ("saved".equals(req.getParameter("feedbackPageMessage"))) {
+                      map.put("feedbackPageMessage", "feedback.notification.feedback.save" ) ;		
                 }
                 return map;
 		

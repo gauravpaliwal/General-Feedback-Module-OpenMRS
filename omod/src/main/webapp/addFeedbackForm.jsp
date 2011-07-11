@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td><spring:message code="feedback.attachment"/> </td>
-            <td><input type="file" name="file" size="40"> </input> </td>   
+            <td><input type="file" accept="image" name="file" size="40" > </input> </td>   
         </tr>
     </table>
         <br/>

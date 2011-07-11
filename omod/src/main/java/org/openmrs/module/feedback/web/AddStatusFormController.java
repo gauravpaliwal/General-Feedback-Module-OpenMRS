@@ -26,6 +26,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.module.feedback.Status;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class AddStatusFormController extends SimpleFormController {
@@ -34,8 +35,9 @@ public class AddStatusFormController extends SimpleFormController {
     protected final Log log = LogFactory.getLog(getClass());
 
 	@Override
-	protected String formBackingObject(HttpServletRequest request) throws Exception {
-            	String text = "Not used";
+	protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
+            	String text = "";
+                Boolean feedbackMessage = false ;
 
                 /*To make sure that the status is neither NULL nor empty*/
 
@@ -49,13 +51,13 @@ public class AddStatusFormController extends SimpleFormController {
                     x.setStatus(request.getParameter("status") ) ;
                                          
                     service.saveStatus(x) ;
-                    text = "added" ;
+                    feedbackMessage = true ;
                 }
                 			
 		
 		log.debug("Returning hello world text: " + text);
 		
-		return text;
+		return feedbackMessage;
 		
 	}
 
@@ -68,7 +70,7 @@ public class AddStatusFormController extends SimpleFormController {
 		map.put("statuses", hService.getStatuses() ) ;	
                 
                 /*Display the message that the content is saved*/
-                if ("added".equals(req.getParameter("feedbackPageMessage")))
+                if (req.getParameter("feedbackPageMessage")!= null && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) 
                 {
                         map.put("feedbackPageMessage" , "feedback.notification.status.added" ) ;
                 }

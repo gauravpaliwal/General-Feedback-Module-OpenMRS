@@ -32,6 +32,11 @@
                 <th width="400"><spring:message code="feedback.content"/></th>
                 <td><c:out value="${feedback.content}"/> </td>              
             </tr>
+            <tr class="evenRow">
+                <th width="400"><spring:message code="feedback.message"/></th>
+                <td><c:out value="${feedback.message}"/> </td>              
+            </tr>
+            
             <c:if test="${empty feedback.status}">
             <tr class="oddRow">
                 <th width="400"><spring:message code="feedback.status"/></th>

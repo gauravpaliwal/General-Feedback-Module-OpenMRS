@@ -24,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Feedback;
 import org.openmrs.module.feedback.FeedbackService;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -34,9 +35,10 @@ public class AddFeedbackFormController extends SimpleFormController {
     protected final Log log = LogFactory.getLog(getClass());
 
 	@Override
-	protected String formBackingObject(HttpServletRequest request) throws Exception {
+	protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
             
             /*To check wheather or not the subject , severity and feedback is empty or not*/
+                Boolean feedbackMessage = false ;
 		String text = "";
 
                 if (request.getParameter("subject") != null && request.getParameter("severity") != null  && request.getParameter("feedback") != null  )
@@ -58,23 +60,45 @@ public class AddFeedbackFormController extends SimpleFormController {
                     /*The feedback content length can't be greater then the 5000 characters , in case it is more then that then it is truncated to the first 5000 characters*/
 
                     s.setContent( feedback );
-                    
+                                         
                     /*file upload in multiplerequest*/
                     if (request instanceof MultipartHttpServletRequest) 
                     {
                         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
                         MultipartFile file = (MultipartFile) multipartRequest.getFile("file");
-                        s.setMessage(file.getBytes());
+                        
+                        if ( !file.isEmpty() )
+                        {
+                            if (file.getSize() <= 5242880 )
+                            {
+                                if (file.getOriginalFilename().endsWith(".jpeg")||file.getOriginalFilename().endsWith(".jpg")|| file.getOriginalFilename().endsWith(".gif")|| file.getOriginalFilename().endsWith(".png"))
+                                {
+                                    s.setMessage(file.getBytes());
+                                }
+                                else
+                                {
+                                    return false ;
+                                }
+                            }
+                            else
+                            {
+                                return false ;
+                            }
+                        }
+                        
                     }
                     /*Save the Feedback*/
                     service.saveFeedback(s) ;  
-                    text = "saved";
+                    
+                    feedbackMessage = true;
+
+                    
                 }
                 /*Reserved for future use for showing that the data is saved and the feedback is submitted*/			
 		
 		log.debug("Returning hello world text: " + text);
 		
-		return text;
+		return feedbackMessage;
 		
 	}
 
@@ -87,8 +111,17 @@ public class AddFeedbackFormController extends SimpleFormController {
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
                 map.put("severities", hService.getSeverities() ) ;		
-                if ("saved".equals(req.getParameter("feedbackPageMessage"))) {
+                if (req.getParameter("feedbackPageMessage")!= null && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) 
+                {
                       map.put("feedbackPageMessage", "feedback.notification.feedback.save" ) ;		
+                }
+                else if (req.getParameter("feedbackPageMessage")!= null &&  !ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage"))
+                {
+                      map.put("feedbackPageMessage", "feedback.notification.feedback.error" ) ;		
+                }
+                else
+                {
+                    map.put("feedbackPageMessage", "" ) ;	
                 }
                 return map;
 		

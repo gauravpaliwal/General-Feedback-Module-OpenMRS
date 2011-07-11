@@ -25,6 +25,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Severity;
 import org.openmrs.module.feedback.FeedbackService;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class AddSeverityFormController extends SimpleFormController {
@@ -33,8 +34,10 @@ public class AddSeverityFormController extends SimpleFormController {
     protected final Log log = LogFactory.getLog(getClass());
 
 	@Override
-	protected String formBackingObject(HttpServletRequest request) throws Exception {
+	protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
             
+                Boolean feedbackMessage= false ;
+
                 String text = "Not used";
 		/*This checks to make sure that severity can't be empty or NULL*/
                 if (request.getParameter("severity") != null && StringUtils.hasLength(request.getParameter("severity")) )
@@ -50,13 +53,12 @@ public class AddSeverityFormController extends SimpleFormController {
                     service.saveSeverity(s) ;                  
                                         
                     /** Notifies to the Controller that the predefined subject has been successfully added with the help of getStatus */
-                    text = "added";
-              
+                    feedbackMessage= true ;              
                 }
                 				
 		log.debug("Returning hello world text: " + text);
 		
-		return text;
+		return feedbackMessage;
 		
 	}
 
@@ -70,7 +72,7 @@ public class AddSeverityFormController extends SimpleFormController {
 		map.put("severities", hService.getSeverities()) ;
                 /*TO update the status that the severity has been successfully saved*/
                 
-		if ("added".equals(req.getParameter("feedbackPageMessage")))
+                if (req.getParameter("feedbackPageMessage")!= null && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) 
                 {
                         map.put("feedbackPageMessage" , "feedback.notification.severity.added" ) ;
                 }

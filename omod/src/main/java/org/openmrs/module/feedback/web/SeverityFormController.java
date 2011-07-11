@@ -35,7 +35,7 @@ public class SeverityFormController extends SimpleFormController {
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
             
-                    String text = "Not used";
+                    String text = "";
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;  
                     String SeverityId = request.getParameter("feedbackSeverityId") ;
@@ -50,6 +50,7 @@ public class SeverityFormController extends SimpleFormController {
                         {                       
                             Severity s = service.getSeverity(Integer.parseInt(SeverityId)) ;
                             service.deleteSeverity( s );
+                            text = SeverityId ;
                         }
                     /*save the severity*/
                     else if (SeverityId != null && request.getParameter("save")!= null )
@@ -62,6 +63,8 @@ public class SeverityFormController extends SimpleFormController {
                             s.setSeverity(request.getParameter("severity") ) ;
                                                      
                             service.saveSeverity(s) ;
+                            text = SeverityId ;
+
                         }
                 
                          		

@@ -8,11 +8,10 @@
 <%@ taglib prefix="fn" uri="/WEB-INF/taglibs/fn.tld" %>
 
 <openmrs:extensionPoint pointId="org.openmrs.admin.concepts.conceptDatatypeList.afterTitle" type="html" />
+<!-- True/False can't be the value of the feedbackMessage -->
 
 <c:if test="${!empty feedbackPageMessage}"> 
-    
-    <div id="openmrs_msg"><spring:message code="${feedbackPageMessage}"/></div>
-    
+            <div id="openmrs_msg"><spring:message code="${feedbackPageMessage}"/></div>
 </c:if>
     
 <ul id="menu">

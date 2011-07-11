@@ -38,7 +38,8 @@ public class StatusFormController extends SimpleFormController {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;   
                     String feedbackStatusId = request.getParameter("feedbackStatusId") ;
-                    String text = "Not used";
+                    String text = "";
+                    String status = request.getParameter("status") ;
 
                     
                     if ( !StringUtils.hasLength(feedbackStatusId) || service.getStatus(Integer.parseInt(feedbackStatusId)) == null )
@@ -50,6 +51,7 @@ public class StatusFormController extends SimpleFormController {
                         {
                             Status s = service.getStatus(Integer.parseInt(feedbackStatusId)) ;
                             service.deleteStatus( s );
+                            text = feedbackStatusId ;
                         }
                     /*Saves the data incase save has been selected by the user*/
                     else if (feedbackStatusId != null && request.getParameter("save")!= null )
@@ -58,8 +60,9 @@ public class StatusFormController extends SimpleFormController {
                             Status s = service.getStatus(Integer.parseInt(feedbackStatusId)) ;
                         
                             /** This makes sure that the status value always remain less then or equal to 50*/
-                            s.setStatus(request.getParameter("status") ) ;
+                            s.setStatus(status) ;
                             service.saveStatus(s) ;
+                            text = feedbackStatusId ;
                         }
                                 
                 			

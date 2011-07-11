@@ -25,6 +25,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.PredefinedSubject;
 import org.openmrs.module.feedback.FeedbackService;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class AddPredefinedSubjectFormController extends SimpleFormController {
@@ -33,9 +34,10 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
     protected final Log log = LogFactory.getLog(getClass());
 
 	@Override
-	protected String formBackingObject(HttpServletRequest request) throws Exception {
+	protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
             
-                String text = "Not used";
+                Boolean feedbackMessage = false ;
+            
 		/*The Subject can't be NULL or an empty string*/
                 if (request.getParameter("predefinedsubject") != null && StringUtils.hasLength(request.getParameter("predefinedsubject")) )
                 {
@@ -49,14 +51,12 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
                     service.savePredefinedSubject(s) ;
                     
                     /** Notifies to the Controller that the predefined subject has been successfully added with the help of get feedbackPageMessage param */
-                    text = "added";
+                    feedbackMessage = true ;
 
                 }
                 
 		
-		log.debug("Returning hello world text: " + text);
-		
-		return text;
+		return feedbackMessage ;
 		
 	}
 
@@ -68,11 +68,11 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
                 /*Display the message that the content is saved*/
-                if ("added".equals(req.getParameter("feedbackPageMessage")))
+                if (req.getParameter("feedbackPageMessage")!= null && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) 
                 {
                         map.put("feedbackPageMessage" , "feedback.notification.predefinedSubject.added" ) ;
                 }
-                else
+                else 
                 {
                         map.put("feedbackPageMessage" , "" ) ;
                 }

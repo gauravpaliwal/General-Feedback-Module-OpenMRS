@@ -34,10 +34,10 @@ public class PredefinedSubjectFormController extends SimpleFormController {
 
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
-            
+                    Boolean feedbackMessage = false ;
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;        
-                    String text = "Not used";
+                    String text = "";
                     String predefinedsubjectid = request.getParameter("predefinedsubjectid") ;
                     
                     if ( !StringUtils.hasLength(predefinedsubjectid) || service.getPredefinedSubject(Integer.parseInt(predefinedsubjectid)) == null )
@@ -53,6 +53,7 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                         PredefinedSubject s = new PredefinedSubject() ;
                         s = service.getPredefinedSubject(Integer.parseInt(predefinedsubjectid)) ;
                         service.deletePredefinedSubject( s );
+                        text = predefinedsubjectid ;
                     }
                     
                     else if (predefinedsubjectid != null && request.getParameter("save")!= null )
@@ -65,12 +66,13 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                         s.setSubject(request.getParameter("predefinedsubject") ) ;
                         
                         /*Service Method to save the data*/
-                        service.savePredefinedSubject(s) ;                              
+                        service.savePredefinedSubject(s) ;  
+                        text = predefinedsubjectid ;
                     }
                         		
 		log.debug("Returning hello world text: " + text);
 		
-		return text;
+		return text ;
 		
 	}
 
@@ -84,18 +86,17 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                 String predefinedsubjectid = req.getParameter("predefinedsubjectid") ;
                 
                 /*Predefined Subject is deleted incase the subject with predefinedID is not found*/
-                if ( !StringUtils.hasLength( predefinedsubjectid) ||  service.getPredefinedSubject(Integer.parseInt(predefinedsubjectid)) == null )
+                if ( !StringUtils.hasLength( predefinedsubjectid) || service.getPredefinedSubject(Integer.parseInt(predefinedsubjectid)) == null )
                 {
                     PredefinedSubject s = new PredefinedSubject() ;
                     map.put("predefinedsubjects" , s ) ;
                     map.put("feedbackPageMessage" , "feedback.notification.predefinedSubject.deleted") ;
                     return map ;
-                }
+                }                        
                 /*Otherwise give the data about the predefined subject*/
                 else 
                 {   
-                    PredefinedSubject s = new PredefinedSubject() ;
-                    s = service.getPredefinedSubject(Integer.parseInt(predefinedsubjectid)) ;
+                    PredefinedSubject s = service.getPredefinedSubject(Integer.parseInt(predefinedsubjectid)) ;
                     map.put("predefinedsubjects" , s ) ;
                     map.put("feedbackPageMessage" , "") ;
                     return map ;   

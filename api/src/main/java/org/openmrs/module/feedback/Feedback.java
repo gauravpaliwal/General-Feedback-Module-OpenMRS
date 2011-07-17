@@ -14,7 +14,6 @@
 
 package org.openmrs.module.feedback;
 
-
 import java.util.Date;
 import org.openmrs.Auditable;
 import org.openmrs.BaseOpenmrsObject;

@@ -44,7 +44,14 @@
 		<point>org.openmrs.headerFull.userBar</point>
 		<class>@MODULE_PACKAGE@.extension.html.FeedbackForm</class>
 	</extension>
-
+        
+        <!-- Servlets -->
+	<!-- Accessed through the url /pageContext()/moduleServlet/<moduleId>/<servlet-name> -->
+	<servlet>
+		<servlet-name>fileDownloadServlet</servlet-name>
+		<servlet-class>@MODULE_PACKAGE@.web.FileDownloadServlet</servlet-class>
+	</servlet>
+	<!-- /Servlets -->	
 	
 	<!-- /Extensions -->
 				

@@ -76,6 +76,8 @@
 				<includes>
 					<include>**/*.xml</include>
 					<include>**/*.txt</include>
+					<include>gaurav.xml</include>
+					<include>gauravTest.xml</include>
 				</includes>
 			</testResource>
 			<testResource>

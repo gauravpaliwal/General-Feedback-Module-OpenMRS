@@ -54,7 +54,7 @@ public class Status extends BaseOpenmrsObject implements java.io.Serializable {
         
     if ( status.length()>50 )
         {
-            this.status = status.substring( 1, 50 )  ;        
+            this.status = status.substring( 0, 50 )  ;        
         }
     else 
         {

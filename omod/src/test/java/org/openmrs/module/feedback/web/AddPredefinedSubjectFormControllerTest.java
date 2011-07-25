@@ -14,20 +14,22 @@
 
 package org.openmrs.module.feedback.web;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import junit.framework.Assert;
+
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.openmrs.module.feedback.PredefinedSubject;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockHttpServletRequest;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest ;
 import org.openmrs.api.context.Context;
-
-import javax.servlet.http.HttpServletRequest;
-import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,13 +38,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-
 public class AddPredefinedSubjectFormControllerTest extends BaseModuleWebContextSensitiveTest {
 	
     	private FeedbackService service;
 	private FeedbackListController controller;
 	private MockHttpServletRequest request;
 	private HttpServletResponse response;
+	private Boolean expResult = false ;
+	private Boolean result = true ;
     
     public AddPredefinedSubjectFormControllerTest()   {
     }
@@ -78,38 +81,104 @@ public class AddPredefinedSubjectFormControllerTest extends BaseModuleWebContext
      */
     @Test
     public void testFormBackingObject() throws Exception {
+        HttpServletRequest req = null;
+	authenticate() ;
+        AddPredefinedSubjectFormController instance = new AddPredefinedSubjectFormController();
         System.out.println("formBackingObject");
-	PredefinedSubject test = new PredefinedSubject() ;
 	
-	Assert.assertEquals("Test Sucessfull with dataset feedbackSeverityId : 3", service.getPredefinedSubject(3).getSubject() , "to_test_if_it_is_possible_to_enter_exactly_fifty_" ) ;
+	/*To execute the test case where the predefinedsubject is < 50*/
+	this.request = new MockHttpServletRequest();
+        ModelAndView mv = new ModelAndView();
+        instance.setSuccessView("someValue") ;
+        request.setSession(new MockHttpSession(null));
+        request.setMethod("POST") ;
+        request.addParameter("predefinedsubject", "Testing");		
+        mv = instance.handleRequest(request, response) ;
+	List predefinedSubjects = service.getPredefinedSubjects() ;
+	for (Iterator it = predefinedSubjects.iterator(); it.hasNext ();) 
+		{
+			PredefinedSubject s = (PredefinedSubject) it.next ();
+			if ("Testing".equals(s.getSubject()))
+			{
+				this.expResult= true ;
+			}
+		}
+	Assert.assertEquals(this.expResult, this.result)  ;
 	
-	System.out.println(service.getPredefinedSubject(3).getSubject()) ;
 	
-	System.out.println("holla");
-                HttpServletRequest req = null;
-		authenticate() ;
-                AddPredefinedSubjectFormController instance = new AddPredefinedSubjectFormController();
-                Boolean expResult = null;
-                Boolean result = instance.formBackingObject(request);
-                System.out.println("formBackingObject");
-                ModelAndView mv = new ModelAndView();
-                instance.setSuccessView("someValue") ;
-                request.setSession(new MockHttpSession(null));
-                request.setMethod("POST") ;
-                request.addParameter("predefinedsubject", "Testing");
-		
-                mv = instance.handleRequest(request, response) ;
-                FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
-                System.out.println(hService.getPredefinedSubjects()) ;
+	
+	/*To execute the test case where the predefinedsubject is > 50*/
+	this.request = new MockHttpServletRequest();
+	this.expResult = false ;
+	mv = new ModelAndView();
+        instance.setSuccessView("someValue") ;
+        request.setSession(new MockHttpSession(null));
+        request.setMethod("POST") ;
+        request.addParameter("predefinedsubject", "TestingTestingTestingTestingTestingTestingTestingTestingTesting");		
+        mv = instance.handleRequest(request, response) ;
+	predefinedSubjects = service.getPredefinedSubjects() ;
+	for (Iterator it = predefinedSubjects.iterator(); it.hasNext ();) 
+		{
+			PredefinedSubject s = (PredefinedSubject) it.next ();
+			if ("TestingTestingTestingTestingTestingTestingTestingT".equals(s.getSubject()))
+			{
+				this.expResult= true ;
+			}
+		}
+	Assert.assertEquals(this.expResult, this.result)  ;
 
-                /*Boolean expResult = null;
-                assertEquals(expResult, result);*/
+	
+		
+		
+	/*To execute the test case where the predefinedsubject is = 50*/
+	this.request = new MockHttpServletRequest();
+	this.expResult = false ;
+	mv = new ModelAndView();
+        instance.setSuccessView("someValue") ;
+        request.setSession(new MockHttpSession(null));
+        request.setMethod("POST") ;
+        request.addParameter("predefinedsubject", "estingTestingTestingTestingTestingTestingTestingTe");		
+        mv = instance.handleRequest(request, response) ;
+	predefinedSubjects = service.getPredefinedSubjects() ;
+		for (Iterator it = predefinedSubjects.iterator(); it.hasNext ();) 
+		{
+			PredefinedSubject s = (PredefinedSubject) it.next ();
+			if ("estingTestingTestingTestingTestingTestingTestingTe".equals(s.getSubject()))
+			{
+				this.expResult= true ;
+			}
+		}
+	Assert.assertEquals(this.expResult, this.result)  ;
+
+		
+	/*To execute the test case where the predefinedsubject is = 0*/
+	this.request = new MockHttpServletRequest();
+	this.expResult = true ;
+	mv = new ModelAndView();
+        instance.setSuccessView("someValue") ;
+        request.setSession(new MockHttpSession(null));
+        request.setMethod("POST") ;
+        request.addParameter("predefinedsubject", "");		
+        mv = instance.handleRequest(request, response) ;
+	predefinedSubjects = service.getPredefinedSubjects() ;
+	for (Iterator it = predefinedSubjects.iterator(); it.hasNext ();) 
+		{
+			PredefinedSubject s = (PredefinedSubject) it.next ();
+			if ("".equals(s.getSubject()))
+			{
+				this.expResult= false ;
+			}
+		}
+	Assert.assertEquals(this.expResult, this.result)  ;
+		
+		
     }
 
-    /**
+    /*
+     Not required to test as it also the same set of function already tested in the formBackingObject method.
      * Test of referenceData method, of class AddPredefinedSubjectFormController.
-     */
-/*    @Test
+     
+    @Test
     public void testReferenceData() throws Exception {
         System.out.println("referenceData");
         HttpServletRequest req = null;
@@ -119,6 +188,8 @@ public class AddPredefinedSubjectFormControllerTest extends BaseModuleWebContext
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-     * 
+     
      */
+     
+    
 }

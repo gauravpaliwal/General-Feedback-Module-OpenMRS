@@ -54,7 +54,7 @@ public class PredefinedSubject  extends BaseOpenmrsObject implements java.io.Ser
     public void setSubject(String subject) {
     if ( subject.length()>50 )
         {
-            this.subject = subject.substring( 1, 50 )  ;
+            this.subject = subject.substring( 0, 50 )  ;
         }
     else 
         {

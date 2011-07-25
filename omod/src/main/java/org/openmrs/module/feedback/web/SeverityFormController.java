@@ -46,14 +46,14 @@ public class SeverityFormController extends SimpleFormController {
                             System.out.println ("Nothing to do elemented already deleted") ;                    
                         } 
                     /*This is to tell that the item will be deleted incase delete is submitted*/
-                    else if (SeverityId != null && request.getParameter("delete")!= null )
+                    else if (SeverityId != null && "1".equals(request.getParameter("delete")) )
                         {                       
                             Severity s = service.getSeverity(Integer.parseInt(SeverityId)) ;
                             service.deleteSeverity( s );
                             text = SeverityId ;
                         }
                     /*save the severity*/
-                    else if (SeverityId != null && request.getParameter("save")!= null )
+                    else if (SeverityId != null && "1".equals(request.getParameter("save")) )
                         {
                         
                             Severity s = service.getSeverity(Integer.parseInt(SeverityId)) ;

@@ -47,7 +47,7 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                     
                     } 
                     
-                    else if (predefinedsubjectid != null && request.getParameter("delete")!= null )
+                    else if (predefinedsubjectid != null && "1".equals(request.getParameter("delete")) )
                     {
                         /*delete the element*/
                         PredefinedSubject s = new PredefinedSubject() ;
@@ -56,7 +56,7 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                         text = predefinedsubjectid ;
                     }
                     
-                    else if (predefinedsubjectid != null && request.getParameter("save")!= null )
+                    else if (predefinedsubjectid != null && "1".equals(request.getParameter("save")) )
                     {
                         /*save the element*/
                         PredefinedSubject s = new PredefinedSubject() ;

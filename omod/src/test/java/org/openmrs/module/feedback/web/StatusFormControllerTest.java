@@ -41,16 +41,16 @@ import org.junit.Test;
 
 import org.junit.Assert.* ;
 
-public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTest {
-	
+public class StatusFormControllerTest  extends BaseModuleWebContextSensitiveTest {
+		
 	private FeedbackService service;
-	private SeverityFormController controller;
+	private StatusFormController controller;
 	private MockHttpServletRequest request;
 	private HttpServletResponse response;
 	private Boolean expResult = true ;
 	private Boolean result = false ;
 	
-	public SeverityFormControllerTest() {
+	public StatusFormControllerTest() {
 	}
 
 	@BeforeClass
@@ -66,16 +66,15 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 		
 		/*executed before the test is run*/
 		this.service = Context.getService(FeedbackService.class); 	
-		this.controller = new SeverityFormController();
+		this.controller = new StatusFormController();
 		this.request = new MockHttpServletRequest();
 		this.response = new MockHttpServletResponse();
 		/*this file is in the same folder of test resources where the hibernate mapping file is located*/
 		initializeInMemoryDatabase() ;
-		executeDataSet("SeverityDataset.xml");
+		executeDataSet("StatusDataset.xml");
 		/*Sample data is loaded into the system*/
 		authenticate() ;
 		
-	
 	}
 	
 	@After
@@ -83,14 +82,13 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 	}
 
 	/**
-	 * Test of formBackingObject method, of class SeverityFormController.
+	 * Test of formBackingObject method, of class StatusFormController.
 	 */
 	@Test
 	public void testFormBackingObject() throws Exception {
 		System.out.println("formBackingObject");
 		HttpServletRequest req = null;
-		SeverityFormController instance = new SeverityFormController();				
-		authenticate() ;
+		StatusFormController instance = new StatusFormController();
 		
 		/*To check wheather the delete works or not*/
 		this.request = new MockHttpServletRequest();
@@ -98,10 +96,10 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 		instance.setSuccessView("someValue") ;
 		request.setSession(new MockHttpSession(null));
 		request.setMethod("POST") ;	
-		request.setParameter("feedbackSeverityId", "1") ;
+		request.setParameter("feedbackStatusId", "1") ;
 		request.setParameter("delete","1") ;
 		mv = instance.handleRequest(request, response) ;
-		if (service.getSeverity(1) == null )
+		if (service.getStatus(1) == null )
 		{
 			result = true ;
 			Assert.assertEquals(expResult, result)  ;
@@ -109,10 +107,8 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 		else
 		{
 			result = false ;
-			Assert.assertEquals(expResult, result)  ;
-			
+			Assert.assertEquals(expResult, result)  ;			
 		}
-		
 		
 		/*To check wheather the delete works or not with wrong delete parameter value*/
 		this.request = new MockHttpServletRequest();
@@ -120,10 +116,10 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 		instance.setSuccessView("someValue") ;
 		request.setSession(new MockHttpSession(null));
 		request.setMethod("POST") ;	
-		request.setParameter("feedbackSeverityId", "2") ;
+		request.setParameter("feedbackStatusId", "2") ;
 		request.setParameter("delete","0") ;
 		mv = instance.handleRequest(request, response) ;
-		if (service.getSeverity(2) == null )
+		if (service.getStatus(2) == null )
 		{
 			result = false ;
 			Assert.assertEquals(expResult, result)  ;
@@ -140,11 +136,11 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 		instance.setSuccessView("someValue") ;
 		request.setSession(new MockHttpSession(null));
 		request.setMethod("POST") ;	
-		request.setParameter("feedbackSeverityId", "2") ;
+		request.setParameter("feedbackStatusId", "2") ;
 		request.setParameter("save","1") ;
-		request.setParameter("severity" , "Testing") ;
+		request.setParameter("status" , "Testing") ;
 		mv = instance.handleRequest(request, response) ;
-		if ("Testing".equals(service.getSeverity(2).getSeverity()) )
+		if ("Testing".equals(service.getStatus(2).getStatus()) )
 		{
 			result = true ;
 			Assert.assertEquals(expResult, result)  ;
@@ -154,18 +150,18 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 			result = false ;
 			Assert.assertEquals(expResult, result)  ;			
 		}
-		
+
 		/*To check wheather the delete works or not with wrong save parameter value*/
 		this.request = new MockHttpServletRequest();
 		mv = new ModelAndView();
 		instance.setSuccessView("someValue") ;
 		request.setSession(new MockHttpSession(null));
 		request.setMethod("POST") ;	
-		request.setParameter("feedbackSeverityId", "3") ;
+		request.setParameter("feedbackStatusId", "2") ;
 		request.setParameter("save","0") ;
-		request.setParameter("severity","Testing") ;
+		request.setParameter("status" , "Testing Testing") ;
 		mv = instance.handleRequest(request, response) ;
-		if ("Testing".equals(service.getSeverity(3).getSeverity()) )
+		if ("Testing Testing".equals(service.getStatus(2).getStatus()) )
 		{
 			result = false ;
 			Assert.assertEquals(expResult, result)  ;
@@ -173,23 +169,25 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 		else
 		{
 			result = true ;
-			Assert.assertEquals(expResult, result)  ;
-			
+			Assert.assertEquals(expResult, result)  ;			
 		}
+
+
 	}
 
 	/**Nothing to test as no database write/edit database operation is done here only the message is shown based on the feedbackSeverityid submitted
-	 * Test of referenceData method, of class SeverityFormController.
-	 
+	 * Test of referenceData method, of class StatusFormController.
+	
 	@Test
 	public void testReferenceData() throws Exception {
 		System.out.println("referenceData");
 		HttpServletRequest req = null;
-		SeverityFormController instance = new SeverityFormController();
+		StatusFormController instance = new StatusFormController();
+		Map expResult = null;
+		Map result = instance.referenceData(req);
 		Assert.assertEquals(expResult, result);
 		// TODO review the generated test code and remove the default call to fail.
 		Assert.fail("The test case is a prototype.");
 	}
-	 * */
-
+	 *  */
 }

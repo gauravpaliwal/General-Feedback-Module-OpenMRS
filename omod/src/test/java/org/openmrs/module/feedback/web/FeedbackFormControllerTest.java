@@ -14,8 +14,6 @@
 
 package org.openmrs.module.feedback.web;
 
-import java.lang.String;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +28,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import org.openmrs.module.feedback.FeedbackService;
+import org.openmrs.module.feedback.Severity ;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest ;
 import org.openmrs.api.context.Context;
 
@@ -39,18 +38,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import org.junit.Assert.* ;
-
-public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTest {
+public class FeedbackFormControllerTest  extends BaseModuleWebContextSensitiveTest {
 	
 	private FeedbackService service;
-	private SeverityFormController controller;
+	private FeedbackFormController controller;
 	private MockHttpServletRequest request;
 	private HttpServletResponse response;
 	private Boolean expResult = true ;
 	private Boolean result = false ;
 	
-	public SeverityFormControllerTest() {
+	
+	public FeedbackFormControllerTest() {
 	}
 
 	@BeforeClass
@@ -63,19 +61,16 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 	
 	@Before
 	public void setUp() throws Exception {
-		
 		/*executed before the test is run*/
 		this.service = Context.getService(FeedbackService.class); 	
-		this.controller = new SeverityFormController();
+		this.controller = new FeedbackFormController();
 		this.request = new MockHttpServletRequest();
 		this.response = new MockHttpServletResponse();
 		/*this file is in the same folder of test resources where the hibernate mapping file is located*/
 		initializeInMemoryDatabase() ;
-		executeDataSet("SeverityDataset.xml");
+		executeDataSet("FeedbackDataset.xml");
 		/*Sample data is loaded into the system*/
 		authenticate() ;
-		
-	
 	}
 	
 	@After
@@ -83,25 +78,26 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 	}
 
 	/**
-	 * Test of formBackingObject method, of class SeverityFormController.
+	 * Test of formBackingObject method, of class FeedbackFormController.
 	 */
 	@Test
 	public void testFormBackingObject() throws Exception {
 		System.out.println("formBackingObject");
 		HttpServletRequest req = null;
-		SeverityFormController instance = new SeverityFormController();				
+		FeedbackFormController instance = new FeedbackFormController();
 		authenticate() ;
-		
-		/*To check wheather the delete works or not*/
+
+		/*To check wheather the data i.e. status and comment added successfully or not*/
 		this.request = new MockHttpServletRequest();
 		ModelAndView mv = new ModelAndView();
 		instance.setSuccessView("someValue") ;
 		request.setSession(new MockHttpSession(null));
 		request.setMethod("POST") ;	
-		request.setParameter("feedbackSeverityId", "1") ;
-		request.setParameter("delete","1") ;
+		request.setParameter("feedbackId", "3") ;
+		request.setParameter("status","New Status") ;
+		request.setParameter("comment","New Comment") ;
 		mv = instance.handleRequest(request, response) ;
-		if (service.getSeverity(1) == null )
+		if ("New Status".equals(service.getFeedback(3).getStatus()) && "New Comment".equals(service.getFeedback(3).getComment()) )
 		{
 			result = true ;
 			Assert.assertEquals(expResult, result)  ;
@@ -113,83 +109,21 @@ public class SeverityFormControllerTest extends BaseModuleWebContextSensitiveTes
 			
 		}
 		
-		
-		/*To check wheather the delete works or not with wrong delete parameter value*/
-		this.request = new MockHttpServletRequest();
-		mv = new ModelAndView();
-		instance.setSuccessView("someValue") ;
-		request.setSession(new MockHttpSession(null));
-		request.setMethod("POST") ;	
-		request.setParameter("feedbackSeverityId", "2") ;
-		request.setParameter("delete","0") ;
-		mv = instance.handleRequest(request, response) ;
-		if (service.getSeverity(2) == null )
-		{
-			result = false ;
-			Assert.assertEquals(expResult, result)  ;
-		}
-		else
-		{
-			result = true ;
-			Assert.assertEquals(expResult, result)  ;			
-		}
-		
-		/*To check wheather the save works or not*/
-		this.request = new MockHttpServletRequest();
-		mv = new ModelAndView();
-		instance.setSuccessView("someValue") ;
-		request.setSession(new MockHttpSession(null));
-		request.setMethod("POST") ;	
-		request.setParameter("feedbackSeverityId", "2") ;
-		request.setParameter("save","1") ;
-		request.setParameter("severity" , "Testing") ;
-		mv = instance.handleRequest(request, response) ;
-		if ("Testing".equals(service.getSeverity(2).getSeverity()) )
-		{
-			result = true ;
-			Assert.assertEquals(expResult, result)  ;
-		}
-		else
-		{
-			result = false ;
-			Assert.assertEquals(expResult, result)  ;			
-		}
-		
-		/*To check wheather the delete works or not with wrong save parameter value*/
-		this.request = new MockHttpServletRequest();
-		mv = new ModelAndView();
-		instance.setSuccessView("someValue") ;
-		request.setSession(new MockHttpSession(null));
-		request.setMethod("POST") ;	
-		request.setParameter("feedbackSeverityId", "3") ;
-		request.setParameter("save","0") ;
-		request.setParameter("severity","Testing") ;
-		mv = instance.handleRequest(request, response) ;
-		if ("Testing".equals(service.getSeverity(3).getSeverity()) )
-		{
-			result = false ;
-			Assert.assertEquals(expResult, result)  ;
-		}
-		else
-		{
-			result = true ;
-			Assert.assertEquals(expResult, result)  ;
-			
-		}
 	}
 
-	/**Nothing to test as no database write/edit database operation is done here only the message is shown based on the feedbackSeverityid submitted
-	 * Test of referenceData method, of class SeverityFormController.
+	/**Skipping this for now as they don't do anything except taking data from the database and showing it to the user
+	 * Test of referenceData method, of class FeedbackFormController.
 	 
 	@Test
 	public void testReferenceData() throws Exception {
 		System.out.println("referenceData");
 		HttpServletRequest req = null;
-		SeverityFormController instance = new SeverityFormController();
+		FeedbackFormController instance = new FeedbackFormController();
+		Map expResult = null;
+		Map result = instance.referenceData(req);
 		Assert.assertEquals(expResult, result);
 		// TODO review the generated test code and remove the default call to fail.
 		Assert.fail("The test case is a prototype.");
 	}
 	 * */
-
 }

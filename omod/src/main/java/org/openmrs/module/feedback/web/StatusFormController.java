@@ -47,14 +47,14 @@ public class StatusFormController extends SimpleFormController {
                             System.out.println ("Nothing to do elemented already deleted") ;
                         } 
                     /*Delete the data incase delete has been selected by the user*/
-                    else if (feedbackStatusId != null && request.getParameter("delete")!= null )
+                    else if (feedbackStatusId != null && "1".equals(request.getParameter("delete")) )
                         {
                             Status s = service.getStatus(Integer.parseInt(feedbackStatusId)) ;
                             service.deleteStatus( s );
                             text = feedbackStatusId ;
                         }
                     /*Saves the data incase save has been selected by the user*/
-                    else if (feedbackStatusId != null && request.getParameter("save")!= null )
+                    else if (feedbackStatusId != null && "1".equals(request.getParameter("save")) )
                         {
                         
                             Status s = service.getStatus(Integer.parseInt(feedbackStatusId)) ;

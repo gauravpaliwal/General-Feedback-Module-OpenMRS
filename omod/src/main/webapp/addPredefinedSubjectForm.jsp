@@ -31,6 +31,15 @@
     </table> 
 </div>
 
-
+</br>
+<b class="boxHeader"><spring:message code="feedback.predefinedsubject.help.heading"/></b>
+<div class="box">
+    	<ul>
+		<li><i><spring:message code="feedback.predefinedsubject.help.l1"/></i></li>
+		<li><i><spring:message code="feedback.predefinedsubject.help.l2"/></i></li>
+                <li><i><spring:message code="feedback.predefinedsubject.help.l3"/></i></li>
+                <li><i><spring:message code="feedback.predefinedsubject.help.l4"/></i></li>
+        </ul>
+</div>
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

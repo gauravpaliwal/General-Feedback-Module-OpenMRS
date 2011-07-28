@@ -43,7 +43,17 @@
 	<input type="submit" value="<spring:message code="feedback.addFeedback" />" />
     </div>
 </form>
-
-
+    
+</br>
+<b class="boxHeader"><spring:message code="feedback.submitfeedback.help.heading"/></b>
+<div class="box">
+    	<ul>
+		<li><i><spring:message code="feedback.submitfeedback.help.l1"/></i></li>
+		<li><i><spring:message code="feedback.submitfeedback.help.l2"/></i></li>
+                <li><i><spring:message code="feedback.submitfeedback.help.l3"/></i></li>
+                <li><i><spring:message code="feedback.submitfeedback.help.l4"/></i></li>
+        </ul>
+</div>    
+    
 </div>
 

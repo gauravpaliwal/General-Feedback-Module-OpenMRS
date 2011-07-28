@@ -34,7 +34,7 @@
             </tr>
             <tr class="evenRow">
                 <th width="400"><spring:message code="feedback.message"/></th>
-                <td><c:out value="${feedback.message}"/> </td>              
+                <td><a href="<openmrs:contextPath/>/moduleServlet/feedback/fileDownloadServlet?feedbackId=<c:out value="${feedback.feedbackId}"/>" target="_blank"> <img src="<openmrs:contextPath/>/moduleServlet/feedback/fileDownloadServlet?feedbackId=<c:out value="${feedback.feedbackId}"/>" height="100" width="100" ></img> </a></td>
             </tr>
             
             <c:if test="${empty feedback.status}">

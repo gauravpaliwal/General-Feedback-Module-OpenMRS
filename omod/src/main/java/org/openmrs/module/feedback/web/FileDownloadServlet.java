@@ -39,12 +39,13 @@ public class FileDownloadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {            
 		try {   
                         if ( Context.getUserContext().getAuthenticatedUser().isSuperUser() ) 
-                        {
+                        { 
                             String feedbackId = request.getParameter("feedbackId")  ;
-                            feedbackId = "62" ;
-                            Object o = Context.getService(FeedbackService.class);
+			    Object o = Context.getService(FeedbackService.class);
                             FeedbackService service = (FeedbackService)o ;    
                             Feedback feedback = service.getFeedback(Integer.parseInt(feedbackId)) ;
+			    if (request.getParameter("feedbackId") != null && service.getFeedback(Integer.parseInt(feedbackId)) != null ) {
+                            feedback = service.getFeedback(Integer.parseInt(feedbackId)) ;
                             byte[] attachment = feedback.getMessage() ;
 
                             // Keeping these same as these are for the versionedfilemodule. Modify response to disable caching
@@ -58,6 +59,7 @@ public class FileDownloadServlet extends HttpServlet {
                             //String contentType = vf.getContentType() != null ? vf.getContentType() : defaultContentType;
                             response.setContentType("images");			
                             response.getOutputStream().write(feedback.getMessage());
+			    }
                         }
                         
 		}

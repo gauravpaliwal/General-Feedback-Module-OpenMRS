@@ -1,4 +1,4 @@
 <span>
-    <a href="javascript:test()">Submit Feedback Form</a>
+    <a href="javascript:popUp()">Submit Feedback Form</a>
 </span>
 						

@@ -23,7 +23,7 @@ public class FeedbackForm extends PortletExt {
     }
 
     public String getUrl() {
-        return "javascript:test()" ;
+        return "javascript:popUp()" ;
     }
 
     public String getRequiredPrivilege() {

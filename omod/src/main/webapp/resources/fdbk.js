@@ -8,7 +8,7 @@ $j(document).ready(function() {
     });
 });
 
-function test() {
+function popUp() {
     	$j('#dialog').dialog({
             autoOpen: true,
 	    width: '90%'

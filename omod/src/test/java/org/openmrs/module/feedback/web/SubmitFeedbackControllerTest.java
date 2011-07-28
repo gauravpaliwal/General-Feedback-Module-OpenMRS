@@ -78,7 +78,7 @@ public class SubmitFeedbackControllerTest extends BaseModuleWebContextSensitiveT
 		SubmitFeedbackController instance = new SubmitFeedbackController();
 		Map<String, Object> reqmap = new HashMap<String, Object>();
 		instance.populateModel(request, reqmap)  ;
-		/*to checl wheather the data is sent or not binded into the key feedback*/
+		/*to check wheather the data is sent or not binded into the key feedback*/
 		if (!reqmap.containsKey("predefinedsubjects") || !reqmap.containsKey("severities"))
 		{
 			Assert.fail("Do not contain the object predefined subjects and severities") ;

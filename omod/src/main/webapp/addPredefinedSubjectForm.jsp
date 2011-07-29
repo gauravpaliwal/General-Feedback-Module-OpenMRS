@@ -1,18 +1,38 @@
 <%@ include file="local_header.jsp"%>
 
-<h2><spring:message code="feedback.addPredefinedSubject"/></h2>
+<script>
+$j(document).ready(function() {
+		$j('.toggleAddTag').click(function(event) {
+			$j('#addTag').slideToggle('fast');
+			event.preventDefault();
+		});
+	});
+</script>
 
+<h2><spring:message code="feedback.predefinedsubjects"/></h2>
+<a class="toggleAddTag" href="#"><spring:message code="feedback.addPredefinedSubject"/></a>
+<div id="addTag" style="border: 1px black solid; background-color: #e0e0e0; display: none">
 <form method="post">
-
-	<spring:message code="feedback.addPredefinedSubject"/>: 
-	<input type="text" name="predefinedsubject" value="" />
-	
-	<br/><br/>
-	
-	<input type="submit" value="<spring:message code="feedback.addPredefinedSubject" />" />
-
+        <table>
+            <tr>
+                <td>
+                    <spring:message code="feedback.addPredefinedSubject"/>: 
+                </td>
+                <td>
+                    <input type="text" name="predefinedsubject"  size="50"  value="" />
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="<spring:message code="feedback.addPredefinedSubject" />" /> <input type="button" value="Cancel" class="toggleAddTag" />
+                </td>
+            </tr>
+        </table>
 </form>
-        
+</div>        
+        <br/>
         <br/>
 
 <b class="boxHeader"><spring:message code="feedback.predefinedsubjects"/></b>

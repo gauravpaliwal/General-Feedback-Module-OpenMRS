@@ -1,18 +1,37 @@
 <%@ include file="local_header.jsp"%>
 
-<h2><spring:message code="feedback.addSeverity"/></h2>
+<script>
+$j(document).ready(function() {
+		$j('.toggleAddTag').click(function(event) {
+			$j('#addTag').slideToggle('fast');
+			event.preventDefault();
+		});
+	});
+</script>
 
+<h2><spring:message code="feedback.severities"/></h2>
+<a class="toggleAddTag" href="#"><spring:message code="feedback.addPredefinedSubject"/></a>
+<div id="addTag" style="border: 1px black solid; background-color: #e0e0e0; display: none">
 <form method="post">
-    
-	<spring:message code="feedback.addSeverity"/>: 
-	<input type="text" name="severity" value="" />
-	
-	<br/><br/>
-	
-	<input type="submit" value="<spring:message code="feedback.addSeverity" />" />
+        <table>
+            <tr>
+                <td>    
+                    <spring:message code="feedback.addSeverity"/>: 
+                </td>
+                <td>
+                    <input type="text" name="severity" size="50"  value="" />
+	        </td>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="<spring:message code="feedback.addSeverity" />" /> <input type="button" value="Cancel" class="toggleAddTag" />
+                </td>
+            </tr>
+        </table>
         
 </form>
-        
+</div> 
+<br/>
 <br/>
 
 <b class="boxHeader"><spring:message code="feedback.severities"/></b>

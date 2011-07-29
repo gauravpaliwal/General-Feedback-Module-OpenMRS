@@ -15,7 +15,7 @@
             <th width="200"><spring:message code="feedback.severity"/></th>
         </tr>
         <tr  class="evenRow">
-            <td><input type="text" name="severity" value="${severity.severity}" /></td>
+            <td><input type="text" name="severity" value="${severity.severity}"  size="50" /></td>
         </tr>
         <tr>    
             <td>

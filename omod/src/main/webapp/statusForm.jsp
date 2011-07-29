@@ -14,7 +14,7 @@
             <th width="200"><spring:message code="feedback.status"/></th>
         </tr>
         <tr  class="evenRow">
-            <td> <input type="text" name="status" value="${statuses.status}" /> </td>
+            <td> <input type="text" name="status" value="${statuses.status}" size="50"  /> </td>
         </tr>    
         <tr>
             <td>

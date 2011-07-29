@@ -1,18 +1,41 @@
 <%@ include file="local_header.jsp"%>
 
-<h2><spring:message code="feedback.addStatus"/></h2>
+<script>
+$j(document).ready(function() {
+		$j('.toggleAddTag').click(function(event) {
+			$j('#addTag').slideToggle('fast');
+			event.preventDefault();
+		});
+	});
+</script>
 
+<h2><spring:message code="feedback.statuses"/></h2>
+<a class="toggleAddTag" href="#"><spring:message code="feedback.addStatus"/></a>
+<div id="addTag" style="border: 1px black solid; background-color: #e0e0e0; display: none">
 <form method="post">
-
-	<spring:message code="feedback.addStatus"/>: 
-	<input type="text" name="status" value="" />
+<table>
+            <tr>
+                <td>
+                    <spring:message code="feedback.addStatus"/>: 
+                </td>
+                <td>
+                    <input type="text" name="status" value=""  size="50" />
 	
-	<br/><br/>
-	
-	<input type="submit" value="<spring:message code="feedback.addStatus" />" />
-
+	         </td>
+            </tr>
+            <tr>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="<spring:message code="feedback.addStatus" />" /> <input type="button" value="Cancel" class="toggleAddTag" />
+                </td>
+            </tr>
+</table>
 </form>
-        
+</div>   
+<br/>
 <br/>
 
 <b class="boxHeader"><spring:message code="feedback.statuses"/></b>

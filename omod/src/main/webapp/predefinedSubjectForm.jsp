@@ -13,7 +13,7 @@
         </tr>
         <form method="post">
             <tr class="evenRow">
-                <td><input type="text" name="predefinedsubject" value="${predefinedsubjects.subject}"/></td>
+                <td><input type="text" name="predefinedsubject"  size="50"  value="${predefinedsubjects.subject}"/></td>
             </tr>
             <tr>
                 <input TYPE=hidden name=predefinedsubjectid value= <c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> >

@@ -21,18 +21,18 @@
         </li>
         <li 
             <c:if test='<%= request.getRequestURI().contains("addPredefinedSubject") %>'>class="active"</c:if>>
-                        <a href="<openmrs:contextPath/>/module/feedback/addPredefinedSubject.form"><spring:message code="feedback.addPredefinedSubject"/></a>
+                        <a href="<openmrs:contextPath/>/module/feedback/addPredefinedSubject.form"><spring:message code="feedback.predefinedsubjects"/></a>
 
         </li>
         <li 
             <c:if test='<%= request.getRequestURI().contains("addSeverity") %>'>class="active"</c:if>>
-                        			<a href="<openmrs:contextPath/>/module/feedback/addSeverity.form"><spring:message code="feedback.addSeverity"/></a>
+                        			<a href="<openmrs:contextPath/>/module/feedback/addSeverity.form"><spring:message code="feedback.severities"/></a>
 
 
         </li>
         <li 
             <c:if test='<%= request.getRequestURI().contains("addStatus") %>'>class="active"</c:if>>
-                        <a href="<openmrs:contextPath/>/module/feedback/addStatus.form"><spring:message code="feedback.addStatus"/></a>
+                        <a href="<openmrs:contextPath/>/module/feedback/addStatus.form"><spring:message code="feedback.statuses"/></a>
 
         </li>
         <li 

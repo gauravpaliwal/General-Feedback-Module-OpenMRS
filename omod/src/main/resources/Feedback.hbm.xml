@@ -23,8 +23,8 @@
     <property name="status" type="string">
       <column length="25" name="status"/>
     </property>
-    <property column="date_created" length="19" name="dateCreated" not-null="true" type="java.util.Date"/>
-    <property column="date_changed" length="19" name="dateChanged" type="java.util.Date"/>
+    <property column="date_created" length="19" name="dateCreated" not-null="true" type="timestamp"/>
+    <property column="date_changed" length="19" name="dateChanged" type="timestamp"/>
     <property length="38" name="uuid" not-null="true" type="string"/>
     <property column="attachment" name="message" not-null="false" type="binary"/>
   </class>

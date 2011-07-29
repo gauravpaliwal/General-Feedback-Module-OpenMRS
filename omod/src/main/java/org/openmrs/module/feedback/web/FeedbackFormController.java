@@ -26,7 +26,7 @@ public class FeedbackFormController extends SimpleFormController {
                     FeedbackService service = (FeedbackService)o;                       
                     Feedback s = service.getFeedback((Integer.parseInt (request.getParameter("feedbackId" ) ))) ;
                     s.setStatus( request.getParameter("status"));
-                    s.setComment( request.getParameter("comment"));
+                    s.setComment( request.getParameter("comment"));		    
                     service.saveFeedback( s );
                 }
                 			

@@ -12,11 +12,9 @@
         <input type=hidden name=feedbackSeverityId value= <c:out value="${severity.feedbackSeverityId}"/> >
     <table>
         <tr>
-            <th width="100"><spring:message code="feedback.index"/></th>
             <th width="200"><spring:message code="feedback.severity"/></th>
         </tr>
         <tr  class="evenRow">
-            <td><c:out value="${severity.feedbackSeverityId}"/> </td>
             <td><input type="text" name="severity" value="${severity.severity}" /></td>
         </tr>
         <tr>    

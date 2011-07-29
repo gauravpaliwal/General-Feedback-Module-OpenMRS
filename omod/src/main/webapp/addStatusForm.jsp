@@ -29,7 +29,7 @@
         
     </table> 
 </div>
-
+<br/>
 <b class="boxHeader"><spring:message code="feedback.status.help.heading"/></b>
 <div class="box">
     	<ul>

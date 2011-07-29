@@ -48,10 +48,10 @@
                         </column>
                         <column name="comment" type="varchar(5000)"/>   
                         <column name="status" type="varchar(25)"/>  
-                        <column name="date_created" type="date">
+                        <column name="date_created" type="timestamp">
                             <constraints nullable="false"/>
                         </column>
-                        <column name="date_changed" type="date" />
+                        <column name="date_changed" type="timestamp" />
                         <column name="uuid" type="varchar(38)"/>
                         <column name="attachment" type="mediumblob"/>
 		</createTable>            

@@ -9,12 +9,10 @@
 <c:if test="${empty feedbackPageMessage}"> 
     <table>
         <tr>
-            <th width="100"><spring:message code="feedback.index"/></th>
             <th width="200"><spring:message code="feedback.predefinedSubject"/></th>
         </tr>
         <form method="post">
             <tr class="evenRow">
-                <td><c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> </td>
                 <td><input type="text" name="predefinedsubject" value="${predefinedsubjects.subject}"/></td>
             </tr>
             <tr>

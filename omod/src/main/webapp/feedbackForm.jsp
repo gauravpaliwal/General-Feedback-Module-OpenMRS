@@ -26,7 +26,7 @@
            
             <tr class="oddRow">
                 <th width="400"><spring:message code="feedback.dateCreated"/></th>
-                <td><c:out value="${feedback.dateCreated} "/> </td>    
+                <td><openmrs:formatDate date="${feedback.dateCreated}" type="long" /></td>    
             </tr>          
             <tr class="evenRow">
                 <th width="400"><spring:message code="feedback.content"/></th>

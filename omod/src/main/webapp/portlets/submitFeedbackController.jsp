@@ -1,10 +1,8 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 
-<div id="dialog" title="Submit Feedback Form">
+<div id="dialog" title="<spring:message code="feedback.submit"/>">
     
 <form action="<openmrs:contextPath/>/module/feedback/addFeedback.form" method="post"  enctype="multipart/form-data" >
-<b class="boxHeader"><spring:message code="feedback.submit"/></b>
-    <div class="box" >
     <table>
         <tr>
             <td><spring:message code="feedback.subject"/> </td>
@@ -41,19 +39,15 @@
     </table>
         <br/>
 	<input type="submit" value="<spring:message code="feedback.addFeedback" />" />
-    </div>
 </form>
     
 </br>
 <b class="boxHeader"><spring:message code="feedback.submitfeedback.help.heading"/></b>
-<div class="box">
     	<ul>
 		<li><i><spring:message code="feedback.submitfeedback.help.l1"/></i></li>
 		<li><i><spring:message code="feedback.submitfeedback.help.l2"/></i></li>
                 <li><i><spring:message code="feedback.submitfeedback.help.l3"/></i></li>
                 <li><i><spring:message code="feedback.submitfeedback.help.l4"/></i></li>
-        </ul>
-</div>    
-    
+        </ul>  
 </div>
 

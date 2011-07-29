@@ -1,4 +1,5 @@
 <%@ include file="local_header.jsp"%>
+<%@ taglib prefix="kc" tagdir="/WEB-INF/tags/module/feedback/"%>
 
 <h2><spring:message code="feedback.manageFeedback"/></h2>
 
@@ -16,11 +17,11 @@
             </tr>
             <c:forEach items="${feedbacks}" var="feedbackObj" varStatus="loopStatus">
                 <tr class="${loopStatus.index % 2 == 0 ? 'evenRow' : 'oddRow'}">
-                    <td><c:out value="${feedbackObj.creator} "/> </td>
+                    <td><c:out value="${feedbackObj.creator.personName} "/> </td>
                     <td><a href="<openmrs:contextPath/>/module/feedback/feedback.form?feedbackId=<c:out value="${feedbackObj.feedbackId}"/>"><c:out value="${feedbackObj.subject} "/> </td>
                     <td><c:out value="${feedbackObj.severity} "/> </td>
                     <td><c:out value="${feedbackObj.status} "/> </td>
-                    <td><c:out value="${feedbackObj.dateCreated} "/> </td>
+                    <td><kc:prettyTime date="${feedbackObj.dateCreated}"></kc:prettyTime></td>                   
                 </tr>      
             </c:forEach>    
         </table>

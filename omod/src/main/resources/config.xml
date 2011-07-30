@@ -87,13 +87,17 @@
 	<!-- /Required Privileges -->
 	
 	
-	<!-- Required Global Properties
 	<globalProperty>
-		<property>helloworld.repeatNumber</property>
-		<defaultValue>3</defaultValue>
-		<description>Number of repetitions of the phrase "Hello World"</description>
+		<property>feedback.notification</property>
+		<defaultValue></defaultValue>
+		<description>What message should be sent to the user once feedback is successfully submitted</description>
 	</globalProperty>
-	/Required Global Properties -->
+	
+	<globalProperty>
+		<property>feedback.notification.email</property>
+		<defaultValue></defaultValue>
+		<description>EMail ID to be used to send email notification to users</description>
+	</globalProperty>
 	
 	
 	<!-- Servlets -->

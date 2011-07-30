@@ -26,6 +26,7 @@ public class Severity extends BaseOpenmrsObject implements java.io.Serializable 
 
      private Integer feedbackSeverityId;
      private String severity;
+     private Integer sortWeight ;
      
      /*Default Contructor*/
 
@@ -34,9 +35,10 @@ public class Severity extends BaseOpenmrsObject implements java.io.Serializable 
     
     /*Constructor with the parameter*/
 
-    public Severity(Integer feedbackSeverityId, String severity) {
+    public Severity(Integer feedbackSeverityId, String severity, Integer sortWeight ) {
        this.feedbackSeverityId = feedbackSeverityId;
        this.severity = severity;
+       this.sortWeight = sortWeight;
     }
    
     public Integer getfeedbackSeverityId() {
@@ -70,8 +72,14 @@ public class Severity extends BaseOpenmrsObject implements java.io.Serializable 
     public void setId(Integer feedbackSeverityId) {
         this.feedbackSeverityId = feedbackSeverityId ;
     }
-
-
+    
+    public Integer getSortWeight() {
+        return this.sortWeight;
+    }
+    
+    public void setSortWeight(Integer sortWeight) {
+        this.sortWeight = sortWeight ;
+    }
 
 
 }

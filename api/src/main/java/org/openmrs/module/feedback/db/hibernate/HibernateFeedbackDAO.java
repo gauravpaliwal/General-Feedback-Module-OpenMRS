@@ -19,8 +19,10 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.feedback.Feedback;
@@ -112,13 +114,16 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
 	@SuppressWarnings("unchecked")
 
         public List<Severity> getSeverities() throws DAOException {
-		return sessionFactory.getCurrentSession().createCriteria(Severity.class).list();
+	Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Severity.class).addOrder(Order.desc("sortWeight")) ;
+	return criteria.list() ;
+				
 	}
         public List<Status> getStatuses() throws DAOException {
 		return sessionFactory.getCurrentSession().createCriteria(Status.class).list();
 	}
         public List<PredefinedSubject> getPredefinedSubjects() throws DAOException {
-		return sessionFactory.getCurrentSession().createCriteria(PredefinedSubject.class).list();
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(PredefinedSubject.class).addOrder(Order.desc("sortWeight")) ;
+		return criteria.list() ;
 	}
         
         public List<Feedback> getFeedbacks() throws DAOException {

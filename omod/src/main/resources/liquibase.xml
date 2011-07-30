@@ -24,7 +24,8 @@
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="severity" type="varchar(50)"/>
-                        <column name="uuid" type="varchar(38)"/>			
+                        <column name="uuid" type="varchar(38)"/>
+			<column name="sort_weight" type="int" />
 		</createTable>      
                 
                 <createTable tableName="feedback_feedback">
@@ -64,12 +65,13 @@
                         <column name="uuid" type="varchar(38)"/>
 
 		</createTable> 
-                		<createTable tableName="feedback_predefined_subject">
+                <createTable tableName="feedback_predefined_subject">
 			<column name="feedback_predefined_subject_id" type="int">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="subject" type="varchar(50)"/>	
                         <column name="uuid" type="varchar(38)"/>
+			<column name="sort_weight" type="int" />
 		</createTable>
                                 
                 <addAutoIncrement tableName="feedback_severity" columnName="feedback_severity_id" columnDataType="int"/>

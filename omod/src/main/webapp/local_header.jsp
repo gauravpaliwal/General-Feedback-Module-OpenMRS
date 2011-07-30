@@ -45,6 +45,14 @@
                         <a href="<openmrs:contextPath/>/module/feedback/feedback.list"><spring:message code="feedback.manageFeedback"/></a>
 
         </li>
+        <li 
+            <c:if test='<%= request.getRequestURI().contains("preference") %>'>class="active"</c:if>>
+                        <a href="<openmrs:contextPath/>/module/feedback/preference.form"><spring:message code="feedback.user.preference"/></a>
+        </li>
+        <li 
+            <c:if test='<%= request.getRequestURI().contains("feedbackProperties") %>'>class="active"</c:if>>
+                        <a href="<openmrs:contextPath/>/module/feedback/feedbackProperties.form"><spring:message code="feedback.admin.properties"/></a>
+        </li>
         <openmrs:extensionPoint pointId="org.openmrs.module.feedback.localHeader" type="html">
             <openmrs:hasPrivilege privilege="${extension.requiredPrivilege}">
                 <c:if test="${extension.portletUrl != null}">

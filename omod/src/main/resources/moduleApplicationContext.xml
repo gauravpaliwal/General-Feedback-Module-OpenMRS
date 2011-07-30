@@ -19,6 +19,7 @@
                                 <prop key="/module/feedback/feedback.list">feedbackList</prop>
                                 <prop key="/module/feedback/feedback.form">feedbackForm</prop>
 				<prop key="/module/feedback/preference.form">preferenceForm</prop>
+				<prop key="/module/feedback/feedbackProperties.form">feedbackPropertiesForm</prop>
                                 <prop key="**/submitFeedbackController.portlet">SubmitFeedbackController</prop>
             </props>
 	</property>
@@ -86,6 +87,12 @@
 		<property name="commandName"><value>feedbackMessage</value></property>
 		<property name="formView"><value>/module/feedback/preferenceForm</value></property>
 		<property name="successView"><value>redirect:preference.form</value></property>
+	</bean>
+	
+	<bean id="feedbackPropertiesForm" class="org.openmrs.module.feedback.web.FeedbackPropertiesFormController">
+		<property name="commandName"><value>feedbackMessage</value></property>
+		<property name="formView"><value>/module/feedback/feedbackPropertiesForm</value></property>
+		<property name="successView"><value>redirect:feedbackProperties.form</value></property>
 	</bean>
 	
         <bean id="SubmitFeedbackController" class="org.openmrs.module.feedback.web.SubmitFeedbackController">

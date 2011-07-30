@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.openmrs.module.feedback">
-  <class name="org.openmrs.module.feedback.Severity" table="feedback_severity">
+<class name="org.openmrs.module.feedback.Severity" table="feedback_severity">
     <id column="feedback_severity_id" name="feedbackSeverityId" type="int">
       <generator class="native"/>
     </id>
     <property length="38" name="uuid" not-null="true" type="string"/>
     <property name="severity" type="java.lang.String">
     </property>
-  </class>
+         <property name="sortWeight" type="int">
+            <column name="sort_weight" />
+     </property>
+</class>
 </hibernate-mapping>

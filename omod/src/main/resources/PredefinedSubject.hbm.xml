@@ -9,6 +9,12 @@
     <property name="subject" type="string">
       <column length="50" name="subject"/>
     </property>
-    <property length="38" name="uuid" not-null="true" type="string"/>
-  </class>
+	<property name="uuid" type="string">
+            <column name="uuid" length="38" />
+        </property>  
+     <property name="sortWeight" type="int">
+            <column name="sort_weight" />
+     </property>
+	
+   </class>
 </hibernate-mapping>

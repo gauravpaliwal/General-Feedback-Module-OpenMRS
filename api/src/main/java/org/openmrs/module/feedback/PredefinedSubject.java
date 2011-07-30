@@ -25,6 +25,8 @@ public class PredefinedSubject  extends BaseOpenmrsObject implements java.io.Ser
 
      private Integer feedbackPredefinedSubjectId;
      private String subject;
+     private Integer sortWeight ;
+     
 
      /*
       *     No Arguement default contructor
@@ -69,8 +71,14 @@ public class PredefinedSubject  extends BaseOpenmrsObject implements java.io.Ser
     public void setId(Integer feedbackPredefinedSubjectId) {
         this.feedbackPredefinedSubjectId = feedbackPredefinedSubjectId ;
     }
-
-
+    
+    public Integer getSortWeight() {
+        return this.sortWeight;
+    }
+    
+    public void setSortWeight(Integer sortWeight) {
+        this.sortWeight = sortWeight ;
+    }
 
 
 }

@@ -37,6 +37,7 @@ public class AddSeverityFormController extends SimpleFormController {
 	protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
             
                 Boolean feedbackMessage= false ;
+		String sortWeight = request.getParameter("sortWeight") ;
 
                 String text = "Not used";
 		/*This checks to make sure that severity can't be empty or NULL*/
@@ -45,6 +46,10 @@ public class AddSeverityFormController extends SimpleFormController {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     Severity s = new Severity() ;
+		    if (isInt(sortWeight))
+		    {
+			    s.setSortWeight(Integer.parseInt(sortWeight));
+		    }
                                        
                     /** This makes sure that the Severity value always remain less then or equal to 50*/
                                   
@@ -83,5 +88,19 @@ public class AddSeverityFormController extends SimpleFormController {
 		return map;
 		
 	}
+	
+	private Boolean isInt (String checkInt) throws Exception
+	{	
+		try
+		{
+			Integer.parseInt(checkInt) ;
+		}
+		catch(Exception e) 
+		{
+			return false ;
+		}			
+		return true;
+	}
+	
 	
 }

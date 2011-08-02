@@ -8,12 +8,16 @@
 <div class="box" >
 <c:if test="${empty feedbackPageMessage}"> 
     <table>
-        <tr>
-            <th width="200"><spring:message code="feedback.predefinedSubject"/></th>
-        </tr>
+        
         <form method="post">
+
             <tr class="evenRow">
+            	<td width="200"><spring:message code="feedback.predefinedSubject"/></td>
                 <td><input type="text" name="predefinedsubject"  size="50"  value="${predefinedsubjects.subject}"/></td>
+            </tr>
+            <tr class="evenRow">
+            	<td width="200"><spring:message code="feedback.sortWeight"/></td>
+                <td><input type="text" name="sortWeight"  size="50"  value="${predefinedsubjects.sortWeight}"/></td>
             </tr>
             <tr>
                 <input TYPE=hidden name=predefinedsubjectid value= <c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> >

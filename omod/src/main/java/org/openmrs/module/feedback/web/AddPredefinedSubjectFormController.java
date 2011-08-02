@@ -37,14 +37,19 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
 	protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
             
                 Boolean feedbackMessage = false ;
-            
+		String sortWeight = request.getParameter("sortWeight") ;
+		            
 		/*The Subject can't be NULL or an empty string*/
                 if (request.getParameter("predefinedsubject") != null && StringUtils.hasLength(request.getParameter("predefinedsubject")) )
                 {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     PredefinedSubject s = new PredefinedSubject() ;
-                    
+
+		    if (isInt(sortWeight))
+		    {
+			    s.setSortWeight(Integer.parseInt(sortWeight));
+		    }
                     /** This makes sure that the Predefined Subject value always remain less then or equal to 50*/
                     s.setSubject(request.getParameter("predefinedsubject") ) ;
                                       
@@ -59,7 +64,20 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
 		return feedbackMessage ;
 		
 	}
-
+	
+	private Boolean isInt (String checkInt) throws Exception
+	{	
+		try
+		{
+			Integer.parseInt(checkInt) ;
+		}
+		catch(Exception e) 
+		{
+			return false ;
+		}			
+		return true;
+	}
+	
 	@Override
 	protected Map referenceData(HttpServletRequest req) throws Exception {
 		

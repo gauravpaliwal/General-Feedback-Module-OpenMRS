@@ -22,6 +22,14 @@ $j(document).ready(function() {
                     <input type="text" name="predefinedsubject"  size="50"  value="" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <spring:message code="feedback.addSortWeight"/>: 
+                </td>
+                <td>
+                    <input type="text" name="sortWeight"  size="50"  value="" />
+                </td>
+            </tr>
             <tr></tr>
             <tr>
                 <td></td>

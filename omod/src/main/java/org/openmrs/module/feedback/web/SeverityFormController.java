@@ -39,6 +39,7 @@ public class SeverityFormController extends SimpleFormController {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;  
                     String SeverityId = request.getParameter("feedbackSeverityId") ;
+		    String sortWeight = request.getParameter("sortWeight") ;
 
                     
                     if ( !StringUtils.hasLength(SeverityId) || service.getSeverity(Integer.parseInt(SeverityId)) == null )
@@ -56,11 +57,16 @@ public class SeverityFormController extends SimpleFormController {
                     else if (SeverityId != null && "1".equals(request.getParameter("save")) )
                         {
                         
-                            Severity s = service.getSeverity(Integer.parseInt(SeverityId)) ;
-                            text = "saved";
+                            Severity s = service.getSeverity(Integer.parseInt(SeverityId)) ;			 
                         
                             /** This makes sure that the Severity value always remain less then or equal to 50*/
                             s.setSeverity(request.getParameter("severity") ) ;
+			    
+			     if (isInt(sortWeight))
+				{
+					s.setSortWeight(Integer.parseInt(sortWeight));
+				}
+                            text = "saved";
                                                      
                             service.saveSeverity(s) ;
                             text = SeverityId ;
@@ -72,6 +78,19 @@ public class SeverityFormController extends SimpleFormController {
 		
 		return text;
 		
+	}
+	
+	private Boolean isInt (String checkInt) throws Exception
+	{	
+		try
+		{
+			Integer.parseInt(checkInt) ;
+		}
+		catch(Exception e) 
+		{
+			return false ;
+		}			
+		return true;
 	}
 
 	@Override

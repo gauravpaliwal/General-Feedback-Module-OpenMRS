@@ -14,6 +14,7 @@
 
 package org.openmrs.module.feedback.web;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Feedback;
 import org.openmrs.module.feedback.FeedbackService;
+import org.openmrs.notification.Message;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -89,7 +91,42 @@ public class AddFeedbackFormController extends SimpleFormController {
                     }
                     /*Save the Feedback*/
                     service.saveFeedback(s) ;  
-                    
+		    
+		    if(	"Yes".equals(Context.getUserContext().getAuthenticatedUser().getUserProperty("feedback_notificationReceipt")))
+		    {
+			try {
+			// Create Message
+			Message message = new Message();
+			message.setSender( Context.getAdministrationService().getGlobalProperty("feedback.notification.email") );
+			message.setRecipients( Context.getUserContext().getAuthenticatedUser().getUserProperty("feedback_email") );
+			message.setSubject( "Feedback submission confirmation mail" ); 
+			message.setContent( Context.getAdministrationService().getGlobalProperty("feedback.notification") + "Ticket Number: " + s.getFeedbackId() + " Subject :" + s.getSubject()   );
+			message.setSentDate( new Date() );
+		        // Send message 
+			Context.getMessageService().send( message );
+		    }
+		    catch (Exception e)
+		    {
+			    log.error("Unable to sent the email to the Email : " + Context.getUserContext().getAuthenticatedUser().getUserProperty("feedback_email") ) ;
+		    } 
+		    }
+		    		    
+		try {
+			// Create Message
+			Message message = new Message();
+			message.setSender( Context.getAdministrationService().getGlobalProperty("feedback.notification.email") );
+			message.setRecipients( Context.getAdministrationService().getGlobalProperty("feedback.admin.notification.email") );
+			message.setSubject( "New feedback submiited" ); 
+			message.setContent( Context.getAdministrationService().getGlobalProperty("feedback.admin.notification") + "Ticket Number: " + s.getFeedbackId() + " Subject :" + s.getSubject()   );
+			message.setSentDate( new Date() );
+		        // Send message 
+			Context.getMessageService().send( message );
+		    }
+		    catch (Exception e)
+		    {
+			    log.error("Unable to sent the email to the Email : " + Context.getUserContext().getAuthenticatedUser().getUserProperty("feedback.admin.notification.email") ) ;
+		    } 		    
+		    		                     
                     feedbackMessage = true;
 
                     
@@ -113,7 +150,7 @@ public class AddFeedbackFormController extends SimpleFormController {
                 map.put("severities", hService.getSeverities() ) ;		
                 if (req.getParameter("feedbackPageMessage")!= null && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) 
                 {
-                      map.put("feedbackPageMessage", "feedback.notification.feedback.save" ) ;		
+                      map.put("feedbackPageMessage", Context.getAdministrationService().getGlobalProperty("feedback.ui.notification") ) ;		
                 }
                 else if (req.getParameter("feedbackPageMessage")!= null &&  !ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage"))
                 {

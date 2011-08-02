@@ -12,10 +12,12 @@
         <input type=hidden name=feedbackSeverityId value= <c:out value="${severity.feedbackSeverityId}"/> >
     <table>
         <tr>
-            <th width="200"><spring:message code="feedback.severity"/></th>
-        </tr>
-        <tr  class="evenRow">
+            <td width="200"><spring:message code="feedback.severity"/></td>
             <td><input type="text" name="severity" value="${severity.severity}"  size="50" /></td>
+        </tr>
+	<tr class="oddRow">
+            	<td width="200"><spring:message code="feedback.sortWeight"/></td>
+                <td><input type="text" name="sortWeight"  size="50"  value="${severity.sortWeight}"/></td>
         </tr>
         <tr>    
             <td>

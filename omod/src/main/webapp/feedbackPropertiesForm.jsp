@@ -13,7 +13,20 @@
         <tr>
             <td valign="top"><spring:message code="feedback.admin.properties.notification"/> </td>
             <td><textarea name="feedbackNotification" rows="10" cols="120" type="_moz" size="35" ><openmrs:globalProperty key="feedback.notification"/></textarea> </td>
-        </tr>       
+        </tr>  
+	<tr>
+            <td valign="top"><spring:message code="feedback.admin.properties.admin.notification.email"/> </td>
+            <td><input type="text" name="feedbackAdminNotificationEmail" size="80" value="<openmrs:globalProperty key="feedback.admin.notification.email"/>"></td>
+        </tr>
+	<tr>
+            <td valign="top"><spring:message code="feedback.admin.properties.admin.notification"/> </td>
+            <td><textarea name="feedbackAdminNotification" rows="10" cols="120" type="_moz" size="35" ><openmrs:globalProperty key="feedback.admin.notification"/></textarea> </td>
+        </tr> 
+	<tr>
+            <td valign="top"><spring:message code="feedback.admin.properties.ui.notification"/> </td>
+            <td><textarea name="feedbackUiNotification" rows="10" cols="120" type="_moz" size="35" ><openmrs:globalProperty key="feedback.ui.notification"/></textarea> </td>
+        </tr> 
+
         <tr>
             <td> </td>            
             <td> 

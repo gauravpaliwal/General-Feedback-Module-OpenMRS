@@ -99,6 +99,24 @@
 		<description>EMail ID to be used to send email notification to users</description>
 	</globalProperty>
 	
+	<globalProperty>
+		<property>feedback.admin.notification</property>
+		<defaultValue></defaultValue>
+		<description>What message should be sent to the admin once feedback is successfully submitted</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>feedback.ui.notification</property>
+		<defaultValue></defaultValue>
+		<description>What message should be shown to the user once feedback is successfully submitted</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>feedback.admin.notification.email</property>
+		<defaultValue></defaultValue>
+		<description>EMail ID to be used to send email notification to admin</description>
+	</globalProperty>
+	
 	
 	<!-- Servlets -->
 	<!-- Accessed through the url /pageContext()/moduleServlet/<moduleId>/<servlet-name> -->

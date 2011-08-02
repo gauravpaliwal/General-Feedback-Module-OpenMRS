@@ -15,7 +15,7 @@
             	<td width="200"><spring:message code="feedback.predefinedSubject"/></td>
                 <td><input type="text" name="predefinedsubject"  size="50"  value="${predefinedsubjects.subject}"/></td>
             </tr>
-            <tr class="evenRow">
+            <tr class="oddRow">
             	<td width="200"><spring:message code="feedback.sortWeight"/></td>
                 <td><input type="text" name="sortWeight"  size="50"  value="${predefinedsubjects.sortWeight}"/></td>
             </tr>

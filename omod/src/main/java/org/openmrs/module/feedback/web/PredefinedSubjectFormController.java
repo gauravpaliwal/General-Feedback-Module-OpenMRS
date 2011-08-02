@@ -39,6 +39,7 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                     FeedbackService service = (FeedbackService)o;        
                     String text = "";
                     String predefinedsubjectid = request.getParameter("predefinedsubjectid") ;
+		    String sortWeight = request.getParameter("sortWeight") ;
                     
                     if ( !StringUtils.hasLength(predefinedsubjectid) || service.getPredefinedSubject(Integer.parseInt(predefinedsubjectid)) == null )
                     {
@@ -64,6 +65,11 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                         
                         /** This makes sure that the Predefined Subject value always remain less then or equal to 50*/
                         s.setSubject(request.getParameter("predefinedsubject") ) ;
+			
+			if (isInt(sortWeight))
+			{
+			    s.setSortWeight(Integer.parseInt(sortWeight));
+			}
                         
                         /*Service Method to save the data*/
                         service.savePredefinedSubject(s) ;  
@@ -74,6 +80,19 @@ public class PredefinedSubjectFormController extends SimpleFormController {
 		
 		return text ;
 		
+	}
+	
+	private Boolean isInt (String checkInt) throws Exception
+	{	
+		try
+		{
+			Integer.parseInt(checkInt) ;
+		}
+		catch(Exception e) 
+		{
+			return false ;
+		}			
+		return true;
 	}
 
 	@Override

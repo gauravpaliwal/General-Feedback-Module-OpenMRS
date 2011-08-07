@@ -36,5 +36,17 @@
 </c:if>
 </div>
 
+<br/>
+<b class="boxHeader"><spring:message code="feedback.status.help.heading"/></b>
+<div class="box">
+    	<ul>
+		<li><i><spring:message code="feedback.status.help.l1"/></i></li>
+		<li><i><spring:message code="feedback.status.help.l2"/></i></li>
+                <li><i><spring:message code="feedback.status.help.l3"/></i></li>
+                <li><i><spring:message code="feedback.status.help.l4"/></i></li>
+                <li><i><spring:message code="feedback.status.help.l5"/></i></li>
+        </ul>
+</div>
+
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

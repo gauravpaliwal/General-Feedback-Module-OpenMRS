@@ -64,6 +64,8 @@ $j(document).ready(function() {
 		<li><i><spring:message code="feedback.severity.help.l2"/></i></li>
                 <li><i><spring:message code="feedback.severity.help.l3"/></i></li>
                 <li><i><spring:message code="feedback.severity.help.l4"/></i></li>
+                <li><i><spring:message code="feedback.severity.help.l5"/></i></li>
+                <li><i><spring:message code="feedback.severity.help.l6"/></i></li>
         </ul>
 </div>
 

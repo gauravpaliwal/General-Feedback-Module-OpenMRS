@@ -15,6 +15,7 @@
 package org.openmrs.module.feedback;
 
 import java.util.List;
+import org.openmrs.User;
 
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
@@ -73,6 +74,8 @@ public interface FeedbackService {
         public List<Status> getStatuses() throws APIException;
         public List<PredefinedSubject> getPredefinedSubjects() throws APIException;
         public List<Feedback> getFeedbacks () throws APIException ;
+	public List<Feedback> getFeedbacks (User user) throws APIException ;
+
 
 
 }

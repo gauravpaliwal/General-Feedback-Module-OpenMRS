@@ -42,7 +42,7 @@ public class AdminList extends AdministrationSectionExt {
                 map.put("module/feedback/feedback.list", "feedback.manageFeedback");
 		map.put("module/feedback/preference.form", "feedback.user.preference");
 		map.put("module/feedback/feedbackProperties.form", "feedback.admin.properties");
-
+		map.put("module/feedback/feedbackUser.list", "feedback.user.manageFeedback");
                 return map;
 	}
 	

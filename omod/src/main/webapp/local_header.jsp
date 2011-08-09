@@ -41,8 +41,13 @@
 
         </li>
         <li 
-            <c:if test='<%= request.getRequestURI().contains("feedback/feedback") %>'>class="active"</c:if>>
-                        <a href="<openmrs:contextPath/>/module/feedback/feedback.list"><spring:message code="feedback.manageFeedback"/></a>
+            <c:if test='<%= request.getRequestURI().contains("feedback/feedbackAdmin") %>'>class="active"</c:if>>
+                        <a href="<openmrs:contextPath/>/module/feedback/feedbackAdmin.list"><spring:message code="feedback.manageFeedback"/></a>
+
+        </li>
+        <li 
+            <c:if test='<%= request.getRequestURI().contains("feedback/feedbackUser") %>'>class="active"</c:if>>
+                        <a href="<openmrs:contextPath/>/module/feedback/feedbackUser.list"><spring:message code="feedback.user.manageFeedback"/></a>
 
         </li>
         <li 

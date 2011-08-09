@@ -22,7 +22,11 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Property ;
+import org.hibernate.criterion.Restrictions;
+import org.openmrs.User;
 
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.feedback.Feedback;
@@ -128,6 +132,12 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
         
         public List<Feedback> getFeedbacks() throws DAOException {
 		return sessionFactory.getCurrentSession().createCriteria(Feedback.class).list();
+	}
+	
+	public List<Feedback> getFeedbacks(User user) throws DAOException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Feedback.class) ;	 
+		criteria.add(Restrictions.eq("creator", user)) ;
+		return criteria.list() ;
 	}
         
 

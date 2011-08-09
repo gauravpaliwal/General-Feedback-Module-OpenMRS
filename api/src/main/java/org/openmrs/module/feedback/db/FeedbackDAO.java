@@ -15,6 +15,7 @@
 package org.openmrs.module.feedback.db;
 
 import java.util.List;
+import org.openmrs.User;
 import org.openmrs.module.feedback.PredefinedSubject;
 import org.openmrs.module.feedback.Severity ;
 import org.openmrs.api.db.DAOException;
@@ -66,6 +67,7 @@ public interface FeedbackDAO {
         public List<Status> getStatuses() throws DAOException ;
         public List<PredefinedSubject> getPredefinedSubjects() throws DAOException ;
         public List<Feedback> getFeedbacks() throws DAOException ;
+	public List<Feedback> getFeedbacks(User user) throws DAOException ;
 
 
         public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException ;

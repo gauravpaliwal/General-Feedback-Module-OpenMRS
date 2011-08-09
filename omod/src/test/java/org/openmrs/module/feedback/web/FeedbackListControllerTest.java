@@ -41,7 +41,7 @@ import org.junit.Test;
 public class FeedbackListControllerTest extends BaseModuleWebContextSensitiveTest {
 	
 	private FeedbackService service;
-	private FeedbackListController controller;
+	private FeedbackAdminListController controller;
 	private MockHttpServletRequest request;
 	private HttpServletResponse response;
 	private Boolean expResult = false ;
@@ -63,7 +63,7 @@ public class FeedbackListControllerTest extends BaseModuleWebContextSensitiveTes
 		
 		/*executed before the test is run*/
 		this.service = Context.getService(FeedbackService.class); 	
-		this.controller = new FeedbackListController();
+		this.controller = new FeedbackAdminListController();
 		this.request = new MockHttpServletRequest();
 		this.response = new MockHttpServletResponse();
 		/*this file is in the same folder of test resources where the hibernate mapping file is located*/
@@ -102,7 +102,7 @@ public class FeedbackListControllerTest extends BaseModuleWebContextSensitiveTes
 	public void testReferenceData() throws Exception {
 		System.out.println("referenceData");
 		HttpServletRequest req = null;
-		FeedbackListController instance = new FeedbackListController();
+		FeedbackAdminListController instance = new FeedbackAdminListController();
 		Map expResult = null;
 		Map result = instance.referenceData(req);
 		/*to checl wheather the data is sent or not binded into the key feedback*/

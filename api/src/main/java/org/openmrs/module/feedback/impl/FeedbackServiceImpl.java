@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.User;
 import org.openmrs.api.APIException;
 import org.openmrs.module.feedback.Feedback;
 import org.openmrs.module.feedback.PredefinedSubject;
@@ -120,6 +121,10 @@ public class FeedbackServiceImpl implements FeedbackService {
 	}
         public List<Feedback> getFeedbacks () throws APIException {
 		return getFeedbackdDAO().getFeedbacks();
+	}
+	
+	public List<Feedback> getFeedbacks (User user) throws APIException {
+		return getFeedbackdDAO().getFeedbacks(user) ;
 	}
 
         public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws APIException {

@@ -16,7 +16,8 @@
                                 <prop key="/module/feedback/severity.form">severityForm</prop>
                                 <prop key="/module/feedback/status.form">statusForm</prop>
                                 <prop key="/module/feedback/addFeedback.form">addFeedbackForm</prop>
-                                <prop key="/module/feedback/feedback.list">feedbackList</prop>
+                                <prop key="/module/feedback/feedbackAdmin.list">feedbackAdminList</prop>
+				<prop key="/module/feedback/feedbackUser.list">feedbackUserList</prop>
                                 <prop key="/module/feedback/feedback.form">feedbackForm</prop>
 				<prop key="/module/feedback/preference.form">preferenceForm</prop>
 				<prop key="/module/feedback/feedbackProperties.form">feedbackPropertiesForm</prop>
@@ -71,10 +72,16 @@
 		<property name="successView"><value>redirect:addFeedback.form</value></property>
 	</bean>
         
-         <bean id="feedbackList" class="org.openmrs.module.feedback.web.FeedbackListController">
+         <bean id="feedbackAdminList" class="org.openmrs.module.feedback.web.FeedbackAdminListController">
 		<property name="commandName"><value>helloWorldObject</value></property>
-		<property name="formView"><value>/module/feedback/feedbackList</value></property>
-		<property name="successView"><value>redirect:feedback.list</value></property>
+		<property name="formView"><value>/module/feedback/feedbackAdminList</value></property>
+		<property name="successView"><value>redirect:feedbackAdmin.list</value></property>
+	</bean>
+	
+	<bean id="feedbackUserList" class="org.openmrs.module.feedback.web.FeedbackUserListController">
+		<property name="commandName"><value>helloWorldObject</value></property>
+		<property name="formView"><value>/module/feedback/feedbackUserList</value></property>
+		<property name="successView"><value>redirect:feedbackUser.list</value></property>
 	</bean>
         
         <bean id="feedbackForm" class="org.openmrs.module.feedback.web.FeedbackFormController">

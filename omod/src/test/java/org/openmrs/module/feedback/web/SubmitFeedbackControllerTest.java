@@ -42,7 +42,7 @@ import org.junit.Test;
 public class SubmitFeedbackControllerTest extends BaseModuleWebContextSensitiveTest {
 		
 	private FeedbackService service;
-	private FeedbackListController controller;
+	private FeedbackAdminListController controller;
 	private MockHttpServletRequest request;
 	private HttpServletResponse response;
 	private Boolean expResult = false ;
@@ -56,7 +56,7 @@ public class SubmitFeedbackControllerTest extends BaseModuleWebContextSensitiveT
 		
 		/*executed before the test is run*/
 		this.service = Context.getService(FeedbackService.class); 	
-		this.controller = new FeedbackListController();
+		this.controller = new FeedbackAdminListController();
 		this.request = new MockHttpServletRequest();
 		this.response = new MockHttpServletResponse();
 		/*this file is in the same folder of test resources where the hibernate mapping file is located*/

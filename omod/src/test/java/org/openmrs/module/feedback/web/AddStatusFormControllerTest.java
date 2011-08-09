@@ -40,7 +40,7 @@ import org.openmrs.module.feedback.Status;
 public class AddStatusFormControllerTest extends BaseModuleWebContextSensitiveTest {
 	
 	private FeedbackService service;
-	private FeedbackListController controller;
+	private FeedbackAdminListController controller;
 	private MockHttpServletRequest request;
 	private HttpServletResponse response;
 	private Boolean expResult = false ;
@@ -62,7 +62,7 @@ public class AddStatusFormControllerTest extends BaseModuleWebContextSensitiveTe
 		
 		/*executed before the test is run*/
 		this.service = Context.getService(FeedbackService.class); 	
-		this.controller = new FeedbackListController();
+		this.controller = new FeedbackAdminListController();
 		this.request = new MockHttpServletRequest();
 		this.response = new MockHttpServletResponse();
 		

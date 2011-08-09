@@ -25,7 +25,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.FeedbackService;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-public class FeedbackListController extends SimpleFormController {
+public class FeedbackAdminListController extends SimpleFormController {
 	
     /** Logger for this class and subclasses */
     protected final Log log = LogFactory.getLog(getClass());

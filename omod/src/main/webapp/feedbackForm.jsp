@@ -5,7 +5,7 @@
 	});
     </script>
 
-	<openmrs:hasPrivilege privilege="Add Feedback">
+<openmrs:hasPrivilege privilege="Add Feedback">
 
 <h2><spring:message code="feedback.manageFeedback"/></h2>
 
@@ -95,17 +95,20 @@
             <input type=hidden name=feedbackId value= <c:out value="${feedback.feedbackId}"/> >
             <input type="submit" value="<spring:message code="feedback.comment" />" />                
             </c:if>
-	  <form method="post"> 
-                <input type=hidden name=feedbackId value= <c:out value="${feedback.feedbackId}"/> 
-                <input type=hidden name="Delete" value= "1"/> 
-                <input type="submit" value="<spring:message code="feedback.delete" />" />            
+          <openmrs:hasPrivilege privilege="Admin Feedback">
+	    <form method="post"> 
+                <input type=hidden name=delete value= "1"/> 
+                <input type=hidden name=feedbackId value="${feedback.feedbackId}"/> 
+                <input type="submit" value="Delete" />            
             </form>
+          </openmrs:hasPrivilege> 
 	</td>
-	</form>
+
   	</tr>              
         </table>
+            	</form>
    </div>
                 
-                    </openmrs:hasPrivilege>
+</openmrs:hasPrivilege>
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

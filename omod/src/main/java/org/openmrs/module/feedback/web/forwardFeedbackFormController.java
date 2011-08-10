@@ -12,7 +12,7 @@ import org.openmrs.module.feedback.Feedback;
 import org.openmrs.module.feedback.FeedbackService;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-public class FeedbackFormController extends SimpleFormController {
+public class forwardFeedbackFormController extends SimpleFormController {
 	
     /** Logger for this class and subclasses */
     protected final Log log = LogFactory.getLog(getClass());

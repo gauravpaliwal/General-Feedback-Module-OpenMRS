@@ -1,52 +1,119 @@
 <%@ include file="local_header.jsp"%>
 
-<openmrs:hasPrivilege privilege="Add Feedback,Admin Feedback">
+<script type="text/javascript">
+	$j(document).ready(function() {
+        colorVisibleTableRows("table", "white", "whitesmoke");              
+	});
+</script>
 
-<h2><spring:message code="feedback.addFeedback"/></h2>
+<openmrs:hasPrivilege privilege="Add Feedback">
 
-<form method="post"  enctype="multipart/form-data">
-<b class="boxHeader"><spring:message code="feedback.submit"/></b>
+<h2><spring:message code="feedback.manageFeedback"/></h2>
+
+<div id="feedbackPhotoDialog">
+<img src="<openmrs:contextPath/>/moduleServlet/feedback/fileDownloadServlet?feedbackId=<c:out value="${feedback.feedbackId}"/>" >
+</div>
+
+
+<form method="get">
+    <b class="boxHeader"><spring:message code="feedback.submit"/></b>
     <div class="box" >
-    <table>
-        <tr>
-            <td><spring:message code="feedback.subject"/> </td>
-            <td>
-            <select name="subject">
-                <c:forEach items="${predefinedsubjects}" var="predefinedsubjectObj" >
-                    <option value="<c:out value="${predefinedsubjectObj.subject}"/>"> <c:out value="${predefinedsubjectObj.subject}"/> </option>      
-                </c:forEach>
-            </select>
-            </td>
-        </tr>
-        <tr>
-            <td><spring:message code="feedback.severity"/>  </td>        
-            <td>
-                <select name="severity">
-                    <c:forEach items="${severities}" var="severityObj">
-                        <option value="<c:out value="${severityObj.severity}"/>"> <c:out value="${severityObj.severity}"/> </option>      
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top"><spring:message code="feedback.feedback"/> </td>
-            <td><textarea name="feedback" rows="10" cols="120" type="_moz" size="35"></textarea> </td>
-        </tr>
-        <tr>
-            <td><spring:message code="feedback.pageContext"/> </td>
-            <td><input type="checkbox" name="pagecontext"> </input>        </td>   
-        </tr>
-        <tr>
-            <td><spring:message code="feedback.attachment"/> </td>
-            <td><input type="file" accept="image" name="file" size="40" > </input> </td>   
-        </tr>
-    </table>
-        <br/>
-	<input type="submit" value="<spring:message code="feedback.addFeedback" />" />
-    </div>
-</form>
-    
-    </openmrs:hasPrivilege>
+        <table id="table">
+	    <tr>
+	    </tr>
+            <tr>
+                <th width="100"><spring:message code="feedback.feedbackId"/></th>
+                <td><c:out value="${feedback.feedbackId} "/> </td>
+            </tr>
 
+            <tr>
+                <th width="300"><spring:message code="feedback.creator"/></th>
+                <td><c:out value="${feedback.creator} "/> </td>
+            </tr>
+
+            <tr>
+                <th width="400"><spring:message code="feedback.subject"/></th>
+                <td><c:out value="${feedback.subject} "/> </td>
+            </tr>
+
+            <tr>    
+            <th width="300"><spring:message code="feedback.severity"/></th>
+            <td><c:out value="${feedback.severity} "/> </td>
+            </tr>
+           
+            <tr>
+                <th width="400"><spring:message code="feedback.dateCreated"/></th>
+                <td><openmrs:formatDate date="${feedback.dateCreated}" type="long" /></td>    
+            </tr> 
+         
+            <tr>
+                <th width="400"><spring:message code="feedback.content"/></th>
+                <td><c:out value="${feedback.content}"/> </td>              
+            </tr>
+
+            <tr>
+                <th width="400"><spring:message code="feedback.message"/></th>
+                <td><a href="javascript:fdbkPhotoPopUp()" > <img src="<openmrs:contextPath/>/moduleServlet/feedback/fileDownloadServlet?feedbackId=<c:out value="${feedback.feedbackId}"/>" height="100" width="100"></img> </a></td>
+            </tr>
+            
+            <c:if test="${empty feedback.status}">
+            <tr >
+                <th width="400"><spring:message code="feedback.status"/></th>
+                <td>            
+                    <select name="status">
+                        <c:forEach items="${statuses}" var="statusObj" >
+                            <option value="<c:out value="${statusObj.status}"/>"> <c:out value="${statusObj.status}"/> </option>      
+                        </c:forEach>
+                    </select> 
+                </td>
+            </tr>
+            
+            <tr>
+                <th valign="top"><spring:message code="feedback.comment"/> </th>
+                <td><textarea name="comment" rows="10" cols="120" type="_moz" size="35"></textarea> </td>
+            </tr>
+            
+            </c:if>
+            
+            <c:if test="${!empty feedback.status}">
+            <tr >
+                <th width="400"><spring:message code="feedback.status"/></th>
+                <td>            
+                    <c:out value="${feedback.status}"/>      
+                </td>
+            </tr>            
+            <tr>
+                <th valign="top"><spring:message code="feedback.comment"/> </th>
+                <td><c:out value="${feedback.comment}"/></td>
+            </tr>
+            </c:if>
+
+	<tr>            
+        <td>
+	</td>
+	<td>
+	<div id="command"> 	
+	    <c:if test="${empty feedback.status}">          
+            	<input type=hidden name=feedbackId value= <c:out value="${feedback.feedbackId}"/> >
+            	<input type="submit" value="<spring:message code="feedback.comment" />" />                
+            </c:if>
+          	<openmrs:hasPrivilege privilege="Admin Feedback">
+
+	    		<form method="post"> 
+                		<input type=hidden name=delete value= "1"/> 
+                		<input type=hidden name=feedbackId value="${feedback.feedbackId}"/> 
+                		<input type="submit" value="Delete" />            
+            		</form>
+
+          	</openmrs:hasPrivilege> 
+	</td>
+  	</tr> 
+	</div> 
+        </form>            
+        </table>
+
+   </div>
+                
+</openmrs:hasPrivilege>
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

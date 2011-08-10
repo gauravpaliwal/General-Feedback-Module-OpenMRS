@@ -84,7 +84,7 @@ public class AddFeedbackFormControllerTest extends BaseModuleWebContextSensitive
 	public void testFormBackingObject() throws Exception {
 		System.out.println("formBackingObject");
 		HttpServletRequest req = null;
-		AddFeedbackFormController instance = new AddFeedbackFormController();
+		forwardFeedbackFormController instance = new forwardFeedbackFormController();
 		/*No testing now as their are a number of the Extra Credit dtuff that will effect these test cases*/
 	}
 
@@ -95,7 +95,7 @@ public class AddFeedbackFormControllerTest extends BaseModuleWebContextSensitive
 	public void testReferenceData() throws Exception {
 		System.out.println("referenceData");
 		HttpServletRequest req = null;
-		AddFeedbackFormController instance = new AddFeedbackFormController();
+		forwardFeedbackFormController instance = new forwardFeedbackFormController();
 		/*No testing now as their are a number of the Extra Credit dtuff that will effect these test cases*/
 	}
 }

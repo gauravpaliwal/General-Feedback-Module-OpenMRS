@@ -61,9 +61,10 @@ public interface FeedbackService {
         public void updateStatus(Status status) throws APIException;
         public void updatePredefinedSubject(PredefinedSubject PredefinedSubject) throws APIException;
         
-        public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws APIException;        
+        public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws APIException;      
         public void deleteStatus (Status Status) throws APIException;
         public void deleteSeverity (Severity feedbackSeverity) throws APIException;
+	public void deleteFeedback (Feedback Feedback) throws APIException;
 
         @Transactional(readOnly=true)
         public List<Severity> getSeverities() throws APIException;

@@ -1,5 +1,7 @@
 <%@ include file="local_header.jsp"%>
 
+<openmrs:hasPrivilege privilege="Admin Feedback">
+
 <script>
 $j(document).ready(function() {
 		$j('.toggleAddTag').click(function(event) {
@@ -68,6 +70,6 @@ $j(document).ready(function() {
                 <li><i><spring:message code="feedback.severity.help.l6"/></i></li>
         </ul>
 </div>
-
+</openmrs:hasPrivilege>
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

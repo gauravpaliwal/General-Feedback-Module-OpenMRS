@@ -1,6 +1,7 @@
 <%@ include file="local_header.jsp"%>    
 
-
+<openmrs:hasPrivilege privilege="Admin Feedback">
+    
 <h2><spring:message code="feedback.editSeverity"/></h2>
 
 <b class="boxHeader"><spring:message code="feedback.severities"/></b>
@@ -50,6 +51,7 @@
                 <li><i><spring:message code="feedback.severity.help.l6"/></i></li>
         </ul>
 </div>
-        
+        </openmrs:hasPrivilege>
+
         
 <%@ include file="/WEB-INF/template/footer.jsp" %>

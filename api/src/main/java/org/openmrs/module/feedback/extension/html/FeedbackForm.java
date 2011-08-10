@@ -27,7 +27,7 @@ public class FeedbackForm extends PortletExt {
     }
 
     public String getRequiredPrivilege() {
-        return "Add Feedback Criteria";
+        return "Add Feedback,Admin Feedback";
     }
 
     public String getPortletUrl() {

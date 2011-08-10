@@ -6,6 +6,10 @@ $j(document).ready(function() {
 	autoOpen: false,
 	modal: true			
     });
+    	$j('#feedbackPhotoDialog').dialog({
+	autoOpen: false,
+	modal: true			
+    });
 });
 
 function popUp() {
@@ -13,4 +17,13 @@ function popUp() {
             autoOpen: true,
 	    width: '90%'
 	});
+
+}
+
+function fdbkPhotoPopUp() {
+    	$j('#feedbackPhotoDialog').dialog({
+            autoOpen: true,
+	    width: '90%'
+	});
+
 }

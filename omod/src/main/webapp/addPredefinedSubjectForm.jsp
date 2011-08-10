@@ -1,5 +1,6 @@
 <%@ include file="local_header.jsp"%>
 
+<openmrs:hasPrivilege privilege="Admin Feedback">
 <script>
 $j(document).ready(function() {
 		$j('.toggleAddTag').click(function(event) {
@@ -72,5 +73,6 @@ $j(document).ready(function() {
 
         </ul>
 </div>
+</openmrs:hasPrivilege>
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

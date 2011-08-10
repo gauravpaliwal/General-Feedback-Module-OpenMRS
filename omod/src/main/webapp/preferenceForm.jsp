@@ -1,5 +1,7 @@
 <%@ include file="local_header.jsp"%>
 
+<openmrs:hasPrivilege privilege="Add Feedback,Admin Feedback">
+
 <h2><spring:message code="feedback.userPreference"/></h2>
 
 <form method="post">
@@ -33,3 +35,7 @@
         </table>
     </div>
 </form>
+</openmrs:hasPrivilege>
+
+
+<%@ include file="/WEB-INF/template/footer.jsp" %>

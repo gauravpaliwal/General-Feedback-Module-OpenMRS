@@ -76,13 +76,13 @@
 			
 	<!-- Required Privileges -->
 	<privilege>
-		<name>Manage Feedback </name>
-		<description>Able to Manage (View/Edit) the Feedback module</description>
+		<name>Add Feedback</name>
+		<description>The User should be able to Submit Feedback</description>
 	</privilege>
 	
 	<privilege>
-		<name>View Feedback Phrase</name>
-		<description>Able to view Feedback Criteria</description>
+		<name>Admin Feedback</name>
+		<description>The user should be able to Manage the Feedback Module</description>
 	</privilege>
 	<!-- /Required Privileges -->
 	
@@ -114,7 +114,7 @@
 	<globalProperty>
 		<property>feedback.admin.notification.email</property>
 		<defaultValue></defaultValue>
-		<description>EMail ID to be used to send email notification to admin</description>
+		<description>EMail Id to be used to send email notification to admin</description>
 	</globalProperty>
 	
 	

@@ -33,7 +33,6 @@ public interface FeedbackService {
 	 * @param saying to be created
 	 * @throws APIException
 	 */
-	@Authorized({"Add Feedback Criteria"})
         public void saveSeverity (Severity feedbackSeverity) throws APIException;
         public void saveStatus (Status Status ) throws APIException;
         public void savePredefinedSubject (PredefinedSubject PredefinedSubject ) throws APIException;
@@ -45,7 +44,6 @@ public interface FeedbackService {
 	 * @return response with given internal identifier
 	 * @throws APIException
 	 */
-	@Authorized({"View Feedback Criteria"})
 	@Transactional(readOnly=true)
         public Severity getSeverity(Integer feedbackSeverityId) throws APIException;
         public Status getStatus(Integer StatusId) throws APIException;
@@ -59,7 +57,6 @@ public interface FeedbackService {
 	 * @param response to be updated
 	 * @throws APIException
 	 */
-	@Authorized({"Edit Feedback Criteria"})
         public void updateSeverity(Severity severity) throws APIException;
         public void updateStatus(Status status) throws APIException;
         public void updatePredefinedSubject(PredefinedSubject PredefinedSubject) throws APIException;
@@ -69,7 +66,6 @@ public interface FeedbackService {
         public void deleteSeverity (Severity feedbackSeverity) throws APIException;
 
         @Transactional(readOnly=true)
-	@Authorized({"View Feedback Criteria"})
         public List<Severity> getSeverities() throws APIException;
         public List<Status> getStatuses() throws APIException;
         public List<PredefinedSubject> getPredefinedSubjects() throws APIException;

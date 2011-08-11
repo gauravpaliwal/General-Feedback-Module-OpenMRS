@@ -37,6 +37,8 @@ public interface FeedbackService {
         public void saveStatus (Status Status ) throws APIException;
         public void savePredefinedSubject (PredefinedSubject PredefinedSubject ) throws APIException;
         public void saveFeedback (Feedback Feedback) throws APIException;
+	public void saveFeedbackComment (FeedbackComment FeedbackComment) throws APIException;
+
 	/**
 	 * Get response by internal identifier
 	 * 
@@ -72,6 +74,8 @@ public interface FeedbackService {
         public List<PredefinedSubject> getPredefinedSubjects() throws APIException;
         public List<Feedback> getFeedbacks () throws APIException ;
 	public List<Feedback> getFeedbacks (User user) throws APIException ;
+	public List<FeedbackComment> getFeedbackComments (String feedbackId) throws APIException ;
+
 
 
 

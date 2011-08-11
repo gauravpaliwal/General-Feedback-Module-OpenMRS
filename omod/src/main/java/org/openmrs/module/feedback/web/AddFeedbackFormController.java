@@ -46,7 +46,7 @@ public class AddFeedbackFormController extends SimpleFormController {
                 if (request.getParameter("subject") != null && request.getParameter("severity") != null  && request.getParameter("feedback") != null  )
                 {
                     Object o = Context.getService(FeedbackService.class);
-                    FeedbackService service = (FeedbackService)o;                 
+                    FeedbackService service = (FeedbackService)o;   
                     Feedback s = new Feedback() ;
                     s.setSubject(request.getParameter("subject"));
                     s.setSeverity(request.getParameter("severity"));

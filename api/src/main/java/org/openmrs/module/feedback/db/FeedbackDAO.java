@@ -20,6 +20,7 @@ import org.openmrs.module.feedback.PredefinedSubject;
 import org.openmrs.module.feedback.Severity ;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.feedback.Feedback;
+import org.openmrs.module.feedback.FeedbackComment;
 import org.openmrs.module.feedback.Status;
 
 /**
@@ -39,6 +40,7 @@ public interface FeedbackDAO {
         public void saveStatus(Status Status) throws DAOException;
         public void savePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException;
         public void saveFeedback( Feedback Feedback) throws DAOException;
+	public void saveFeedbackComment( FeedbackComment FeedbackComment) throws DAOException;
 
 	/**
 	 * Get GeneralFeedbackModule by internal identifier
@@ -68,6 +70,7 @@ public interface FeedbackDAO {
         public List<PredefinedSubject> getPredefinedSubjects() throws DAOException ;
         public List<Feedback> getFeedbacks() throws DAOException ;
 	public List<Feedback> getFeedbacks(User user) throws DAOException ;
+	public List<FeedbackComment> getFeedbackComments(String feedbackId) throws DAOException ;
 
 
         public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException ;

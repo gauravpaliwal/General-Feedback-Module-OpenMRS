@@ -21,6 +21,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.User;
 import org.openmrs.api.APIException;
 import org.openmrs.module.feedback.Feedback;
+import org.openmrs.module.feedback.FeedbackComment;
 import org.openmrs.module.feedback.PredefinedSubject;
 import org.openmrs.module.feedback.Severity;
 import org.openmrs.module.feedback.FeedbackService;
@@ -70,6 +71,9 @@ public class FeedbackServiceImpl implements FeedbackService {
         
         public void saveFeedback(Feedback Feedback) throws APIException {
 		getFeedbackdDAO().saveFeedback(Feedback);
+	}
+	public void saveFeedbackComment (FeedbackComment FeedbackComment) throws APIException {
+		getFeedbackdDAO().saveFeedbackComment(FeedbackComment);
 	}
         
         
@@ -126,6 +130,11 @@ public class FeedbackServiceImpl implements FeedbackService {
 	public List<Feedback> getFeedbacks (User user) throws APIException {
 		return getFeedbackdDAO().getFeedbacks(user) ;
 	}
+	
+	public List<FeedbackComment> getFeedbackComments (String feedbackId) throws APIException {
+		return getFeedbackdDAO().getFeedbackComments(feedbackId) ;
+	}
+
 
         public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws APIException {
                 getFeedbackdDAO().deletePredefinedSubject(PredefinedSubject); 

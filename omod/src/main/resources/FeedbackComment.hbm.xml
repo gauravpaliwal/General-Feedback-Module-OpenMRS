@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.openmrs.module.feedback.FeedbackComment" table="feedback_comment">
+    <id name="feedbackCommentId" type="java.lang.Integer">
+      <column name="feedback_comment_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="org.openmrs.User" column="creator" name="creator" not-null="true"/>
+    <many-to-one class="org.openmrs.User" column="changed_by" name="changedBy"/>
+    <property name="comment" type="string">
+      <column length="16777215" name="comment" not-null="true"/>
+    </property>
+    <property name="dateCreated" type="timestamp">
+      <column length="19" name="date_created" not-null="true"/>
+    </property>
+    <property name="dateChanged" type="timestamp">
+      <column length="19" name="date_changed"/>
+    </property>
+    <property name="uuid" type="string">
+      <column length="38" name="uuid"/>
+    </property>
+    <property name="attachment" type="binary">
+      <column name="attachment"/>
+    </property>
+    <property name="feedbackId" type="int">
+      <column name="feedback_id" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

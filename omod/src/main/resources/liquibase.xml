@@ -80,6 +80,40 @@
                 <addAutoIncrement tableName="feedback_status" columnName="feedback_status_id" columnDataType="int"/>
                 
         </changeSet>
-        
-
+	
+	<changeSet id="feedback-2011-06-29-12:59" author="gauravpaliwal">
+		<preConditions onFail="MARK_RAN">
+			<not><tableExists tableName="feedback_comment"/></not>
+		</preConditions>
+                
+		<comment>
+			Creating the feedback comment tables
+		</comment> 
+                
+                <createTable tableName="feedback_comment">
+			<column name="feedback_comment_id" type="int">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="creator" type="int">                 
+                                <constraints nullable="false"/>
+                        </column>
+                        <column name="changed_by" type="int">                 
+                                <constraints nullable="true"/>
+                        </column>
+                        <column name="comment" type="mediumtext">     
+                                <constraints nullable="false"/>
+                        </column>
+                        <column name="date_created" type="timestamp">
+                            <constraints nullable="false"/>
+                        </column>
+                        <column name="date_changed" type="timestamp" />
+                        <column name="uuid" type="varchar(38)"/>
+                        <column name="attachment" type="mediumblob"/>
+			<column name="feedback_id" type="int" />
+		</createTable>                          
+                                
+                <addAutoIncrement tableName="feedback_comment" columnName="feedback_comment_id" columnDataType="int"/>
+                
+        </changeSet>
+               
 </databaseChangeLog>

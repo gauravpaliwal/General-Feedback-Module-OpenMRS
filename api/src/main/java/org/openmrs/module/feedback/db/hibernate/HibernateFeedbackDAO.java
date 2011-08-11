@@ -30,6 +30,7 @@ import org.openmrs.User;
 
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.feedback.Feedback;
+import org.openmrs.module.feedback.FeedbackComment;
 import org.openmrs.module.feedback.PredefinedSubject;
 import org.openmrs.module.feedback.Severity;
 import org.openmrs.module.feedback.Status;
@@ -96,8 +97,11 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
             sessionFactory.getCurrentSession().saveOrUpdate(PredefinedSubject);
 
         }   
+	public void saveFeedbackComment (FeedbackComment FeedbackComment) throws DAOException {
+            
+            sessionFactory.getCurrentSession().saveOrUpdate(FeedbackComment);
 
-        
+        }           
          public void updateSeverity(Severity Severity) throws DAOException {
                         sessionFactory.getCurrentSession().delete(Severity);
            
@@ -139,6 +143,11 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
 		criteria.add(Restrictions.eq("creator", user)) ;
 		return criteria.list() ;
 	}
+	
+	public List<FeedbackComment> getFeedbackComments(String feedbackId) throws DAOException {
+	Criteria criteria = sessionFactory.getCurrentSession().createCriteria(FeedbackComment.class) ;	 
+		criteria.add(Restrictions.eq("feedbackId", (Integer.parseInt(feedbackId)))) ;
+		return criteria.list() ;	}
         
 
         public void deletePredefinedSubject (PredefinedSubject PredefinedSubject) throws DAOException {

@@ -9,6 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Feedback;
+import org.openmrs.module.feedback.FeedbackComment;
 import org.openmrs.module.feedback.FeedbackService;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
@@ -28,9 +29,13 @@ public class FeedbackFormController extends SimpleFormController {
                 {                       
                     try
 		    { Feedback s = service.getFeedback((Integer.parseInt (request.getParameter("feedbackId" ) ))) ;
-                    s.setStatus( request.getParameter("status"));
-                    s.setComment( request.getParameter("comment"));		    
-                    service.saveFeedback( s );
+			s.setStatus( request.getParameter("status"));
+			s.setComment( request.getParameter("comment"));		    
+			service.saveFeedback( s );
+			FeedbackComment k = new FeedbackComment() ;
+			k.setComment(request.getParameter("comment"));
+			k.setFeedbackId(Integer.parseInt (request.getParameter("feedbackId" ) )) ;
+			service.saveFeedbackComment(k);
 		    }
 		    catch (Exception exception)
 		    {
@@ -78,6 +83,8 @@ public class FeedbackFormController extends SimpleFormController {
 						return map ;
 					}
 				map.put("statuses", hService.getStatuses() ) ;	
+				map.put("comments", hService.getFeedbackComments(req.getParameter("feedbackId" )) ) ;	
+
 			}
 			catch(Exception exception)
 			{

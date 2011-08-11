@@ -16,7 +16,7 @@ form {display: inline; }
 <img src="<openmrs:contextPath/>/moduleServlet/feedback/fileDownloadServlet?feedbackId=<c:out value="${feedback.feedbackId}"/>" >
 </div>
 
-<form method="post">
+<form method="get">
     <b class="boxHeader"><spring:message code="feedback.submit"/></b>
     <div class="box" >
         <table id="table">
@@ -56,7 +56,9 @@ form {display: inline; }
                 <th width="400"><spring:message code="feedback.message"/></th>
                 <td><a href="javascript:fdbkPhotoPopUp()" > <img src="<openmrs:contextPath/>/moduleServlet/feedback/fileDownloadServlet?feedbackId=<c:out value="${feedback.feedbackId}"/>" height="100" width="100"></img> </a></td>
             </tr>
-            
+            <c:forEach items="${comments}" var="commentObj" >
+                           <c:out value="${commentObj.comment}"/>">   
+            </c:forEach>
             <c:if test="${empty feedback.status}">
             <tr >
                 <th width="400"><spring:message code="feedback.status"/></th>
@@ -68,7 +70,7 @@ form {display: inline; }
                     </select> 
                 </td>
             </tr>
-            
+
             <tr>
                 <th valign="top"><spring:message code="feedback.comment"/> </th>
                 <td><textarea name="comment" rows="10" cols="120" type="_moz" size="35"></textarea> </td>

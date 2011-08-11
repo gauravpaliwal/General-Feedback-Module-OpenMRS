@@ -16,20 +16,20 @@
         <tr>
             <td><spring:message code="feedback.userPreference.notification.receipt"/></td>
             <td>
-                <input type="radio" name="notificationReceipt" value="Yes" <c:if test="${feedback_notificationReceipt == 'Yes'}">checked</c:if>> Yes
-                <input type="radio" name="notificationReceipt" value="No"  <c:if test="${feedback_notificationReceipt == 'No'}">checked</c:if>> No
+                <input type="radio" name="notificationReceipt" value="<spring:message code="general.yes"/>" <c:if test="${feedback_notificationReceipt == 'Yes'}">checked</c:if>> Yes
+                <input type="radio" name="notificationReceipt" value="<spring:message code="general.no"/>"  <c:if test="${feedback_notificationReceipt == 'No'}">checked</c:if>> No
             </td>
         </tr>
         <tr>
             <td><spring:message code="feedback.userPreference.notification.followup"/></td>
             <td>
-                <input type="radio" name="notificationFollowup" value="Yes"  <c:if test="${feedback_notificationFollowup == 'Yes'}">checked</c:if>> Yes
-                <input type="radio" name="notificationFollowup" value="No"  <c:if test="${feedback_notificationFollowup == 'No'}">checked</c:if>> No
+                <input type="radio" name="notificationFollowup" value="<spring:message code="general.yes"/>"  <c:if test="${feedback_notificationFollowup == 'Yes'}">checked</c:if>> Yes
+                <input type="radio" name="notificationFollowup" value="<spring:message code="general.no"/>"  <c:if test="${feedback_notificationFollowup == 'No'}">checked</c:if>> No
             </td>
         </tr>
         <tr>
             <td>
-                    <input type="submit" value="Save" />
+                    <input type="submit" value="<spring:message code="general.save"/>" />
             </td>
         </tr>
         </table>

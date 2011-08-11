@@ -23,7 +23,7 @@
         <tr>    
             <td>
                 <input type=hidden name=save value="1">
-                <input type="submit" value="Save" />
+                <input type="submit" value="<spring:message code="general.save"/>" />
             </td>
     </form>
             <td>

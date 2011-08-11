@@ -96,7 +96,7 @@
 	<globalProperty>
 		<property>feedback.notification.email</property>
 		<defaultValue></defaultValue>
-		<description>EMail ID to be used to send email notification to users</description>
+		<description>Email ID to be used to send email notification to users</description>
 	</globalProperty>
 	
 	<globalProperty>
@@ -114,7 +114,7 @@
 	<globalProperty>
 		<property>feedback.admin.notification.email</property>
 		<defaultValue></defaultValue>
-		<description>EMail Id to be used to send email notification to admin</description>
+		<description>Email Id to be used to send email notification to admin</description>
 	</globalProperty>
 	
 	

@@ -4,6 +4,9 @@
         colorVisibleTableRows("table", "white", "whitesmoke");              
 	});
     </script>
+<style>
+form {display: inline; }
+</style>
 
 <openmrs:hasPrivilege privilege="Add Feedback">
 
@@ -12,7 +15,6 @@
 <div id="feedbackPhotoDialog">
 <img src="<openmrs:contextPath/>/moduleServlet/feedback/fileDownloadServlet?feedbackId=<c:out value="${feedback.feedbackId}"/>" >
 </div>
-
 
 <form method="post">
     <b class="boxHeader"><spring:message code="feedback.submit"/></b>
@@ -85,28 +87,35 @@
                 <th valign="top"><spring:message code="feedback.comment"/> </th>
                 <td><c:out value="${feedback.comment}"/></td>
             </tr>
-            </c:if>
- 
+            </c:if> 
 	<tr>            
         <td>
 	</td>
 	<td>
+	<div id="command">
 	    <c:if test="${empty feedback.status}">          
             <input type=hidden name=feedbackId value= <c:out value="${feedback.feedbackId}"/> >
             <input type="submit" value="<spring:message code="feedback.comment" />" />                
             </c:if>
+            </form>
+
           <openmrs:hasPrivilege privilege="Admin Feedback">
 	    <form method="post"> 
                 <input type=hidden name=delete value= "1"/> 
                 <input type=hidden name=feedbackId value="${feedback.feedbackId}"/> 
-                <input type="submit" value="Delete" />            
+                <input type="submit" value="<spring:message code="general.delete"/>" />   
+            </form>   
+	    <form method="get" action="<openmrs:contextPath/>/module/feedback/forwardFeedback.form"> 
+                <input type=hidden name=feedbackId value="${feedback.feedbackId}"/> 
+                <input type="submit" value="<spring:message code="feedback.forward"/>" />            
             </form>
-          </openmrs:hasPrivilege> 
 	</td>
-
+          </openmrs:hasPrivilege> 
+	</div>
+	</td>
   	</tr>              
         </table>
-            	</form>
+
    </div>
                 
 </openmrs:hasPrivilege>

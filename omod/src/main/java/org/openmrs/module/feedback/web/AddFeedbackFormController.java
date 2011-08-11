@@ -116,8 +116,8 @@ public class AddFeedbackFormController extends SimpleFormController {
 			Message message = new Message();
 			message.setSender( Context.getAdministrationService().getGlobalProperty("feedback.notification.email") );
 			message.setRecipients( Context.getAdministrationService().getGlobalProperty("feedback.admin.notification.email") );
-			message.setSubject( "New feedback submiited" ); 
-			message.setContent( Context.getAdministrationService().getGlobalProperty("feedback.admin.notification") + "Ticket Number: " + s.getFeedbackId() + " Subject :" + s.getSubject()   );
+			message.setSubject( "New feedback submitted" ); 
+			message.setContent( Context.getAdministrationService().getGlobalProperty("feedback.admin.notification") + "Ticket Number: " + s.getFeedbackId() + " Subject : " + s.getSubject()  + " Take Action :" +        request.getScheme() + "://" +     request.getServerName() + ":" + request.getServerPort() +  request.getContextPath() + "/module/feedback/forwardFeedback.form?feedbackId=" + s.getFeedbackId() + "#command" );
 			message.setSentDate( new Date() );
 		        // Send message 
 			Context.getMessageService().send( message );

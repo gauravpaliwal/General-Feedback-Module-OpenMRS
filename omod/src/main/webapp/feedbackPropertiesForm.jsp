@@ -30,7 +30,7 @@
         <tr>
             <td> </td>            
             <td> 
-                <input type="submit" value="<spring:message code="feedback.admin.properties.save" />" />
+                <input type="submit" value="<spring:message code="general.save"/>" />
             </td>            
         </tr>
         </table>

@@ -8,26 +8,35 @@
 
 <openmrs:hasPrivilege privilege="Add Feedback">
 
-<h2><spring:message code="feedback.manageFeedback"/></h2>
+<h2><spring:message code="feedback.forward"/></h2>
 
-<form method="get">
-    <b class="boxHeader"><spring:message code="feedback.submit"/></b>
+<form method="post" action="https://tickets.openmrs.org/secure/CreateIssueDetails!init.jspa">
+    <b class="boxHeader"><spring:message code="feedback"/></b>
     <div class="box" >
         <table id="table">
 	    <tr>
 	    </tr>
             <tr>
                 <th width="400"><spring:message code="feedback.subject"/></th>
-                <td><input type="text" name="subject" value=<c:out value="${feedback.subject}"/> size="150"></td>
+                <td><input type="text" name="summary" value=<c:out value="${feedback.subject}"/> size="150"></td>
             </tr>        
             <tr>
                 <th width="400"><spring:message code="feedback.content"/></th>
-                <td> <textarea value="" rows="20" cols="140" name="comment"> <c:out value="${feedback.content}"/>  </textarea> </td>              
+                <td> <textarea value="" rows="20" cols="140" name="description"> <c:out value="${feedback.content}"/>  </textarea> </td>              
+            </tr>
+	    <input type="hidden" value="10000" name="pid" > 
+	    <input type="hidden" value="Create" name="Create" > 
+ 	    <input type="hidden" value="1" name="issuetype" > 
+            <tr>
+		<td>
+		</td>
+		<td>
+		<input type=submit name="submit" value="<spring:message code="general.submit"/>">
+		</td>
             </tr>
 	</div> 
-        </form>            
         </table>
-
+        </form>            
    </div>
                 
 </openmrs:hasPrivilege>

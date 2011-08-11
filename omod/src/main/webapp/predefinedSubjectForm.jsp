@@ -23,7 +23,7 @@
                 <input TYPE=hidden name=predefinedsubjectid value= <c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> >
                 <input TYPE=hidden name=save value="1">
                 <td>
-                    <input type="submit" value="Save" />
+                    <input type="submit" value="<spring:message code="general.save"/>" />
                 </td>
         </form>
    

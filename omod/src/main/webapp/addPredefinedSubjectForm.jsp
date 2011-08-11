@@ -35,7 +35,7 @@ $j(document).ready(function() {
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" value="<spring:message code="feedback.addPredefinedSubject" />" /> <input type="button" value="Cancel" class="toggleAddTag" />
+                    <input type="submit" value="<spring:message code="general.save"/>" /> <input type="button" value="Cancel" class="toggleAddTag" />
                 </td>
             </tr>
         </table>

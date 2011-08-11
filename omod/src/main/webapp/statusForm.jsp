@@ -21,7 +21,7 @@
             <td>
                 <input type=hidden name=feedbackStatusId value=<c:out value="${statuses.feedbackStatusId}"/>>
                 <input type=hidden name=save value="1">
-                <input type="submit" value="Save" />
+                <input type="submit" value="<spring:message code="general.save"/>" />
 </form>    
             </td>
             <td>

@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td><spring:message code="feedback.pageContext"/> </td>
-            <td><input type="checkbox" name="pagecontext"> </input>        </td>   
+            <td><input type="checkbox" name="pagecontext" value="Yes"> </input>        </td>   
         </tr>
         <tr>
             <td><spring:message code="feedback.attachment"/> </td>

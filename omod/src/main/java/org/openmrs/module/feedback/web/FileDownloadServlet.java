@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.User;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Feedback ;
 import org.openmrs.module.feedback.FeedbackComment;
@@ -36,15 +37,17 @@ public class FileDownloadServlet extends HttpServlet {
 	
 	// Content type mappings
 	public static final String defaultContentType = "application/octet-stream";
+			    Object o = Context.getService(FeedbackService.class);
+                            FeedbackService service = (FeedbackService)o ;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {            
 		try {   
-                        if ( Context.getUserContext().getAuthenticatedUser().isSuperUser() ) 
-                        { 
-                            String feedbackId = request.getParameter("feedbackId")  ;
-			    Object o = Context.getService(FeedbackService.class);
-                            FeedbackService service = (FeedbackService)o ;    
+                        if ( Context.getAuthenticatedUser().isSuperUser() || Context.hasPrivilege("Admin Feedback") || Context.hasPrivilege("Add Feedback") )
+                        {   String feedbackId = request.getParameter("feedbackId")  ;                               
 			    Feedback feedback ;
+			    feedback = new Feedback() ;
+			    User u = Context.getUserContext().getAuthenticatedUser() ;
+			    
 			    try
 			    {
                             feedback = service.getFeedback(Integer.parseInt(feedbackId)) ;
@@ -52,8 +55,9 @@ public class FileDownloadServlet extends HttpServlet {
 			    catch(Exception e) {
 				    log.error(e);
 			    }
+
 			    
-			    if (!"".equals(request.getParameter("feedbackId")) && request.getParameter("feedbackId") != null && service.getFeedback(Integer.parseInt(feedbackId)) != null ) 
+			    if (!"".equals(request.getParameter("feedbackId")) && request.getParameter("feedbackId") != null && service.getFeedback(Integer.parseInt(feedbackId)) != null && ( u.isSuperUser() || Context.hasPrivilege("Admin Feedback")  ||u.getUserId().equals(feedback.getCreator().getUserId()) )) 
 			    {
 				feedback = service.getFeedback(Integer.parseInt(feedbackId)) ;
 
@@ -74,7 +78,7 @@ public class FileDownloadServlet extends HttpServlet {
 			    }
 			    else if (!"".equals(request.getParameter("feedbackCommentId")) && request.getParameter("feedbackCommentId") != null && service.getFeedbackComment(Integer.parseInt(request.getParameter("feedbackCommentId"))) != null) 
 			    {
-				    FeedbackComment feedbackComment = service.getFeedbackComment(162) ;
+				    FeedbackComment feedbackComment = service.getFeedbackComment(Integer.parseInt(request.getParameter("feedbackCommentId"))) ;
 				    byte[] attachment = feedbackComment.getAttachment() ;
 
 			    // Keeping these same as these are for the versionedfilemodule. Modify response to disable caching

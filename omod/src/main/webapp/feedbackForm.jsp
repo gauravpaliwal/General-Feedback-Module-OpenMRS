@@ -91,6 +91,7 @@
 		</td>
 	    </tr>
             </c:forEach>
+          <openmrs:hasPrivilege privilege="Admin Feedback">
             <tr>
                 <th width="400"><spring:message code="feedback.status"/></th>
                 <td>           
@@ -106,6 +107,7 @@
                 </td>
 
             </tr>
+          </openmrs:hasPrivilege>
            <tr>
             	<th><spring:message code="feedback.attachment"/> </th>
             	<td><input type="file" accept="image" name="file" size="40" > </input> 

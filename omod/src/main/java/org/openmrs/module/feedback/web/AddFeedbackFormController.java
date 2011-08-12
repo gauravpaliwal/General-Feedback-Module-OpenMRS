@@ -55,9 +55,10 @@ public class AddFeedbackFormController extends SimpleFormController {
                     
                     StackTraceElement[] c = Thread.currentThread().getStackTrace() ;
                     String feedback =    request.getParameter("feedback")  ;
-                    for (int i = 0 ; i < c.length ; i++ ){
-                        feedback = feedback + "\n" + c[i].getFileName() + c[i].getMethodName() + c[i].getClass() + c[i].getLineNumber() ;
-                    }
+		    if ("Yes".equals(request.getParameter("pagecontext")))
+		    {	for (int i = 0 ; i < c.length ; i++ ){
+                        feedback = feedback + System.getProperty("line.separator") + c[i].getFileName() + c[i].getMethodName() + c[i].getClass() + c[i].getLineNumber() ;
+                    }}
                     
                     /*The feedback content length can't be greater then the 5000 characters , in case it is more then that then it is truncated to the first 5000 characters*/
 

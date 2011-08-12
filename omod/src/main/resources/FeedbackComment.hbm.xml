@@ -9,7 +9,7 @@
     <many-to-one class="org.openmrs.User" column="creator" name="creator" not-null="true"/>
     <many-to-one class="org.openmrs.User" column="changed_by" name="changedBy"/>
     <property name="comment" type="string">
-      <column length="16777215" name="comment" not-null="true"/>
+      <column length="5000" name="comment" not-null="true"/>
     </property>
     <property name="dateCreated" type="timestamp">
       <column length="19" name="date_created" not-null="true"/>

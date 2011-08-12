@@ -88,9 +88,9 @@ public class Feedback extends BaseOpenmrsObject  implements  Auditable {
     }
     
     public void setContent(String content) {
-        if (content.length() >65000 )
+        if (content.length() > 16777215 )
             {
-                this.content =  content.substring (0, 65000) ;
+                this.content =  content.substring (0, 16777214) ;
             }
         else
             {

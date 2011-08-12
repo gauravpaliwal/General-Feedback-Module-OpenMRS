@@ -31,7 +31,7 @@ public class FeedbackFormController extends SimpleFormController {
 		String comment = request.getParameter("comment") ;
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		if (!"".equals(status) && status != null )
+		if (!"".equals(status) && status != null && (Context.getAuthenticatedUser().isSuperUser() || Context.getAuthenticatedUser().hasPrivilege("Admin Feedback")))
 		{
 			try
 				{	Feedback s = service.getFeedback((Integer.parseInt (request.getParameter("feedbackId") ))) ;
@@ -117,21 +117,28 @@ public class FeedbackFormController extends SimpleFormController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
+		Object o = Context.getService(FeedbackService.class);
+                FeedbackService service = (FeedbackService)o;
                 /*Make sure that the feedback ID is not empty*/
 		                
 		if ( !"".equals(req.getParameter("feedbackId" )) )
                 {   
 			try {
 				/*This return the feedback object and status to the feedbackform page.*/
-				map.put("feedback", hService.getFeedback( (Integer.parseInt (req.getParameter("feedbackId" ) )) ) ) ;		
 				if( hService.getFeedback( (Integer.parseInt (req.getParameter("feedbackId" ) )) ) == null )
 					{
 						req.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.delete") ;
 						return map ;
 					}
-				map.put("statuses", hService.getStatuses() ) ;	
-				map.put("comments", hService.getFeedbackComments(Integer.parseInt (req.getParameter("feedbackId" ) )) ) ;
-				map.put("feedbackId",req.getParameter("feedbackId" ) ) ;
+				if (Context.getUserContext().getAuthenticatedUser().isSuperUser() || Context.hasPrivilege("Admin Feedback")  || Context.getAuthenticatedUser().equals(service.getFeedback(Integer.parseInt(req.getParameter("feedbackId"))).getCreator()) )
+				{
+					map.put("statuses", hService.getStatuses() ) ;	
+					map.put("comments", hService.getFeedbackComments(Integer.parseInt (req.getParameter("feedbackId" ) )) ) ;
+					map.put("feedbackId",req.getParameter("feedbackId" ) ) ;
+					map.put("feedback", hService.getFeedback( (Integer.parseInt (req.getParameter("feedbackId" ) )) ) ) ;		
+
+				}
+				
 			}
 			catch(Exception exception)
 			{

@@ -12,18 +12,21 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback.extension.html;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import org.openmrs.module.web.extension.PortletExt;
 
 public class FeedbackForm extends PortletExt {
-
     public String getLabel() {
-        return "Submit Feedback" ;
+        return "Submit Feedback";
     }
 
     public String getUrl() {
-        return "javascript:popUp()" ;
+        return "javascript:popUp()";
     }
 
     public String getRequiredPrivilege() {
@@ -35,8 +38,8 @@ public class FeedbackForm extends PortletExt {
     }
 
     public String getPortletParameters() {
-        return null ;
+        return null;
     }
-
-    
 }
+
+

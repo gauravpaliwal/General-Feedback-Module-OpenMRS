@@ -12,95 +12,102 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback.web;
+
+//~--- non-JDK imports --------------------------------------------------------
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import org.openmrs.api.context.Context;
+import org.openmrs.module.feedback.FeedbackService;
+import org.openmrs.module.feedback.Severity;
+import org.openmrs.web.WebConstants;
+
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.mvc.SimpleFormController;
+
+//~--- JDK imports ------------------------------------------------------------
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.openmrs.api.context.Context;
-import org.openmrs.module.feedback.Severity;
-import org.openmrs.module.feedback.FeedbackService;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.servlet.mvc.SimpleFormController;
-
 public class AddSeverityFormController extends SimpleFormController {
-	
+
     /** Logger for this class and subclasses */
     protected final Log log = LogFactory.getLog(getClass());
 
-	@Override
-	protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
-            
-                Boolean feedbackMessage= false ;
-		String sortWeight = request.getParameter("sortWeight") ;
+    @Override
+    protected String formBackingObject(HttpServletRequest request) throws Exception {
+        Boolean         feedbackMessage = false;
+        String          sortWeight      = request.getParameter("sortWeight");
+        String          text            = "Not used";
+        String          severity        = request.getParameter("severity");
+        Object          o               = Context.getService(FeedbackService.class);
+        FeedbackService service         = (FeedbackService) o;
+        Severity        s               = new Severity();
 
-                String text = "Not used";
-		/*This checks to make sure that severity can't be empty or NULL*/
-                if (request.getParameter("severity") != null && StringUtils.hasLength(request.getParameter("severity")) )
-                {
-                    Object o = Context.getService(FeedbackService.class);
-                    FeedbackService service = (FeedbackService)o;                 
-                    Severity s = new Severity() ;
-		    if (isInt(sortWeight))
-		    {
-			    s.setSortWeight(Integer.parseInt(sortWeight));
-		    }
-                                       
-                    /** This makes sure that the Severity value always remain less then or equal to 50*/
-                                  
-                    s.setSeverity(request.getParameter("severity") ) ;
-                                         
-                    service.saveSeverity(s) ;                  
-                                        
-                    /** Notifies to the Controller that the predefined subject has been successfully added with the help of getStatus */
-                    feedbackMessage= true ;              
-                }
-                				
-		log.debug("Returning hello world text: " + text);
-		
-		return feedbackMessage;
-		
-	}
+        /* This checks to make sure that severity can't be empty or NULL */
+        if (StringUtils.hasLength(severity) && StringUtils.hasLength(sortWeight)) {
+            if (isInt(sortWeight)) {
+                s.setSortWeight(Integer.parseInt(sortWeight));
+            } else {
+                request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.number.error");
 
-	@Override
-	protected Map referenceData(HttpServletRequest req) throws Exception {
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
-                /*To list all the severites on the add severity page */
-		map.put("severities", hService.getSeverities()) ;
-                /*TO update the status that the severity has been successfully saved*/
-                
-                if (req.getParameter("feedbackPageMessage")!= null && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) 
-                {
-                        map.put("feedbackPageMessage" , "feedback.notification.severity.added" ) ;
-                }
-                else
-                {
-                    map.put("feedbackPageMessage" , "" ) ;
-                }
-		return map;
-		
-	}
-	
-	private Boolean isInt (String checkInt) throws Exception
-	{	
-		try
-		{
-			Integer.parseInt(checkInt) ;
-		}
-		catch(Exception e) 
-		{
-			return false ;
-		}			
-		return true;
-	}
-	
-	
+                return text;
+            }
+
+            /** This makes sure that the Severity value always remain less then or equal to 50 */
+            s.setSeverity(severity);
+            service.saveSeverity(s);
+
+            /** Notifies to the Controller that the predefined subject has been successfully added with the help of getStatus */
+            request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.severity.added");
+        } else if (StringUtils.hasLength(severity) &&!StringUtils.hasLength(sortWeight)) {
+            s.setSeverity(severity);
+            service.saveSeverity(s);
+
+            /** Notifies to the Controller that the predefined subject has been successfully added with the help of getStatus */
+            request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.severity.added");
+        }
+
+        log.debug("Returning hello world text: " + text);
+
+        return text;
+    }
+
+    @Override
+    protected Map referenceData(HttpServletRequest req) throws Exception {
+        Map<String, Object> map      = new HashMap<String, Object>();
+        FeedbackService     hService = (FeedbackService) Context.getService(FeedbackService.class);
+
+        /* To list all the severites on the add severity page */
+        map.put("severities", hService.getSeverities());
+
+        /* TO update the status that the severity has been successfully saved */
+        if ((req.getParameter("feedbackPageMessage") != null)
+                && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) {
+            map.put("feedbackPageMessage", "feedback.notification.severity.added");
+        } else {
+            map.put("feedbackPageMessage", "");
+        }
+
+        return map;
+    }
+
+    private Boolean isInt(String checkInt) throws Exception {
+        try {
+            Integer.parseInt(checkInt);
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
 }
+

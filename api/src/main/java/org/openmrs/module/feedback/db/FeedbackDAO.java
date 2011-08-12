@@ -12,72 +12,97 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback.db;
 
-import java.util.List;
+//~--- non-JDK imports --------------------------------------------------------
+
 import org.openmrs.User;
-import org.openmrs.module.feedback.PredefinedSubject;
-import org.openmrs.module.feedback.Severity ;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.feedback.Feedback;
 import org.openmrs.module.feedback.FeedbackComment;
+import org.openmrs.module.feedback.PredefinedSubject;
+import org.openmrs.module.feedback.Severity;
 import org.openmrs.module.feedback.Status;
+
+//~--- JDK imports ------------------------------------------------------------
+
+import java.util.List;
 
 /**
  * GeneralFeedbackModule-related database functions
- * 
+ *
  * @version 1.0
  */
 public interface FeedbackDAO {
 
-	/**
-	 * Creates a new GeneralFeedbackModule record
-	 * 
-	 * @param GeneralFeedbackModule to be created
-	 * @throws DAOException
-	 */
-        public void saveSeverity(Severity Severity) throws DAOException;
-        public void saveStatus(Status Status) throws DAOException;
-        public void savePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException;
-        public void saveFeedback( Feedback Feedback) throws DAOException;
-	public void saveFeedbackComment( FeedbackComment FeedbackComment) throws DAOException;
+    /**
+     * Creates a new GeneralFeedbackModule record
+     *
+     * @param GeneralFeedbackModule to be created
+     * @throws DAOException
+     */
+    public void saveSeverity(Severity Severity) throws DAOException;
 
-	/**
-	 * Get GeneralFeedbackModule by internal identifier
-	 * 
-	 * @param GeneralFeedbackModule internal identifier
-	 * @return GeneralFeedbackModule with given internal identifier
-	 * @throws DAOException
-	 */
-        public Severity getSeverity (Integer SeverityId) throws DAOException;
-        public Status getStatus (Integer StatusId) throws DAOException;
-        public PredefinedSubject getPredefinedSubject (Integer PredefinedSubjectId) throws DAOException;
-        public Feedback getFeedback (Integer FeedbackId) throws DAOException;
-	public FeedbackComment getFeedbackComment (Integer FeedbackCommentId) throws DAOException;
+    public void saveStatus(Status Status) throws DAOException;
 
-	/**
-	 * Update GeneralFeedbackModule 
-	 * 
-	 * @param GeneralFeedbackModule to be updated
-	 * @throws DAOException
-	 */
-	public void updateSeverity(Severity Severity) throws DAOException ;
-	public void updateStatus(Status Status) throws DAOException ;
-        public void updatePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException ;
-        public void updateFeedback (Feedback Feedback) throws DAOException ;
+    public void savePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException;
 
-        public List<Severity> getSeverities() throws DAOException ;
-        public List<Status> getStatuses() throws DAOException ;
-        public List<PredefinedSubject> getPredefinedSubjects() throws DAOException ;
-        public List<Feedback> getFeedbacks() throws DAOException ;
-	public List<Feedback> getFeedbacks(User user) throws DAOException ;
-	public List<FeedbackComment> getFeedbackComments(Integer feedbackId) throws DAOException ;
+    public void saveFeedback(Feedback Feedback) throws DAOException;
 
+    public void saveFeedbackComment(FeedbackComment FeedbackComment) throws DAOException;
 
-        public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException ;
-        public void deleteStatus(Status Status) throws DAOException ;
-        public void deleteSeverity(Severity Severity) throws DAOException ;
-        public void deleteFeedback(Feedback Feedback) throws DAOException ;
+    /**
+     * Get GeneralFeedbackModule by internal identifier
+     *
+     * @param GeneralFeedbackModule internal identifier
+     * @return GeneralFeedbackModule with given internal identifier
+     * @throws DAOException
+     */
+    public Severity getSeverity(Integer SeverityId) throws DAOException;
 
+    public Status getStatus(Integer StatusId) throws DAOException;
 
+    public PredefinedSubject getPredefinedSubject(Integer PredefinedSubjectId) throws DAOException;
+
+    public Feedback getFeedback(Integer FeedbackId) throws DAOException;
+
+    public FeedbackComment getFeedbackComment(Integer FeedbackCommentId) throws DAOException;
+
+    /**
+     * Update GeneralFeedbackModule
+     *
+     * @param GeneralFeedbackModule to be updated
+     * @throws DAOException
+     */
+    public void updateSeverity(Severity Severity) throws DAOException;
+
+    public void updateStatus(Status Status) throws DAOException;
+
+    public void updatePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException;
+
+    public void updateFeedback(Feedback Feedback) throws DAOException;
+
+    public List<Severity> getSeverities() throws DAOException;
+
+    public List<Status> getStatuses() throws DAOException;
+
+    public List<PredefinedSubject> getPredefinedSubjects() throws DAOException;
+
+    public List<Feedback> getFeedbacks() throws DAOException;
+
+    public List<Feedback> getFeedbacks(User user) throws DAOException;
+
+    public List<FeedbackComment> getFeedbackComments(Integer feedbackId) throws DAOException;
+
+    public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException;
+
+    public void deleteStatus(Status Status) throws DAOException;
+
+    public void deleteSeverity(Severity Severity) throws DAOException;
+
+    public void deleteFeedback(Feedback Feedback) throws DAOException;
 }
+
+

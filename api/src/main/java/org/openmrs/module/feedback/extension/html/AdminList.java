@@ -12,38 +12,44 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback.extension.html;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+//~--- non-JDK imports --------------------------------------------------------
 
 import org.openmrs.module.Extension;
 import org.openmrs.module.web.extension.AdministrationSectionExt;
 
+//~--- JDK imports ------------------------------------------------------------
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class AdminList extends AdministrationSectionExt {
-	
     @Override
-	public Extension.MEDIA_TYPE getMediaType() {
-		return Extension.MEDIA_TYPE.html;
-	}
-	
-	public String getTitle() {
-		return "feedback.module";
-	}
-	
-	public Map<String, String> getLinks() {
-		
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		
-                map.put("module/feedback/addPredefinedSubject.form", "feedback.predefinedsubjects");
-		map.put("module/feedback/addSeverity.form", "feedback.severities");
-		map.put("module/feedback/addStatus.form", "feedback.statuses");
-                map.put("module/feedback/addFeedback.form", "feedback.submit");
-                map.put("module/feedback/feedbackAdmin.list", "feedback.manageFeedback");
-		map.put("module/feedback/preference.form", "feedback.user.preference");
-		map.put("module/feedback/feedbackProperties.form", "feedback.admin.properties");
-		map.put("module/feedback/feedbackUser.list", "feedback.user.manageFeedback");
-                return map;
-	}
-	
+    public Extension.MEDIA_TYPE getMediaType() {
+        return Extension.MEDIA_TYPE.html;
+    }
+
+    public String getTitle() {
+        return "feedback.module";
+    }
+
+    public Map<String, String> getLinks() {
+        Map<String, String> map = new LinkedHashMap<String, String>();
+
+        map.put("module/feedback/addPredefinedSubject.form", "feedback.predefinedsubjects");
+        map.put("module/feedback/addSeverity.form", "feedback.severities");
+        map.put("module/feedback/addStatus.form", "feedback.statuses");
+        map.put("module/feedback/addFeedback.form", "feedback.submit");
+        map.put("module/feedback/feedbackAdmin.list", "feedback.manageFeedback");
+        map.put("module/feedback/preference.form", "feedback.user.preference");
+        map.put("module/feedback/feedbackProperties.form", "feedback.admin.properties");
+        map.put("module/feedback/feedbackUser.list", "feedback.user.manageFeedback");
+
+        return map;
+    }
 }
+
+

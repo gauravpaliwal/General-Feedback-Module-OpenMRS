@@ -1,6 +1,7 @@
 <%@ include file="local_header.jsp"%>
 
 <openmrs:hasPrivilege privilege="Admin Feedback">    
+    
 <h2><spring:message code="feedback.editStatus"/></h2>
 
 <b class="boxHeader"><spring:message code="feedback.statuses"/></b>

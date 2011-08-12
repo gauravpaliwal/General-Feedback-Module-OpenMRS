@@ -12,105 +12,115 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback;
 
-import java.util.Date;
+//~--- non-JDK imports --------------------------------------------------------
+
 import org.openmrs.Auditable;
 import org.openmrs.User;
 
-public class FeedbackComment implements Auditable  {
+//~--- JDK imports ------------------------------------------------------------
 
+import java.util.Date;
 
-     private Integer feedbackCommentId;
-     private User creator;
-     private User changedBy ;
-     private String comment;
-     private Date dateCreated;
-     private Date dateChanged;
-     private String uuid;
-     private byte[] attachment;
-     private Integer feedbackId;
+public class FeedbackComment implements Auditable {
+    private byte[]  attachment;
+    private User    changedBy;
+    private String  comment;
+    private User    creator;
+    private Date    dateChanged;
+    private Date    dateCreated;
+    private Integer feedbackCommentId;
+    private Integer feedbackId;
+    private String  uuid;
 
-    public FeedbackComment() {
-    }
+    public FeedbackComment() {}
 
-	
     public FeedbackComment(String comment, Date dateCreated, Integer feedbackId) {
-        this.comment = comment;
+        this.comment     = comment;
         this.dateCreated = dateCreated;
-        this.feedbackId = feedbackId;
+        this.feedbackId  = feedbackId;
     }
-    public FeedbackComment(String comment, byte[] attachment, Date dateCreated , Integer feedbackId) {
-       this.dateCreated = dateCreated;
-       this.comment = comment;
-       this.attachment = attachment;
-       this.feedbackId = feedbackId;
+
+    public FeedbackComment(String comment, byte[] attachment, Date dateCreated, Integer feedbackId) {
+        this.dateCreated = dateCreated;
+        this.comment     = comment;
+        this.attachment  = attachment;
+        this.feedbackId  = feedbackId;
     }
-   
+
     public Integer getFeedbackCommentId() {
         return this.feedbackCommentId;
     }
-    
+
     public void setFeedbackCommentId(Integer feedbackCommentId) {
         this.feedbackCommentId = feedbackCommentId;
     }
+
     public User getCreator() {
         return this.creator;
     }
-    
+
     public void setCreator(User creator) {
         this.creator = creator;
     }
 
-    
     public void setChangedBy(User changedBy) {
         this.changedBy = changedBy;
     }
+
     public String getComment() {
         return this.comment;
     }
-    
+
     public void setComment(String comment) {
         this.comment = comment;
     }
+
     public Date getDateCreated() {
         return this.dateCreated;
     }
-    
+
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
+
     public Date getDateChanged() {
         return this.dateChanged;
     }
-    
+
     public void setDateChanged(Date dateChanged) {
         this.dateChanged = dateChanged;
     }
+
     public String getUuid() {
         return this.uuid;
     }
-    
+
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
+
     public byte[] getAttachment() {
         return this.attachment;
     }
-    
+
     public void setAttachment(byte[] attachment) {
         this.attachment = attachment;
     }
+
     public Integer getFeedbackId() {
         return this.feedbackId;
     }
-    
+
     public void setFeedbackId(Integer feedbackId) {
         this.feedbackId = feedbackId;
     }
 
     public User getChangedBy() {
-        return this.changedBy ;
+        return this.changedBy;
     }
 
     public Integer getId() {
@@ -118,8 +128,7 @@ public class FeedbackComment implements Auditable  {
     }
 
     public void setId(Integer feedbackId) {
-        this.feedbackId = feedbackId ;
+        this.feedbackId = feedbackId;
     }
 }
-
 

@@ -12,19 +12,27 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback.extension.html;
 
+//~--- non-JDK imports --------------------------------------------------------
 
-import java.util.List;
-import java.util.ArrayList;
 import org.openmrs.module.web.extension.HeaderIncludeExt;
 
-public class HeaderInclude extends HeaderIncludeExt {
+//~--- JDK imports ------------------------------------------------------------
 
-        public List<String> getHeaderFiles() {
-                List<String> myHeaderFiles = new ArrayList<String>();
-                myHeaderFiles.add("/moduleResources/feedback/fdbk.js");                
-                return myHeaderFiles;
-        }
+import java.util.ArrayList;
+import java.util.List;
+
+public class HeaderInclude extends HeaderIncludeExt {
+    public List<String> getHeaderFiles() {
+        List<String> myHeaderFiles = new ArrayList<String>();
+
+        myHeaderFiles.add("/moduleResources/feedback/fdbk.js");
+
+        return myHeaderFiles;
+    }
 }
+
 

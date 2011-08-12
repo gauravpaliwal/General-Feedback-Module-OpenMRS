@@ -11,134 +11,130 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
+
+
+
 package org.openmrs.module.feedback.web;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.servlet.http.HttpServletRequest;
+//~--- non-JDK imports --------------------------------------------------------
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.context.Context;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
+//~--- JDK imports ------------------------------------------------------------
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
+
 public class FeedbackPropertiesFormController extends SimpleFormController {
-	/** Logger for this class and subclasses */
-	protected final Log log = LogFactory.getLog(getClass());
-	Pattern pattern  = Pattern.compile(EMAIL_PATTERN) ;
-	private Matcher matcher;
-	private static final String EMAIL_PATTERN ="^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	
-	public boolean validate(final String hex)
-	{
-	matcher = pattern.matcher(hex);
-	return matcher.matches();
-	}
+    private static final String EMAIL_PATTERN =
+        "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-	@Override
-	protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
-            	String text = "";
-                Boolean feedbackMessage = false ;
+    /** Logger for this class and subclasses */
+    protected final Log log     = LogFactory.getLog(getClass());
+    Pattern             pattern = Pattern.compile(EMAIL_PATTERN);
+    private Matcher     matcher;
 
-                /*To make sure that the status is neither NULL nor empty*/
-		String feedbackNotification = request.getParameter("feedbackNotification") ;
-		String feedbackNotificationEmail = request.getParameter("feedbackNotificationEmail") ;
-		String feedbackAdminNotification = request.getParameter("feedbackAdminNotification") ;
-		String feedbackAdminNotificationEmail = request.getParameter("feedbackAdminNotificationEmail") ;
-		String feedbackUiNotification = request.getParameter("feedbackUiNotification") ;
-		
-		if (feedbackNotification != null && StringUtils.hasLength(feedbackNotification) )
-                {
-			GlobalProperty globalProperty = new GlobalProperty() ;
-			globalProperty.setProperty("feedback.notification") ;
-			globalProperty.setPropertyValue(feedbackNotification);
-			Context.getAdministrationService().setGlobalProperty(globalProperty);
-			feedbackMessage = true ;			
-                }
-		
-		if (feedbackAdminNotification != null && StringUtils.hasLength(feedbackAdminNotification) )
-                {
-			GlobalProperty globalProperty = new GlobalProperty() ;
-			globalProperty.setProperty("feedback.admin.notification") ;
-			globalProperty.setPropertyValue(feedbackAdminNotification);
-			Context.getAdministrationService().setGlobalProperty(globalProperty);
-			feedbackMessage = true ;			
-                }
-		
-		if (feedbackUiNotification != null && StringUtils.hasLength(feedbackUiNotification) )
-                {
-			GlobalProperty globalProperty = new GlobalProperty() ;
-			globalProperty.setProperty("feedback.ui.notification") ;
-			globalProperty.setPropertyValue(feedbackUiNotification);
-			Context.getAdministrationService().setGlobalProperty(globalProperty);
-			feedbackMessage = true ;			
-                }
-		
-		
-		if (feedbackNotificationEmail != null && StringUtils.hasLength(feedbackNotificationEmail) )
-                {	
-			if (validate(feedbackNotificationEmail))
-			{	
-				GlobalProperty globalProperty = new GlobalProperty() ;
-				globalProperty.setProperty("feedback.notification.email") ;
-				globalProperty.setPropertyValue(feedbackNotificationEmail);
-				Context.getAdministrationService().setGlobalProperty(globalProperty);
-				feedbackMessage = true ;				
-			}
-			else
-			{
-				return false ;
-			}
-                }	
-		
-		if (feedbackAdminNotificationEmail != null && StringUtils.hasLength(feedbackAdminNotificationEmail) )
-                {	
-			if (validate(feedbackAdminNotificationEmail))
-			{	
-				GlobalProperty globalProperty = new GlobalProperty() ;
-				globalProperty.setProperty("feedback.admin.notification.email") ;
-				globalProperty.setPropertyValue(feedbackAdminNotificationEmail);
-				Context.getAdministrationService().setGlobalProperty(globalProperty);
-				feedbackMessage = true ;				
-			}
-			else
-			{
-				return false ;
-			}
-                }
-                			
-		
-		log.debug("Returning hello world text: " + text);
-		
-		return feedbackMessage;
-		
-	}
+    public boolean validate(final String hex) {
+        matcher = pattern.matcher(hex);
 
-	@Override
-	protected Map referenceData(HttpServletRequest req) throws Exception {
-		
-		Map<String, Object> map = new HashMap<String, Object>();	
-                
-                /*Display the message that the content is saved or not*/
+        return matcher.matches();
+    }
 
-		if ("false".equals(req.getParameter("feedbackMessage")) && !"".equals(req.getParameter("feedbackNotificationEmail")) ) 
-		{
-			map.put("feedbackPageMessage", "feedback.preference.email.incorrect") ;
-		}
-		else if ("true".equals(req.getParameter("feedbackMessage")))
-		{
-			map.put("feedbackPageMessage", "feedback.preference.email.added") ;
-		}
-		return map;
-		
-	}
-	
+    @Override
+    protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
+        String  text            = "";
+        Boolean feedbackMessage = false;
+
+        /* To make sure that the status is neither NULL nor empty */
+        String feedbackNotification           = request.getParameter("feedbackNotification");
+        String feedbackNotificationEmail      = request.getParameter("feedbackNotificationEmail");
+        String feedbackAdminNotification      = request.getParameter("feedbackAdminNotification");
+        String feedbackAdminNotificationEmail = request.getParameter("feedbackAdminNotificationEmail");
+        String feedbackUiNotification         = request.getParameter("feedbackUiNotification");
+
+        if ((feedbackNotification != null) && StringUtils.hasLength(feedbackNotification)) {
+            GlobalProperty globalProperty = new GlobalProperty();
+
+            globalProperty.setProperty("feedback.notification");
+            globalProperty.setPropertyValue(feedbackNotification);
+            Context.getAdministrationService().setGlobalProperty(globalProperty);
+            feedbackMessage = true;
+        }
+
+        if ((feedbackAdminNotification != null) && StringUtils.hasLength(feedbackAdminNotification)) {
+            GlobalProperty globalProperty = new GlobalProperty();
+
+            globalProperty.setProperty("feedback.admin.notification");
+            globalProperty.setPropertyValue(feedbackAdminNotification);
+            Context.getAdministrationService().setGlobalProperty(globalProperty);
+            feedbackMessage = true;
+        }
+
+        if ((feedbackUiNotification != null) && StringUtils.hasLength(feedbackUiNotification)) {
+            GlobalProperty globalProperty = new GlobalProperty();
+
+            globalProperty.setProperty("feedback.ui.notification");
+            globalProperty.setPropertyValue(feedbackUiNotification);
+            Context.getAdministrationService().setGlobalProperty(globalProperty);
+            feedbackMessage = true;
+        }
+
+        if ((feedbackNotificationEmail != null) && StringUtils.hasLength(feedbackNotificationEmail)) {
+            if (validate(feedbackNotificationEmail)) {
+                GlobalProperty globalProperty = new GlobalProperty();
+
+                globalProperty.setProperty("feedback.notification.email");
+                globalProperty.setPropertyValue(feedbackNotificationEmail);
+                Context.getAdministrationService().setGlobalProperty(globalProperty);
+                feedbackMessage = true;
+            } else {
+                return false;
+            }
+        }
+
+        if ((feedbackAdminNotificationEmail != null) && StringUtils.hasLength(feedbackAdminNotificationEmail)) {
+            if (validate(feedbackAdminNotificationEmail)) {
+                GlobalProperty globalProperty = new GlobalProperty();
+
+                globalProperty.setProperty("feedback.admin.notification.email");
+                globalProperty.setPropertyValue(feedbackAdminNotificationEmail);
+                Context.getAdministrationService().setGlobalProperty(globalProperty);
+                feedbackMessage = true;
+            } else {
+                return false;
+            }
+        }
+
+        log.debug("Returning hello world text: " + text);
+
+        return feedbackMessage;
+    }
+
+    @Override
+    protected Map referenceData(HttpServletRequest req) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        /* Display the message that the content is saved or not */
+        if ("false".equals(req.getParameter("feedbackMessage"))
+                &&!"".equals(req.getParameter("feedbackNotificationEmail"))) {
+            map.put("feedbackPageMessage", "feedback.preference.email.incorrect");
+        } else if ("true".equals(req.getParameter("feedbackMessage"))) {
+            map.put("feedbackPageMessage", "feedback.preference.email.added");
+        }
+
+        return map;
+    }
 }
 
-	
 

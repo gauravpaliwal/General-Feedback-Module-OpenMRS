@@ -12,7 +12,7 @@ $j(document).ready(function() {
 </script>
 
 <h2><spring:message code="feedback.severities"/></h2>
-<a class="toggleAddTag" href="#"><spring:message code="feedback.addPredefinedSubject"/></a>
+<a class="toggleAddTag" href="#"><spring:message code="feedback.addSeverity"/></a>
 <div id="addTag" style="border: 1px black solid; background-color: #e0e0e0; display: none">
 <form method="post">
         <table>

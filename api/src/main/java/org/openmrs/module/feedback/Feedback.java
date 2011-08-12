@@ -12,125 +12,132 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback;
 
-import java.util.Date;
+//~--- non-JDK imports --------------------------------------------------------
+
 import org.openmrs.Auditable;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.User;
 
+//~--- JDK imports ------------------------------------------------------------
+
+import java.util.Date;
+
 /*
-        Pojo file for feedback_feedback relation in Feedback Module
+Pojo file for feedback_feedback relation in Feedback Module
 */
+public class Feedback extends BaseOpenmrsObject implements Auditable {
+    private User    changedBy;
+    private String  comment;
+    private String  content;
+    private User    creator;
+    private Date    dateChanged;
+    private Date    dateCreated;
+    private Integer feedbackId;
+    private byte[]  message;
 
-public class Feedback extends BaseOpenmrsObject  implements  Auditable {
-
-
-     private Integer feedbackId;
-     private User creator;
-     private User changedBy ;
-     private String subject;
-     private String content;
-     private String severity;
-     private String comment;
-     private String status;
-     private Date dateCreated;
-     private Date dateChanged;
-     private byte[] message ;
-     /*
-           Default no arguement constructor
+    /*
+     *     Default no arguement constructor
      */
+    private String severity;
+    private String status;
+    private String subject;
 
-    public Feedback() {
-    }
+    public Feedback() {}
 
-     /*
-           Constructor with all arguments
+    /*
+     *     Constructor with all arguments
      */
-	
-    public Feedback( String subject, String content, String severity, Date dateCreated) {
-        this.subject = subject;
-        this.content = content;
-        this.severity = severity;
+    public Feedback(String subject, String content, String severity, Date dateCreated) {
+        this.subject     = subject;
+        this.content     = content;
+        this.severity    = severity;
         this.dateCreated = dateCreated;
     }
-    
-     /*
-           Default constructor with arguments that can't be Null
+
+    /*
+     *     Default constructor with arguments that can't be Null
      */
-    
-    public Feedback( String subject, String content, String severity, String comment, String status, Date dateCreated, Date dateChanged) {
-       this.subject = subject;
-       this.content = content;
-       this.severity = severity;
-       this.comment = comment;
-       this.status = status;
-       this.dateCreated = dateCreated;
-       this.dateChanged = dateChanged;
+    public Feedback(String subject, String content, String severity, String comment, String status, Date dateCreated,
+                    Date dateChanged) {
+        this.subject     = subject;
+        this.content     = content;
+        this.severity    = severity;
+        this.comment     = comment;
+        this.status      = status;
+        this.dateCreated = dateCreated;
+        this.dateChanged = dateChanged;
     }
-   
+
     public Integer getFeedbackId() {
         return this.feedbackId;
     }
-    
+
     public void setFeedbackId(Integer feedbackId) {
         this.feedbackId = feedbackId;
     }
+
     public String getSubject() {
         return this.subject;
     }
-    
+
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
     public String getContent() {
         return this.content;
     }
-    
+
     public void setContent(String content) {
-        if (content.length() > 16777215 )
-            {
-                this.content =  content.substring (0, 16777214) ;
-            }
-        else
-            {
-                this.content = content ;
-            }
+        if (content.length() > 16777215) {
+            this.content = content.substring(0, 16777214);
+        } else {
+            this.content = content;
+        }
+
         this.content = content;
     }
-    
+
     public String getSeverity() {
         return this.severity;
     }
-    
+
     public void setSeverity(String severity) {
         this.severity = severity;
     }
+
     public String getComment() {
         return this.comment;
     }
-    
+
     public void setComment(String comment) {
         this.comment = comment;
     }
+
     public String getStatus() {
         return this.status;
     }
-    
+
     public void setStatus(String status) {
         this.status = status;
     }
+
     public Date getDateCreated() {
         return this.dateCreated;
     }
-    
+
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
+
     public Date getDateChanged() {
         return this.dateChanged;
     }
-    
+
     public void setDateChanged(Date dateChanged) {
         this.dateChanged = dateChanged;
     }
@@ -140,34 +147,32 @@ public class Feedback extends BaseOpenmrsObject  implements  Auditable {
     }
 
     public void setId(Integer feedbackId) {
-        this.feedbackId = feedbackId ;
+        this.feedbackId = feedbackId;
     }
 
     public User getCreator() {
-        return this.creator ;
+        return this.creator;
     }
 
     public void setCreator(User creator) {
-        this.creator = creator ;
+        this.creator = creator;
     }
 
     public User getChangedBy() {
-        return this.changedBy ;
+        return this.changedBy;
     }
 
     public void setChangedBy(User creator) {
-        this.changedBy = creator ;
+        this.changedBy = creator;
     }
 
     public byte[] getMessage() {
-		return message;
+        return message;
     }
 
     public void setMessage(byte[] message) {
-		this.message = message;
+        this.message = message;
     }
-
-
 }
 
 

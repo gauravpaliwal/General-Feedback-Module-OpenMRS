@@ -12,7 +12,11 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import org.openmrs.BaseOpenmrsObject;
 
@@ -20,59 +24,47 @@ import org.openmrs.BaseOpenmrsObject;
  * Pojo file for the feedback.status relation in the Feedback Module
  */
 public class Status extends BaseOpenmrsObject implements java.io.Serializable {
-
-
-     private Integer feedbackStatusId;
-     private String status;
+    private Integer feedbackStatusId;
+    private String  status;
 
     /*
-      * Default constructor for the class
-    */ 
-    
-    public Status() {
-    }
+     *  Default constructor for the class
+     */
+    public Status() {}
 
     /*
      * Contructor with status as arguement
-    */
+     */
     public Status(String status) {
-       this.status = status;
+        this.status = status;
     }
-   
+
     public Integer getfeedbackStatusId() {
         return this.feedbackStatusId;
     }
-    
+
     public void setfeedbackStatusId(Integer feedbackStatusId) {
         this.feedbackStatusId = feedbackStatusId;
     }
+
     public String getStatus() {
         return this.status;
     }
-    
+
     public void setStatus(String status) {
-        
-    if ( status.length()>50 )
-        {
-            this.status = status.substring( 0, 50 )  ;        
-        }
-    else 
-        {
-            this.status = status ;
+        if (status.length() > 50) {
+            this.status = status.substring(0, 50);
+        } else {
+            this.status = status;
         }
     }
 
     public Integer getId() {
-        return this.feedbackStatusId ;
+        return this.feedbackStatusId;
     }
 
-    public void setId(Integer feedbackStatusId ) {
+    public void setId(Integer feedbackStatusId) {
         this.feedbackStatusId = feedbackStatusId;
     }
-
-
-
-
 }
-
 

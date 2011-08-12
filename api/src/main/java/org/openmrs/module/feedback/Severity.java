@@ -12,76 +12,68 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import org.openmrs.BaseOpenmrsObject;
 
 /**
  * Feedback Module Severity
- * 
+ *
  * @version 1.0
  */
-
 public class Severity extends BaseOpenmrsObject implements java.io.Serializable {
+    private Integer feedbackSeverityId;
+    private String  severity;
+    private Integer sortWeight;
 
-     private Integer feedbackSeverityId;
-     private String severity;
-     private Integer sortWeight ;
-     
-     /*Default Contructor*/
+    /* Default Contructor */
+    public Severity() {}
 
-    public Severity() {
+    /* Constructor with the parameter */
+    public Severity(Integer feedbackSeverityId, String severity, Integer sortWeight) {
+        this.feedbackSeverityId = feedbackSeverityId;
+        this.severity           = severity;
+        this.sortWeight         = sortWeight;
     }
-    
-    /*Constructor with the parameter*/
 
-    public Severity(Integer feedbackSeverityId, String severity, Integer sortWeight ) {
-       this.feedbackSeverityId = feedbackSeverityId;
-       this.severity = severity;
-       this.sortWeight = sortWeight;
-    }
-   
     public Integer getfeedbackSeverityId() {
         return this.feedbackSeverityId;
     }
-    
+
     public void setfeedbackSeverityId(Integer feedbackSeverityId) {
         this.feedbackSeverityId = feedbackSeverityId;
     }
+
     public String getSeverity() {
         return this.severity;
     }
-    
-    public void setSeverity(String severity) {
-        if ( severity.length()>50 )
-            {
-                this.severity = severity.substring( 0, 50 ) ;
-        
-            }
-            else 
-            {
-                this.severity = severity;
-            }                
-    }
 
+    public void setSeverity(String severity) {
+        if (severity.length() > 50) {
+            this.severity = severity.substring(0, 50);
+        } else {
+            this.severity = severity;
+        }
+    }
 
     public Integer getId() {
         return this.feedbackSeverityId;
     }
 
     public void setId(Integer feedbackSeverityId) {
-        this.feedbackSeverityId = feedbackSeverityId ;
+        this.feedbackSeverityId = feedbackSeverityId;
     }
-    
+
     public Integer getSortWeight() {
         return this.sortWeight;
     }
-    
+
     public void setSortWeight(Integer sortWeight) {
-        this.sortWeight = sortWeight ;
+        this.sortWeight = sortWeight;
     }
-
-
 }
-
 

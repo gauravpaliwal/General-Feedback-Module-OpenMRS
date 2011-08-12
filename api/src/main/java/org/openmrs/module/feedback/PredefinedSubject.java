@@ -12,54 +12,51 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import org.openmrs.BaseOpenmrsObject;
 
 /*
- * Pojo file for the feedback.feedback_predefined_subject relation 
- * 
+* Pojo file for the feedback.feedback_predefined_subject relation
+*
  */
-public class PredefinedSubject  extends BaseOpenmrsObject implements java.io.Serializable {
+public class PredefinedSubject extends BaseOpenmrsObject implements java.io.Serializable {
+    private Integer feedbackPredefinedSubjectId;
+    private Integer sortWeight;
+    private String  subject;
 
-
-     private Integer feedbackPredefinedSubjectId;
-     private String subject;
-     private Integer sortWeight ;
-     
-
-     /*
-      *     No Arguement default contructor
+    /*
+     *     No Arguement default contructor
      */
-    public PredefinedSubject() {
-    }
-    
+    public PredefinedSubject() {}
+
     /*
      * Contructor with the arguement that can't be null
-    */
-
+     */
     public PredefinedSubject(String subject) {
-        this.subject = subject;    
+        this.subject = subject;
     }
-   
+
     public Integer getfeedbackPredefinedSubjectId() {
         return this.feedbackPredefinedSubjectId;
     }
-    
+
     public void setfeedbackPredefinedSubjectId(Integer feedbackPredefinedSubjectId) {
         this.feedbackPredefinedSubjectId = feedbackPredefinedSubjectId;
     }
+
     public String getSubject() {
         return this.subject;
     }
-    
+
     public void setSubject(String subject) {
-    if ( subject.length()>50 )
-        {
-            this.subject = subject.substring( 0, 50 )  ;
-        }
-    else 
-        {
+        if (subject.length() > 50) {
+            this.subject = subject.substring(0, 50);
+        } else {
             this.subject = subject;
         }
     }
@@ -69,18 +66,15 @@ public class PredefinedSubject  extends BaseOpenmrsObject implements java.io.Ser
     }
 
     public void setId(Integer feedbackPredefinedSubjectId) {
-        this.feedbackPredefinedSubjectId = feedbackPredefinedSubjectId ;
+        this.feedbackPredefinedSubjectId = feedbackPredefinedSubjectId;
     }
-    
+
     public Integer getSortWeight() {
         return this.sortWeight;
     }
-    
+
     public void setSortWeight(Integer sortWeight) {
-        this.sortWeight = sortWeight ;
+        this.sortWeight = sortWeight;
     }
-
-
 }
-
 

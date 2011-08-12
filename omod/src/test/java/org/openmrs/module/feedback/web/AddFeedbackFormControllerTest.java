@@ -12,25 +12,13 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback.web;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+//~--- non-JDK imports --------------------------------------------------------
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import junit.framework.Assert;
-
-import org.springframework.mock.web.MockHttpSession;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.mock.web.MockHttpServletRequest;
-
-import org.openmrs.module.feedback.FeedbackService;
-import org.openmrs.module.feedback.Severity ;
-import org.openmrs.web.test.BaseModuleWebContextSensitiveTest ;
-import org.openmrs.api.context.Context;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,64 +26,86 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import org.openmrs.api.context.Context;
+import org.openmrs.module.feedback.FeedbackService;
+import org.openmrs.module.feedback.Severity;
+import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
+
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.mock.web.MockHttpSession;
+import org.springframework.web.servlet.ModelAndView;
+
+//~--- JDK imports ------------------------------------------------------------
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public class AddFeedbackFormControllerTest extends BaseModuleWebContextSensitiveTest {
-	
-	private FeedbackService service;
-	private FeedbackAdminListController controller;
-	private MockHttpServletRequest request;
-	private HttpServletResponse response;
-	private Boolean expResult = false ;
-	private Boolean result = true ;
-	
-	public AddFeedbackFormControllerTest() {
-	}
+    private Boolean                     expResult = false;
+    private Boolean                     result    = true;
+    private FeedbackAdminListController controller;
+    private MockHttpServletRequest      request;
+    private HttpServletResponse         response;
+    private FeedbackService             service;
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
-	}
+    public AddFeedbackFormControllerTest() {}
 
-	@AfterClass
-	public static void tearDownClass() throws Exception {
-	}
-	
-	@Before
-	public void setUp() throws Exception {
-		/*executed before the test is run*/
-		this.service = Context.getService(FeedbackService.class); 	
-		this.controller = new FeedbackAdminListController();
-		this.request = new MockHttpServletRequest();
-		this.response = new MockHttpServletResponse();
-		/*this file is in the same folder of test resources where the hibernate mapping file is located*/
-		initializeInMemoryDatabase() ;
-		executeDataSet("FeedbackDataset.xml");
-		/*Sample data is loaded into the system*/
-		authenticate() ;
-		
-	}
-	
-	@After
-	public void tearDown() {
-	}
+    @BeforeClass
+    public static void setUpClass() throws Exception {}
 
-	/**
-	 * Test of formBackingObject method, of class AddFeedbackFormController.
-	 */
-	@Test
-	public void testFormBackingObject() throws Exception {
-		System.out.println("formBackingObject");
-		HttpServletRequest req = null;
-		forwardFeedbackFormController instance = new forwardFeedbackFormController();
-		/*No testing now as their are a number of the Extra Credit dtuff that will effect these test cases*/
-	}
+    @AfterClass
+    public static void tearDownClass() throws Exception {}
 
-	/**
-	 * Test of referenceData method, of class AddFeedbackFormController.
-	 */
-	@Test
-	public void testReferenceData() throws Exception {
-		System.out.println("referenceData");
-		HttpServletRequest req = null;
-		forwardFeedbackFormController instance = new forwardFeedbackFormController();
-		/*No testing now as their are a number of the Extra Credit dtuff that will effect these test cases*/
-	}
+    @Before
+    public void setUp() throws Exception {
+
+        /* executed before the test is run */
+        this.service    = Context.getService(FeedbackService.class);
+        this.controller = new FeedbackAdminListController();
+        this.request    = new MockHttpServletRequest();
+        this.response   = new MockHttpServletResponse();
+
+        /* this file is in the same folder of test resources where the hibernate mapping file is located */
+        initializeInMemoryDatabase();
+        executeDataSet("FeedbackDataset.xml");
+
+        /* Sample data is loaded into the system */
+        authenticate();
+    }
+
+    @After
+    public void tearDown() {}
+
+    /**
+     * Test of formBackingObject method, of class AddFeedbackFormController.
+     */
+    @Test
+    public void testFormBackingObject() throws Exception {
+        System.out.println("formBackingObject");
+
+        HttpServletRequest            req      = null;
+        forwardFeedbackFormController instance = new forwardFeedbackFormController();
+
+        /* No testing now as their are a number of the Extra Credit dtuff that will effect these test cases */
+    }
+
+    /**
+     * Test of referenceData method, of class AddFeedbackFormController.
+     */
+    @Test
+    public void testReferenceData() throws Exception {
+        System.out.println("referenceData");
+
+        HttpServletRequest            req      = null;
+        forwardFeedbackFormController instance = new forwardFeedbackFormController();
+
+        /* No testing now as their are a number of the Extra Credit dtuff that will effect these test cases */
+    }
 }
+
+

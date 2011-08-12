@@ -1,5 +1,7 @@
 <%@ include file="local_header.jsp"%>
+
 <openmrs:hasPrivilege privilege="Admin Feedback">
+    
 <%@ taglib prefix="kc" tagdir="/WEB-INF/tags/module/feedback/"%>
 <openmrs:htmlInclude file="/moduleResources/feedback/demo_table_jui.css" />
 <openmrs:htmlInclude file="/moduleResources/feedback/jquery.dataTables.min.js" />

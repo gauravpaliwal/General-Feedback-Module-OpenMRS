@@ -12,28 +12,30 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback.web;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
+//~--- non-JDK imports --------------------------------------------------------
 
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.web.controller.PortletController;
 
+//~--- JDK imports ------------------------------------------------------------
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 public class SubmitFeedbackController extends PortletController {
-
     @Override
-   protected  void populateModel(HttpServletRequest request, Map<String, Object> model) {        
-                
-                FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
-                model.put("predefinedsubjects", hService.getPredefinedSubjects() ) ;
-                model.put("severities", hService.getSeverities() ) ;			
-	}
-        
-    }
-    
+    protected void populateModel(HttpServletRequest request, Map<String, Object> model) {
+        FeedbackService hService = (FeedbackService) Context.getService(FeedbackService.class);
 
+        model.put("predefinedsubjects", hService.getPredefinedSubjects());
+        model.put("severities", hService.getSeverities());
+    }
+}
 
 

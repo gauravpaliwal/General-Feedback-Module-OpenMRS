@@ -7,7 +7,7 @@
 <b class="boxHeader"><spring:message code="feedback.severities"/></b>
 
 <div class="box" >
-<c:if test="${empty feedbackPageMessage}"> 
+<c:if test="${not empty severity.severity}"> 
 
     <form method="post">
         <input type=hidden name=feedbackSeverityId value= <c:out value="${severity.feedbackSeverityId}"/> >

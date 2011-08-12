@@ -1,5 +1,7 @@
 <%@ include file="local_header.jsp"%>
+
 <openmrs:hasPrivilege privilege="Admin Feedback">
+    
 <h2><spring:message code="feedback.admin.properties"/></h2>
 
 <form method="post" >

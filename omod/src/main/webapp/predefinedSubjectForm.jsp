@@ -1,12 +1,13 @@
 <%@ include file="local_header.jsp"%>
 
-<openmrs:hasPrivilege privilege="Admin Feedback">    
+<openmrs:hasPrivilege privilege="Admin Feedback">
+    
 <h2><spring:message code="feedback.editPredefinedSubject"/></h2>
 
 <b class="boxHeader"><spring:message code="feedback.predefinedsubjects"/></b>
 
 <div class="box" >
-<c:if test="${empty predefinedsubjects}"> 
+<c:if test="${not empty predefinedsubjects.subject}"> 
     <table>
         
         <form method="post">

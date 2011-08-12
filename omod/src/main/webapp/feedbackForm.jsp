@@ -1,5 +1,9 @@
 <%@ include file="local_header.jsp"%>
+
+<openmrs:hasPrivilege privilege="Add Feedback,Admin Feedback">
+
 <%@ taglib prefix="kc" tagdir="/WEB-INF/tags/module/feedback/"%>
+
 <script>
 	$j(document).ready(function() 
 	{
@@ -16,7 +20,6 @@
 	form {display: inline; }
 </style>
 
-<openmrs:hasPrivilege privilege="Add Feedback,Admin Feedback">
 <h2>
 	<spring:message code="feedback.manageFeedback"/>
 </h2>

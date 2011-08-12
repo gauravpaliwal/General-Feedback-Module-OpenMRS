@@ -12,46 +12,54 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+
+
 package org.openmrs.module.feedback.web;
+
+//~--- non-JDK imports --------------------------------------------------------
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import org.openmrs.api.context.Context;
+import org.openmrs.module.feedback.FeedbackService;
+
+import org.springframework.web.servlet.mvc.SimpleFormController;
+
+//~--- JDK imports ------------------------------------------------------------
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.openmrs.api.context.Context;
-import org.openmrs.module.feedback.FeedbackService;
-import org.springframework.web.servlet.mvc.SimpleFormController;
-
 public class FeedbackAdminListController extends SimpleFormController {
-	
+
     /** Logger for this class and subclasses */
     protected final Log log = LogFactory.getLog(getClass());
-        /*Not in use*/
-    
-	@Override
-	protected String formBackingObject(HttpServletRequest request) throws Exception {
-		
-                			
-		String text = "Not used";
-		
-		log.debug("Returning hello world text: " + text);
-		
-		return text;
-		
-	}
 
-	@Override
-	protected Map referenceData(HttpServletRequest req) throws Exception {
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		/*It sends the list of all the feedback submitted till now*/
-		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
-		map.put("feedbacks", hService.getFeedbacks() ) ;
-                return map;
-		
-	}
-	
+    /* Not in use */
+
+    @Override
+    protected String formBackingObject(HttpServletRequest request) throws Exception {
+        String text = "Not used";
+
+        log.debug("Returning hello world text: " + text);
+
+        return text;
+    }
+
+    @Override
+    protected Map referenceData(HttpServletRequest req) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        /* It sends the list of all the feedback submitted till now */
+        FeedbackService hService = (FeedbackService) Context.getService(FeedbackService.class);
+
+        map.put("feedbacks", hService.getFeedbacks());
+
+        return map;
+    }
 }
+
+

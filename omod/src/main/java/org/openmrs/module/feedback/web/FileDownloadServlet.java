@@ -25,6 +25,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Feedback ;
+import org.openmrs.module.feedback.FeedbackComment;
 import org.openmrs.module.feedback.FeedbackService;
 
 public class FileDownloadServlet extends HttpServlet {
@@ -43,8 +44,19 @@ public class FileDownloadServlet extends HttpServlet {
                             String feedbackId = request.getParameter("feedbackId")  ;
 			    Object o = Context.getService(FeedbackService.class);
                             FeedbackService service = (FeedbackService)o ;    
-                            Feedback feedback = service.getFeedback(Integer.parseInt(feedbackId)) ;
-			    if (request.getParameter("feedbackId") != null && service.getFeedback(Integer.parseInt(feedbackId)) != null ) {
+			    Feedback feedback ;
+			    try
+			    {
+                            feedback = service.getFeedback(Integer.parseInt(feedbackId)) ;
+			    }
+			    catch(Exception e) {
+				    log.error(e);
+			    }
+			    
+			    if (!"".equals(request.getParameter("feedbackId")) && request.getParameter("feedbackId") != null && service.getFeedback(Integer.parseInt(feedbackId)) != null ) 
+			    {
+				feedback = service.getFeedback(Integer.parseInt(feedbackId)) ;
+
                             feedback = service.getFeedback(Integer.parseInt(feedbackId)) ;
                             byte[] attachment = feedback.getMessage() ;
 
@@ -59,6 +71,23 @@ public class FileDownloadServlet extends HttpServlet {
                             //String contentType = vf.getContentType() != null ? vf.getContentType() : defaultContentType;
                             response.setContentType("images");			
                             response.getOutputStream().write(feedback.getMessage());
+			    }
+			    else if (!"".equals(request.getParameter("feedbackCommentId")) && request.getParameter("feedbackCommentId") != null && service.getFeedbackComment(Integer.parseInt(request.getParameter("feedbackCommentId"))) != null) 
+			    {
+				    FeedbackComment feedbackComment = service.getFeedbackComment(162) ;
+				    byte[] attachment = feedbackComment.getAttachment() ;
+
+			    // Keeping these same as these are for the versionedfilemodule. Modify response to disable caching
+                            response.setHeader("Pragma", "No-cache");
+                            response.setDateHeader("Expires", 0);
+                            response.setHeader("Cache-Control", "no-cache");
+                            response.setContentLength(attachment.length);
+                            //response.setHeader("Content-Disposition", "attachment; filename=" + vf.getFullName().replace(" ", "_"));
+
+                            // Determine content type for response
+                            //String contentType = vf.getContentType() != null ? vf.getContentType() : defaultContentType;
+                            response.setContentType("images");			
+                            response.getOutputStream().write(feedbackComment.getAttachment());
 			    }
                         }
                         

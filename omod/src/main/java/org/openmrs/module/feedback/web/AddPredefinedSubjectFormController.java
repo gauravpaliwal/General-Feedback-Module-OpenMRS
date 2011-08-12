@@ -24,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.PredefinedSubject;
 import org.openmrs.module.feedback.FeedbackService;
+import org.openmrs.web.WebConstants;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -45,18 +46,31 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
                     Object o = Context.getService(FeedbackService.class);
                     FeedbackService service = (FeedbackService)o;                 
                     PredefinedSubject s = new PredefinedSubject() ;
-
-		    if (isInt(sortWeight))
+		    if ("".equals(sortWeight) || sortWeight == null )
+		    {
+			    s.setSortWeight(0);
+			    s.setSubject(request.getParameter("predefinedsubject") ) ;
+			    service.savePredefinedSubject(s) ;                    
+				/** Notifies to the Controller that the predefined subject has been successfully added 
+			     * with the help of get feedbackPageMessage param */
+				request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.predefinedSubject.added") ;
+		    }
+		    else if (isInt(sortWeight))
 		    {
 			    s.setSortWeight(Integer.parseInt(sortWeight));
+			    s.setSortWeight(0);
+			    s.setSubject(request.getParameter("predefinedsubject") ) ;
+			    service.savePredefinedSubject(s) ;                    
+				/** Notifies to the Controller that the predefined subject has been successfully added 
+			     * with the help of get feedbackPageMessage param */
+				request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.predefinedSubject.added") ;
+		    }
+		    else
+		    {
+			request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.number.error") ;
 		    }
                     /** This makes sure that the Predefined Subject value always remain less then or equal to 50*/
-                    s.setSubject(request.getParameter("predefinedsubject") ) ;
-                                      
-                    service.savePredefinedSubject(s) ;
                     
-                    /** Notifies to the Controller that the predefined subject has been successfully added with the help of get feedbackPageMessage param */
-                    feedbackMessage = true ;
 
                 }
                 
@@ -86,14 +100,7 @@ public class AddPredefinedSubjectFormController extends SimpleFormController {
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
 		map.put("predefinedsubjects", hService.getPredefinedSubjects()) ;
                 /*Display the message that the content is saved*/
-                if (req.getParameter("feedbackPageMessage")!= null && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) 
-                {
-                        map.put("feedbackPageMessage" , "feedback.notification.predefinedSubject.added" ) ;
-                }
-                else 
-                {
-                        map.put("feedbackPageMessage" , "" ) ;
-                }
+                
 		return map;
 		
 	}

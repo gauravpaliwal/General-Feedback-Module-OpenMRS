@@ -93,6 +93,10 @@ public class FeedbackServiceImpl implements FeedbackService {
         public Feedback getFeedback (Integer FeedbackId) throws APIException {
 		return getFeedbackdDAO().getFeedback (FeedbackId) ;
 	}
+	
+	 public FeedbackComment getFeedbackComment (Integer FeedbackCommentId) throws APIException {
+		return getFeedbackdDAO().getFeedbackComment (FeedbackCommentId) ;
+	}
 
 
 
@@ -131,7 +135,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 		return getFeedbackdDAO().getFeedbacks(user) ;
 	}
 	
-	public List<FeedbackComment> getFeedbackComments (String feedbackId) throws APIException {
+	public List<FeedbackComment> getFeedbackComments (Integer feedbackId) throws APIException {
 		return getFeedbackdDAO().getFeedbackComments(feedbackId) ;
 	}
 

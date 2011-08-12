@@ -29,18 +29,18 @@ public class FeedbackComment implements Auditable  {
      private Date dateChanged;
      private String uuid;
      private byte[] attachment;
-     private int feedbackId;
+     private Integer feedbackId;
 
     public FeedbackComment() {
     }
 
 	
-    public FeedbackComment(String comment, Date dateCreated, int feedbackId) {
+    public FeedbackComment(String comment, Date dateCreated, Integer feedbackId) {
         this.comment = comment;
         this.dateCreated = dateCreated;
         this.feedbackId = feedbackId;
     }
-    public FeedbackComment(String comment, byte[] attachment, Date dateCreated , int feedbackId) {
+    public FeedbackComment(String comment, byte[] attachment, Date dateCreated , Integer feedbackId) {
        this.dateCreated = dateCreated;
        this.comment = comment;
        this.attachment = attachment;
@@ -101,11 +101,11 @@ public class FeedbackComment implements Auditable  {
     public void setAttachment(byte[] attachment) {
         this.attachment = attachment;
     }
-    public int getFeedbackId() {
+    public Integer getFeedbackId() {
         return this.feedbackId;
     }
     
-    public void setFeedbackId(int feedbackId) {
+    public void setFeedbackId(Integer feedbackId) {
         this.feedbackId = feedbackId;
     }
 

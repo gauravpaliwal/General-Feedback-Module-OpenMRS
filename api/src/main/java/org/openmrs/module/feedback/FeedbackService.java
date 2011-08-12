@@ -51,6 +51,7 @@ public interface FeedbackService {
         public Status getStatus(Integer StatusId) throws APIException;
         public PredefinedSubject getPredefinedSubject (Integer PredefinedSubjectId ) throws APIException;
         public Feedback getFeedback (Integer feedbackId ) throws APIException;
+        public FeedbackComment getFeedbackComment (Integer feedbackCommentId ) throws APIException;
 
 
 	/**
@@ -74,7 +75,7 @@ public interface FeedbackService {
         public List<PredefinedSubject> getPredefinedSubjects() throws APIException;
         public List<Feedback> getFeedbacks () throws APIException ;
 	public List<Feedback> getFeedbacks (User user) throws APIException ;
-	public List<FeedbackComment> getFeedbackComments (String feedbackId) throws APIException ;
+	public List<FeedbackComment> getFeedbackComments (Integer feedbackId) throws APIException ;
 
 
 

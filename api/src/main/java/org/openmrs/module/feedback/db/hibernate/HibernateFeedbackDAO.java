@@ -75,6 +75,9 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
         public Feedback getFeedback (Integer FeedbackId) {
 		return (Feedback) sessionFactory.getCurrentSession().get(Feedback.class, FeedbackId);
 	}
+	public FeedbackComment getFeedbackComment (Integer FeedbackCommentId) {
+		return (FeedbackComment) sessionFactory.getCurrentSession().get(FeedbackComment.class, FeedbackCommentId);
+	}
         
 	
 
@@ -144,9 +147,9 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
 		return criteria.list() ;
 	}
 	
-	public List<FeedbackComment> getFeedbackComments(String feedbackId) throws DAOException {
+	public List<FeedbackComment> getFeedbackComments(Integer feedbackId) throws DAOException {
 	Criteria criteria = sessionFactory.getCurrentSession().createCriteria(FeedbackComment.class) ;	 
-		criteria.add(Restrictions.eq("feedbackId", (Integer.parseInt(feedbackId)))) ;
+		criteria.add(Restrictions.eq("feedbackId", feedbackId )) ;
 		return criteria.list() ;	}
         
 

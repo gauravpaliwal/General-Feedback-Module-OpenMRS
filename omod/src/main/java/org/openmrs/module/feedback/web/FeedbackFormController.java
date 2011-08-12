@@ -11,6 +11,9 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Feedback;
 import org.openmrs.module.feedback.FeedbackComment;
 import org.openmrs.module.feedback.FeedbackService;
+import org.openmrs.web.WebConstants;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 public class FeedbackFormController extends SimpleFormController {
@@ -20,22 +23,66 @@ public class FeedbackFormController extends SimpleFormController {
 
 	@Override
 	protected String formBackingObject(HttpServletRequest request) throws Exception {
-		/* Make sure that neither the status not the comment is empty or Null*/
+		/* Make sure that neither the comment is empty or Null*/
 		
 		Object o = Context.getService(FeedbackService.class);
                 FeedbackService service = (FeedbackService)o;
-		    
-                if (!"".equals(request.getParameter("status")) && !"".equals(request.getParameter("comment"))  )
+		String status = request.getParameter("status") ;
+		String comment = request.getParameter("comment") ;
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		if (!"".equals(status) && status != null )
+		{
+			try
+				{	Feedback s = service.getFeedback((Integer.parseInt (request.getParameter("feedbackId") ))) ;
+					s.setStatus( status );	
+					service.saveFeedback(s) ;
+				}
+			catch(Exception e)
+				{
+					log.error(e);
+				}
+		}
+    
+                if (!"".equals(comment) && comment != null )
                 {                       
                     try
-		    { Feedback s = service.getFeedback((Integer.parseInt (request.getParameter("feedbackId" ) ))) ;
-			s.setStatus( request.getParameter("status"));
+		    {   Feedback s = service.getFeedback((Integer.parseInt (request.getParameter("feedbackId" ) ))) ;
 			s.setComment( request.getParameter("comment"));		    
 			service.saveFeedback( s );
 			FeedbackComment k = new FeedbackComment() ;
 			k.setComment(request.getParameter("comment"));
-			k.setFeedbackId(Integer.parseInt (request.getParameter("feedbackId" ) )) ;
+			String feedbackId = request.getParameter("feedbackId")  ;
+			k.setFeedbackId(Integer.parseInt(feedbackId) ) ;
+			if (request instanceof MultipartHttpServletRequest) 
+                    {
+                        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+                        MultipartFile file = (MultipartFile) multipartRequest.getFile("file");
+                        
+                        if ( !file.isEmpty() )
+                        {
+                            if (file.getSize() <= 5242880 )
+                            {
+                                if (file.getOriginalFilename().endsWith(".jpeg")||file.getOriginalFilename().endsWith(".jpg")|| file.getOriginalFilename().endsWith(".gif")|| file.getOriginalFilename().endsWith(".png"))
+                                {
+                                    k.setAttachment(file.getBytes());
+                                }
+                                else
+                                {
+					 request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.feedback.error") ;
+
+                                }
+                            }
+                            else
+                            {
+					 request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.feedback.error") ;
+                            }
+                        }
+                        
+                    }
 			service.saveFeedbackComment(k);
+			request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.comment.submitted") ;
+
 		    }
 		    catch (Exception exception)
 		    {
@@ -59,8 +106,8 @@ public class FeedbackFormController extends SimpleFormController {
 		String feedbackId = request.getParameter("feedbackId" ) ;
 		
 		log.debug("Returning feedback text: " + feedbackId);
-		
-		return feedbackId;
+			
+		return feedbackId ;
 		
 	}
 
@@ -71,7 +118,7 @@ public class FeedbackFormController extends SimpleFormController {
 		
 		FeedbackService hService = (FeedbackService)Context.getService(FeedbackService.class);
                 /*Make sure that the feedback ID is not empty*/
-                
+		                
 		if ( !"".equals(req.getParameter("feedbackId" )) )
                 {   
 			try {
@@ -79,23 +126,23 @@ public class FeedbackFormController extends SimpleFormController {
 				map.put("feedback", hService.getFeedback( (Integer.parseInt (req.getParameter("feedbackId" ) )) ) ) ;		
 				if( hService.getFeedback( (Integer.parseInt (req.getParameter("feedbackId" ) )) ) == null )
 					{
-						map.put("feedbackPageMessage", "feedback.notification.delete") ;
+						req.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.delete") ;
 						return map ;
 					}
 				map.put("statuses", hService.getStatuses() ) ;	
-				map.put("comments", hService.getFeedbackComments(req.getParameter("feedbackId" )) ) ;	
-
+				map.put("comments", hService.getFeedbackComments(Integer.parseInt (req.getParameter("feedbackId" ) )) ) ;
+				map.put("feedbackId",req.getParameter("feedbackId" ) ) ;
 			}
 			catch(Exception exception)
 			{
 				log.error(exception) ;
-				map.put("feedbackPageMessage", "feedback.notification.delete") ;
+				req.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.delete") ;
 			}
 		}
 			
 			else 
 		{
-			map.put("feedbackPageMessage", "feedback.notification.delete") ;
+				req.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.delete") ;
 		}
                 
                 

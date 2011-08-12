@@ -24,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.PredefinedSubject;
 import org.openmrs.module.feedback.FeedbackService;
+import org.openmrs.web.WebConstants;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
@@ -44,7 +45,7 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                     if ( !StringUtils.hasLength(predefinedsubjectid) || service.getPredefinedSubject(Integer.parseInt(predefinedsubjectid)) == null )
                     {
                         /*Just log this for the statistics */
-                        System.out.println ("feedback.notification.predefinedSubject.deleted") ;
+                        request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.predefinedSubject.deleted") ;
                     
                     } 
                     
@@ -69,10 +70,13 @@ public class PredefinedSubjectFormController extends SimpleFormController {
 			if (isInt(sortWeight))
 			{
 			    s.setSortWeight(Integer.parseInt(sortWeight));
+			    
 			}
                         
                         /*Service Method to save the data*/
                         service.savePredefinedSubject(s) ;  
+			request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.predefinedSubject.saved") ;
+
                         text = predefinedsubjectid ;
                     }
                         		
@@ -109,7 +113,6 @@ public class PredefinedSubjectFormController extends SimpleFormController {
                 {
                     PredefinedSubject s = new PredefinedSubject() ;
                     map.put("predefinedsubjects" , s ) ;
-                    map.put("feedbackPageMessage" , "feedback.notification.predefinedSubject.deleted") ;
                     return map ;
                 }                        
                 /*Otherwise give the data about the predefined subject*/

@@ -6,7 +6,7 @@
 <b class="boxHeader"><spring:message code="feedback.predefinedsubjects"/></b>
 
 <div class="box" >
-<c:if test="${empty feedbackPageMessage}"> 
+<c:if test="${empty predefinedsubjects}"> 
     <table>
         
         <form method="post">

@@ -44,7 +44,7 @@
 	</bean>
         
         <bean id="addPredefinedSubjectForm" class="org.openmrs.module.feedback.web.AddPredefinedSubjectFormController">
-		<property name="commandName"><value>feedbackPageMessage</value></property>
+		<property name="commandName"><value>feedbackMessage</value></property>
 		<property name="formView"><value>/module/feedback/addPredefinedSubjectForm</value></property>
 		<property name="successView"><value>redirect:addPredefinedSubject.form</value></property>
 	</bean>

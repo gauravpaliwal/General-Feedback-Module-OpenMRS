@@ -53,6 +53,7 @@ public interface FeedbackDAO {
         public Status getStatus (Integer StatusId) throws DAOException;
         public PredefinedSubject getPredefinedSubject (Integer PredefinedSubjectId) throws DAOException;
         public Feedback getFeedback (Integer FeedbackId) throws DAOException;
+	public FeedbackComment getFeedbackComment (Integer FeedbackCommentId) throws DAOException;
 
 	/**
 	 * Update GeneralFeedbackModule 
@@ -70,7 +71,7 @@ public interface FeedbackDAO {
         public List<PredefinedSubject> getPredefinedSubjects() throws DAOException ;
         public List<Feedback> getFeedbacks() throws DAOException ;
 	public List<Feedback> getFeedbacks(User user) throws DAOException ;
-	public List<FeedbackComment> getFeedbackComments(String feedbackId) throws DAOException ;
+	public List<FeedbackComment> getFeedbackComments(Integer feedbackId) throws DAOException ;
 
 
         public void deletePredefinedSubject(PredefinedSubject PredefinedSubject) throws DAOException ;

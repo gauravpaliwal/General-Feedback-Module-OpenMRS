@@ -79,7 +79,6 @@ public class FileDownloadServlet extends HttpServlet {
                     response.setContentLength(attachment.length);
 
                     // response.setHeader("Content-Disposition", "attachment; filename=" + vf.getFullName().replace(" ", "_"));
-
                     // Determine content type for response
                     // String contentType = vf.getContentType() != null ? vf.getContentType() : defaultContentType;
                     response.setContentType("images");
@@ -99,7 +98,6 @@ public class FileDownloadServlet extends HttpServlet {
                     response.setContentLength(attachment.length);
 
                     // response.setHeader("Content-Disposition", "attachment; filename=" + vf.getFullName().replace(" ", "_"));
-
                     // Determine content type for response
                     // String contentType = vf.getContentType() != null ? vf.getContentType() : defaultContentType;
                     response.setContentType("images");
@@ -125,3 +123,4 @@ public class FileDownloadServlet extends HttpServlet {
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

@@ -139,7 +139,10 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
     }
 
     public List<Feedback> getFeedbacks() throws DAOException {
-        return sessionFactory.getCurrentSession().createCriteria(Feedback.class).list();
+        Criteria criteria =
+            sessionFactory.getCurrentSession().createCriteria(Feedback.class).addOrder(Order.desc("dateCreated"));
+
+        return criteria.list();
     }
 
     public List<Feedback> getFeedbacks(User user) throws DAOException {
@@ -176,3 +179,4 @@ public class HibernateFeedbackDAO implements FeedbackDAO {
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

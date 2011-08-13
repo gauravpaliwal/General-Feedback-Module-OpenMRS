@@ -14,7 +14,21 @@
 		"iDisplayLength": 15,
 		"bProcessing": true,
 		"bJQueryUI": true,
-		"sPaginationType": "full_numbers"
+		"sPaginationType": "full_numbers",
+		"aaSorting": [[ 5, "desc" ]],
+		"aoColumns": [ 
+		   	  { "bSearchable": true,
+			    "bVisible":    true },
+			  { "bSearchable": true,
+			    "bVisible":    true },
+			  { "bSearchable": true,
+			    "bVisible":    true },
+			  { "bSearchable": true,
+			    "bVisible":    true },
+			  { "bSearchable": true,
+			    "bVisible":    true } ,
+			  { "bVisible":    false } ,
+		]
 
 	} );
 	} );
@@ -34,6 +48,8 @@
                 <th width="300"><spring:message code="feedback.severity"/></th>
                 <th width="400"><spring:message code="feedback.status"/></th>
                 <th width="400"><spring:message code="feedback.dateCreated"/></th>
+                <th width="400"><spring:message code="feedback.dateCreated"/></th>
+
             </tr>
     </thead>
     <tbody> 
@@ -43,7 +59,9 @@
                     <td><a href="<openmrs:contextPath/>/module/feedback/feedback.form?feedbackId=<c:out value="${feedbackObj.feedbackId}"/>"><c:out value="${feedbackObj.subject} "/> </td>
                     <td><c:out value="${feedbackObj.severity} "/> </td>
                     <td><c:out value="${feedbackObj.status} "/> </td>
-                    <td><kc:prettyTime date="${feedbackObj.dateCreated}"></kc:prettyTime></td>                   
+                    <td><kc:prettyTime date="${feedbackObj.dateCreated}"></kc:prettyTime></td>     
+                    <td>${feedbackObj.dateCreated}</td>                   
+       
                 </tr>      
             </c:forEach>   
 

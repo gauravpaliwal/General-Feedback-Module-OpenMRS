@@ -23,6 +23,7 @@ import org.apache.commons.logging.LogFactory;
 
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.context.Context;
+import org.openmrs.web.WebConstants;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -52,9 +53,9 @@ public class FeedbackPropertiesFormController extends SimpleFormController {
     }
 
     @Override
-    protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
+    protected String formBackingObject(HttpServletRequest request) throws Exception {
         String  text            = "";
-        Boolean feedbackMessage = false;
+        Boolean feedbackMessage = null;
 
         /* To make sure that the status is neither NULL nor empty */
         String feedbackNotification           = request.getParameter("feedbackNotification");
@@ -63,7 +64,7 @@ public class FeedbackPropertiesFormController extends SimpleFormController {
         String feedbackAdminNotificationEmail = request.getParameter("feedbackAdminNotificationEmail");
         String feedbackUiNotification         = request.getParameter("feedbackUiNotification");
 
-        if ((feedbackNotification != null) && StringUtils.hasLength(feedbackNotification)) {
+        if (StringUtils.hasLength(feedbackNotification)) {
             GlobalProperty globalProperty = new GlobalProperty();
 
             globalProperty.setProperty("feedback.notification");
@@ -72,7 +73,7 @@ public class FeedbackPropertiesFormController extends SimpleFormController {
             feedbackMessage = true;
         }
 
-        if ((feedbackAdminNotification != null) && StringUtils.hasLength(feedbackAdminNotification)) {
+        if (StringUtils.hasLength(feedbackAdminNotification)) {
             GlobalProperty globalProperty = new GlobalProperty();
 
             globalProperty.setProperty("feedback.admin.notification");
@@ -81,7 +82,7 @@ public class FeedbackPropertiesFormController extends SimpleFormController {
             feedbackMessage = true;
         }
 
-        if ((feedbackUiNotification != null) && StringUtils.hasLength(feedbackUiNotification)) {
+        if (StringUtils.hasLength(feedbackUiNotification)) {
             GlobalProperty globalProperty = new GlobalProperty();
 
             globalProperty.setProperty("feedback.ui.notification");
@@ -90,7 +91,7 @@ public class FeedbackPropertiesFormController extends SimpleFormController {
             feedbackMessage = true;
         }
 
-        if ((feedbackNotificationEmail != null) && StringUtils.hasLength(feedbackNotificationEmail)) {
+        if (StringUtils.hasLength(feedbackNotificationEmail)) {
             if (validate(feedbackNotificationEmail)) {
                 GlobalProperty globalProperty = new GlobalProperty();
 
@@ -99,11 +100,13 @@ public class FeedbackPropertiesFormController extends SimpleFormController {
                 Context.getAdministrationService().setGlobalProperty(globalProperty);
                 feedbackMessage = true;
             } else {
-                return false;
+                request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.preference.email.incorrect");
+
+                return text;
             }
         }
 
-        if ((feedbackAdminNotificationEmail != null) && StringUtils.hasLength(feedbackAdminNotificationEmail)) {
+        if (StringUtils.hasLength(feedbackAdminNotificationEmail)) {
             if (validate(feedbackAdminNotificationEmail)) {
                 GlobalProperty globalProperty = new GlobalProperty();
 
@@ -112,29 +115,28 @@ public class FeedbackPropertiesFormController extends SimpleFormController {
                 Context.getAdministrationService().setGlobalProperty(globalProperty);
                 feedbackMessage = true;
             } else {
-                return false;
+                request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.preference.email.incorrect");
+
+                return text;
             }
         }
 
         log.debug("Returning hello world text: " + text);
 
-        return feedbackMessage;
+        if ((feedbackMessage != null) && (feedbackMessage == true)) {
+            request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.preference.email.added");
+        }
+
+        return text;
     }
 
     @Override
     protected Map referenceData(HttpServletRequest req) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
-        /* Display the message that the content is saved or not */
-        if ("false".equals(req.getParameter("feedbackMessage"))
-                &&!"".equals(req.getParameter("feedbackNotificationEmail"))) {
-            map.put("feedbackPageMessage", "feedback.preference.email.incorrect");
-        } else if ("true".equals(req.getParameter("feedbackMessage"))) {
-            map.put("feedbackPageMessage", "feedback.preference.email.added");
-        }
-
         return map;
     }
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

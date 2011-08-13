@@ -27,7 +27,6 @@
 	<img src="<openmrs:contextPath/>/moduleServlet/feedback/fileDownloadServlet?feedbackId=<c:out value="${feedback.feedbackId}"/>" >
 </div>
 
-<form method="post"   enctype="multipart/form-data">
     <b class="boxHeader"><spring:message code="feedback.submit"/></b>
     <div class="box" >
     	<table id="table">
@@ -111,6 +110,7 @@
 
             </tr>
           </openmrs:hasPrivilege>
+<form method="post"   enctype="multipart/form-data">
            <tr>
             	<th><spring:message code="feedback.attachment"/> </th>
             	<td><input type="file" accept="image" name="file" size="40" > </input> 

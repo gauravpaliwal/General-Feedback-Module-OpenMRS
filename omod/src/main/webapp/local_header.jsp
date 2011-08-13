@@ -5,7 +5,7 @@
 <!-- Include taglibs from core -->
 <%@ taglib prefix="fn" uri="/WEB-INF/taglibs/fn.tld" %>
 
-<openmrs:hasPrivilege privilege="Add Feedback">
+<openmrs:hasPrivilege privilege="Add Feedback,Admin Feedback">
 
 <c:if test="${!empty feedbackPageMessage}"> 
             <div id="openmrs_msg"><spring:message code="${feedbackPageMessage}"/></div>

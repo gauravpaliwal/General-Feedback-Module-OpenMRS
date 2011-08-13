@@ -39,7 +39,6 @@ public class FeedbackAdminListController extends SimpleFormController {
     protected final Log log = LogFactory.getLog(getClass());
 
     /* Not in use */
-
     @Override
     protected String formBackingObject(HttpServletRequest request) throws Exception {
         String text = "Not used";
@@ -63,3 +62,4 @@ public class FeedbackAdminListController extends SimpleFormController {
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

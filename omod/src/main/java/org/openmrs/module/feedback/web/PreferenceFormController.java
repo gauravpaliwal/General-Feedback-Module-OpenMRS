@@ -23,6 +23,7 @@ import org.apache.commons.logging.LogFactory;
 
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.FeedbackService;
+import org.openmrs.web.WebConstants;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
@@ -51,8 +52,8 @@ public class PreferenceFormController extends SimpleFormController {
     }
 
     @Override
-    protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
-        Boolean feedbackPageMessage  = true;
+    protected String formBackingObject(HttpServletRequest request) throws Exception {
+        Boolean feedbackPageMessage  = null;
         String  text                 = "";
         String  email                = request.getParameter("email");
         String  notificationReceipt  = request.getParameter("notificationReceipt");
@@ -64,23 +65,31 @@ public class PreferenceFormController extends SimpleFormController {
                         "feedback_email", email);
                 feedbackPageMessage = true;
             } else {
-                feedbackPageMessage = false;
+                request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.preference.email.incorrect");
+
+                return text;
             }
         }
 
         if (notificationReceipt != null) {
             Context.getUserService().setUserProperty(Context.getUserContext().getAuthenticatedUser(),
                     "feedback_notificationReceipt", notificationReceipt);
+            feedbackPageMessage = true;
         }
 
         if (notificationFollowup != null) {
             Context.getUserService().setUserProperty(Context.getUserContext().getAuthenticatedUser(),
                     "feedback_notificationFollowup", notificationFollowup);
+            feedbackPageMessage = true;
         }
 
         log.debug("Returning hello world text: " + text);
 
-        return feedbackPageMessage;
+        if ((feedbackPageMessage != null) && feedbackPageMessage) {
+            request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.preference.email.added");
+        }
+
+        return text;
     }
 
     @Override
@@ -107,14 +116,9 @@ public class PreferenceFormController extends SimpleFormController {
             map.put("feedback_notificationFollowup", feedback_notificationFollowup);
         }
 
-        if ("false".equals(req.getParameter("feedbackMessage")) &&!"".equals(req.getParameter("email"))) {
-            map.put("feedbackPageMessage", "feedback.preference.email.incorrect");
-        } else if ("true".equals(req.getParameter("feedbackMessage"))) {
-            map.put("feedbackPageMessage", "feedback.preference.email.added");
-        }
-
         return map;
     }
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

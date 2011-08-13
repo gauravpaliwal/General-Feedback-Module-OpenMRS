@@ -38,7 +38,7 @@
 	</bean>
         
         <bean id="addStatusForm" class="org.openmrs.module.feedback.web.AddStatusFormController">
-		<property name="commandName"><value>feedbackPageMessage</value></property>
+		<property name="commandName"><value></value></property>
 		<property name="formView"><value>/module/feedback/addStatusForm</value></property>
 		<property name="successView"><value>redirect:addStatus.form</value></property>
 	</bean>
@@ -68,7 +68,7 @@
 	</bean>
         
         <bean id="addFeedbackForm" class="org.openmrs.module.feedback.web.AddFeedbackFormController">
-		<property name="commandName"><value>feedbackPageMessage</value></property>
+		<property name="commandName"><value></value></property>
 		<property name="formView"><value>/module/feedback/addFeedbackForm</value></property>
 		<property name="successView"><value>redirect:addFeedback.form</value></property>
 	</bean>
@@ -104,7 +104,7 @@
 	</bean>
 	
 	<bean id="feedbackPropertiesForm" class="org.openmrs.module.feedback.web.FeedbackPropertiesFormController">
-		<property name="commandName"><value>feedbackMessage</value></property>
+		<property name="commandName"><value></value></property>
 		<property name="formView"><value>/module/feedback/feedbackPropertiesForm</value></property>
 		<property name="successView"><value>redirect:feedbackProperties.form</value></property>
 	</bean>

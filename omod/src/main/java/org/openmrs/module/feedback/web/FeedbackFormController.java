@@ -11,6 +11,7 @@ import org.openmrs.module.feedback.FeedbackComment;
 import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.web.WebConstants;
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -37,7 +38,7 @@ public class FeedbackFormController extends SimpleFormController {
         String              comment = request.getParameter("comment");
         Map<String, Object> map     = new HashMap<String, Object>();
 
-        if (!"".equals(status) && (status != null)
+        if (StringUtils.hasLength(status)
                 && (Context.getAuthenticatedUser().isSuperUser()
                     || Context.getAuthenticatedUser().hasPrivilege("Admin Feedback"))) {
             try {
@@ -48,15 +49,9 @@ public class FeedbackFormController extends SimpleFormController {
             } catch (Exception e) {
                 log.error(e);
             }
-        }
-
-        if (!"".equals(comment) && (comment != null)) {
+        } else if (StringUtils.hasLength(comment)) {
             try {
-                Feedback s = service.getFeedback((Integer.parseInt(request.getParameter("feedbackId"))));
-
-                s.setComment(request.getParameter("comment"));
-                service.saveFeedback(s);
-
+                Feedback        s = service.getFeedback((Integer.parseInt(request.getParameter("feedbackId"))));
                 FeedbackComment k = new FeedbackComment();
 
                 k.setComment(request.getParameter("comment"));
@@ -79,24 +74,30 @@ public class FeedbackFormController extends SimpleFormController {
                             } else {
                                 request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR,
                                                                   "feedback.notification.feedback.error");
+
+                                return feedbackId;
                             }
                         } else {
                             request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR,
                                                               "feedback.notification.feedback.error");
+
+                            return feedbackId;
                         }
                     }
                 }
 
-                service.saveFeedbackComment(k);
-                request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR,
-                                                  "feedback.notification.comment.submitted");
+                if (Context.getAuthenticatedUser().isSuperUser() || Context.hasPrivilege("Admin Feedback")
+                        || Context.getAuthenticatedUser().equals(s.getCreator())) {
+                    service.saveFeedbackComment(k);
+                    request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR,
+                                                      "feedback.notification.comment.submitted");
+                }
             } catch (Exception exception) {
                 log.error(exception);
             }
-        }
-
-        if ("1".equals(request.getParameter("delete"))
-                && Context.getUserContext().getAuthenticatedUser().hasPrivilege("Admin Feedback")) {
+        } else if ("1".equals(request.getParameter("delete"))
+                   && (Context.getUserContext().getAuthenticatedUser().hasPrivilege("Admin Feedback")
+                       || Context.getAuthenticatedUser().isSuperUser())) {
             try {
                 Feedback s = service.getFeedback((Integer.parseInt(request.getParameter("feedbackId"))));
 
@@ -121,7 +122,6 @@ public class FeedbackFormController extends SimpleFormController {
         FeedbackService     service  = (FeedbackService) o;
 
         /* Make sure that the feedback ID is not empty */
-
         if (!"".equals(req.getParameter("feedbackId"))) {
             try {
 
@@ -154,3 +154,4 @@ public class FeedbackFormController extends SimpleFormController {
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

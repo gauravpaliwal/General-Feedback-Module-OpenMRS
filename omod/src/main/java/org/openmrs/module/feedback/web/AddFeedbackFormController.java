@@ -25,7 +25,9 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.Feedback;
 import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.notification.Message;
+import org.openmrs.web.WebConstants;
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -50,9 +52,11 @@ public class AddFeedbackFormController extends SimpleFormController {
         /* To check wheather or not the subject , severity and feedback is empty or not */
         Boolean feedbackMessage = false;
         String  text            = "";
+        String  subject         = request.getParameter("subject");
+        String  severity        = request.getParameter("severity");
+        String  feedback        = request.getParameter("feedback");
 
-        if ((request.getParameter("subject") != null) && (request.getParameter("severity") != null)
-                && (request.getParameter("feedback") != null)) {
+        if (StringUtils.hasLength(subject) && StringUtils.hasLength(severity) && StringUtils.hasLength(severity)) {
             Object          o       = Context.getService(FeedbackService.class);
             FeedbackService service = (FeedbackService) o;
             Feedback        s       = new Feedback();
@@ -61,8 +65,7 @@ public class AddFeedbackFormController extends SimpleFormController {
             s.setSeverity(request.getParameter("severity"));
 
             /* To get the Stacktrace of the page from which the feedback is submitted */
-            StackTraceElement[] c        = Thread.currentThread().getStackTrace();
-            String              feedback = request.getParameter("feedback");
+            StackTraceElement[] c = Thread.currentThread().getStackTrace();
 
             if ("Yes".equals(request.getParameter("pagecontext"))) {
                 for (int i = 0; i < c.length; i++) {
@@ -71,7 +74,6 @@ public class AddFeedbackFormController extends SimpleFormController {
                 }
             }
 
-            /* The feedback content length can't be greater then the 5000 characters , in case it is more then that then it is truncated to the first 5000 characters */
             s.setContent(feedback);
 
             /* file upload in multiplerequest */
@@ -86,9 +88,15 @@ public class AddFeedbackFormController extends SimpleFormController {
                                 || file.getOriginalFilename().endsWith(".png")) {
                             s.setMessage(file.getBytes());
                         } else {
+                            request.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
+                                                              "feedback.notification.feedback.error");
+
                             return false;
                         }
                     } else {
+                        request.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
+                                                          "feedback.notification.feedback.error");
+
                         return false;
                     }
                 }
@@ -96,6 +104,9 @@ public class AddFeedbackFormController extends SimpleFormController {
 
             /* Save the Feedback */
             service.saveFeedback(s);
+            request.getSession().setAttribute(
+                WebConstants.OPENMRS_MSG_ATTR,
+                Context.getAdministrationService().getGlobalProperty("feedback.ui.notification"));
 
             if ("Yes".equals(
                     Context.getUserContext().getAuthenticatedUser().getUserProperty("feedback_notificationReceipt"))) {
@@ -150,7 +161,6 @@ public class AddFeedbackFormController extends SimpleFormController {
         }
 
         /* Reserved for future use for showing that the data is saved and the feedback is submitted */
-
         log.debug("Returning hello world text: " + text);
 
         return feedbackMessage;
@@ -166,19 +176,9 @@ public class AddFeedbackFormController extends SimpleFormController {
         map.put("predefinedsubjects", hService.getPredefinedSubjects());
         map.put("severities", hService.getSeverities());
 
-        if ((req.getParameter("feedbackPageMessage") != null)
-                && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) {
-            map.put("feedbackPageMessage",
-                    Context.getAdministrationService().getGlobalProperty("feedback.ui.notification"));
-        } else if ((req.getParameter("feedbackPageMessage") != null)
-                   &&!ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) {
-            map.put("feedbackPageMessage", "feedback.notification.feedback.error");
-        } else {
-            map.put("feedbackPageMessage", "");
-        }
-
         return map;
     }
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

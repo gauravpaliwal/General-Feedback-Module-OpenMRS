@@ -46,3 +46,4 @@ public class FeedbackActivator implements Activator {
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

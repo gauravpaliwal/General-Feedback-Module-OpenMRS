@@ -18,11 +18,11 @@
 	    </tr>
             <tr>
                 <th width="400"><spring:message code="feedback.subject"/></th>
-                <td><input type="text" name="summary" value=<c:out value="${feedback.subject}"/> size="150"></td>
+                <td><input type="text" name="summary" value=<c:out value="${feedback.subject}"/>></input> </td>
             </tr>        
             <tr>
                 <th width="400"><spring:message code="feedback.content"/></th>
-                <td> <textarea value="" rows="20" cols="140" name="description"> <c:out value="${feedback.content}"/>  </textarea> </td>              
+                <td> <textarea rows="20" cols="140" name="description"> <c:out value="${feedback.content}"/>  </textarea> </td>              
             </tr>
 	    <input type="hidden" value="10000" name="pid" > 
 	    <input type="hidden" value="Create" name="Create" > 

@@ -77,3 +77,5 @@ public class Severity extends BaseOpenmrsObject implements java.io.Serializable 
     }
 }
 
+
+//~ Formatted by Jindent --- http://www.jindent.com

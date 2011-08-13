@@ -24,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.module.feedback.Status;
+import org.openmrs.web.WebConstants;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -45,12 +46,13 @@ public class StatusFormController extends SimpleFormController {
         Object          o                = Context.getService(FeedbackService.class);
         FeedbackService service          = (FeedbackService) o;
         String          feedbackStatusId = request.getParameter("feedbackStatusId");
-        String          text             = "";
+        String          text             = "Not Used";
         String          status           = request.getParameter("status");
 
         if (!StringUtils.hasLength(feedbackStatusId)
                 || (service.getStatus(Integer.parseInt(feedbackStatusId)) == null)) {    /* Just for the statistics */
-            System.out.println("Nothing to do elemented already deleted");
+            request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.status.deleted");
+            text = feedbackStatusId;
         }
 
         /* Delete the data incase delete has been selected by the user */
@@ -58,6 +60,7 @@ public class StatusFormController extends SimpleFormController {
             Status s = service.getStatus(Integer.parseInt(feedbackStatusId));
 
             service.deleteStatus(s);
+            request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.status.deleted");
             text = feedbackStatusId;
         }
 
@@ -65,9 +68,9 @@ public class StatusFormController extends SimpleFormController {
         else if ((feedbackStatusId != null) && "1".equals(request.getParameter("save"))) {
             Status s = service.getStatus(Integer.parseInt(feedbackStatusId));
 
-            /** This makes sure that the status value always remain less then or equal to 50 */
             s.setStatus(status);
             service.saveStatus(s);
+            request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.status.saved");
             text = feedbackStatusId;
         }
 
@@ -90,7 +93,7 @@ public class StatusFormController extends SimpleFormController {
             Status s = new Status();
 
             map.put("statuses", s);
-            map.put("feedbackPageMessage", "feedback.notification.status.delete");
+            req.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.status.deleted");
 
             return map;
         }
@@ -101,7 +104,6 @@ public class StatusFormController extends SimpleFormController {
 
             System.out.println(s.getfeedbackStatusId());
             map.put("statuses", s);
-            map.put("feedbackPageMessage", "");
 
             return map;
         }
@@ -109,3 +111,4 @@ public class StatusFormController extends SimpleFormController {
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

@@ -24,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.feedback.FeedbackService;
 import org.openmrs.module.feedback.Status;
+import org.openmrs.web.WebConstants;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -42,25 +43,26 @@ public class AddStatusFormController extends SimpleFormController {
     protected final Log log = LogFactory.getLog(getClass());
 
     @Override
-    protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
-        String  text            = "";
+    protected String formBackingObject(HttpServletRequest request) throws Exception {
+        String  text            = "Not Used";
         Boolean feedbackMessage = false;
+        String  status          = request.getParameter("status");
 
         /* To make sure that the status is neither NULL nor empty */
-        if ((request.getParameter("status") != null) && StringUtils.hasLength(request.getParameter("status"))) {
+        if ((status != null) && StringUtils.hasLength(status)) {
             Object          o       = Context.getService(FeedbackService.class);
             FeedbackService service = (FeedbackService) o;
             Status          x       = new Status();
 
             /** This makes sure that the status value always remain less then or equal to 50 */
-            x.setStatus(request.getParameter("status"));
+            x.setStatus(status);
             service.saveStatus(x);
-            feedbackMessage = true;
+            request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "feedback.notification.status.added");
         }
 
         log.debug("Returning hello world text: " + text);
 
-        return feedbackMessage;
+        return text;
     }
 
     @Override
@@ -72,16 +74,9 @@ public class AddStatusFormController extends SimpleFormController {
 
         map.put("statuses", hService.getStatuses());
 
-        /* Display the message that the content is saved */
-        if ((req.getParameter("feedbackPageMessage") != null)
-                && ServletRequestUtils.getBooleanParameter(req, "feedbackPageMessage")) {
-            map.put("feedbackPageMessage", "feedback.notification.status.added");
-        } else {
-            map.put("feedbackPageMessage", "");
-        }
-
         return map;
     }
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

@@ -7,7 +7,7 @@
 <b class="boxHeader"><spring:message code="feedback.statuses"/></b>
 <div class="box" >
 
-<c:if test="${empty feedbackPageMessage}"> 
+<c:if test="${not empty statuses.status}"> 
     
 <form method="post">
 

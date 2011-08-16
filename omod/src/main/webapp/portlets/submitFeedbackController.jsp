@@ -30,11 +30,11 @@
         </tr>
         <tr>
             <td><spring:message code="feedback.pageContext"/> </td>
-            <td><input type="checkbox" name="pagecontext" value="Yes"> </input>        </td>   
+            <td><input type="checkbox" name="pagecontext" value="Yes"/>   </td>   
         </tr>
         <tr>
             <td><spring:message code="feedback.attachment"/> </td>
-            <td><input type="file" name="file" size="40"> </input> </td>   
+            <td><input type="file" name="file" size="40"/> </td>   
         </tr>
     </table>
         <br/>

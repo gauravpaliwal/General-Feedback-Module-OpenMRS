@@ -2,6 +2,7 @@ package org.openmrs.module.feedback.web;
 
 //~--- non-JDK imports --------------------------------------------------------
 
+import java.util.Date;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -22,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import org.openmrs.notification.Message;
 
 public class FeedbackFormController extends SimpleFormController {
 
@@ -89,6 +91,55 @@ public class FeedbackFormController extends SimpleFormController {
                 if (Context.getAuthenticatedUser().isSuperUser() || Context.hasPrivilege("Admin Feedback")
                         || Context.getAuthenticatedUser().equals(s.getCreator())) {
                     service.saveFeedbackComment(k);
+		    try {
+
+                // Create Message
+                Message message = new Message();
+
+                message.setSender(Context.getAdministrationService().getGlobalProperty("feedback.notification.email"));
+                message.setRecipients(
+                    Context.getAdministrationService().getGlobalProperty("feedback.admin.notification.email"));
+                message.setSubject("New feedback comment" + " " + s.getFeedbackId() );
+                message.setContent( k.getComment() + "  " + k.getCreator() + k.getDateCreated() + " "
+                                   + "Ticket Number: " + s.getFeedbackId() + " Subject : " + s.getSubject()
+                                   + " Take Action :" + request.getScheme() + "://" + request.getServerName() + ":"
+                                   + request.getServerPort() + request.getContextPath()
+                                   + "/module/feedback/feedback.form?feedbackId=" + s.getFeedbackId() + "#command");
+                message.setSentDate(new Date());
+
+                // Send message
+                Context.getMessageService().send(message);
+            } catch (Exception e) {
+                log.error(
+                    "Unable to sent the email to the Email : "
+                    + Context.getUserContext().getAuthenticatedUser().getUserProperty(
+                        "feedback.admin.notification.email"));
+            }	
+		    
+		if ("Yes".equals(
+                    Context.getUserContext().getAuthenticatedUser().getUserProperty("feedback_notificationFollowup"))) {
+                try {
+
+                    // Create Message
+                    Message message = new Message();
+
+                    message.setSender(
+                        Context.getAdministrationService().getGlobalProperty("feedback.notification.email"));
+                    message.setRecipients(
+                    Context.getUserContext().getAuthenticatedUser().getUserProperty("feedback_email"));
+		    message.setSubject("New feedback comment" + " " + s.getFeedbackId() );
+                    message.setContent(k.getComment() + " by " + k.getCreator() + " " + k.getDateCreated() + " " + "Ticket Number: " + s.getFeedbackId() + " Subject : " + s.getSubject() + " Take Action :" + request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()  + "/module/feedback/feedback.form?feedbackId=" + s.getFeedbackId() + "#command");
+                    message.setSentDate(new Date());
+
+                    // Send message
+                    Context.getMessageService().send(message);
+                } catch (Exception e) {
+                    log.error("Unable to sent the email to the Email : "
+                              + Context.getUserContext().getAuthenticatedUser().getUserProperty("feedback_email"));
+                }
+            }
+		    
+		    
                     request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR,
                                                       "feedback.notification.comment.submitted");
                 }

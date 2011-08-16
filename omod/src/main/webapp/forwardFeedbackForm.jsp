@@ -18,7 +18,7 @@
 	    </tr>
             <tr>
                 <th width="400"><spring:message code="feedback.subject"/></th>
-                <td><input type="text" name="summary" value=<c:out value="${feedback.subject}"/>></input> </td>
+                <td><input type="text" name="summary" value=<c:out value="${feedback.subject}"/> /> </td>
             </tr>        
             <tr>
                 <th width="400"><spring:message code="feedback.content"/></th>

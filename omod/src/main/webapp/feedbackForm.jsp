@@ -113,7 +113,7 @@
 <form method="post"   enctype="multipart/form-data">
            <tr>
             	<th><spring:message code="feedback.attachment"/> </th>
-            	<td><input type="file" accept="image" name="file" size="40" > </input> 
+            	<td><input type="file" accept="image" name="file" size="40" />
 		<div class="description"> 
 			<spring:message code="feedback.attachment.comment.mandatory"/>
 		</div>
@@ -138,7 +138,7 @@
                 <input type=hidden name=feedbackId value="${feedback.feedbackId}"/> 
                 <input type="submit" value="<spring:message code="general.delete"/>" />   
             </form>   
-	    <form method="post" action="<openmrs:contextPath/>/module/feedback/forwardFeedback.form"> 
+	    <form method="get" action="<openmrs:contextPath/>/module/feedback/forwardFeedback.form"> 
                 <input type=hidden name=feedbackId value="${feedback.feedbackId}"/> 
                 <input type="submit" value="<spring:message code="feedback.forward"/>" />            
             </form>

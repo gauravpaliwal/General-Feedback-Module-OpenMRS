@@ -29,7 +29,10 @@ $j(document).ready(function() {
                     <spring:message code="feedback.addSortWeight"/>: 
                 </td>
                 <td>
-                    <input type="text" name="sortWeight"  size="50"  value="" />
+                    <input type="text" name="sortWeight"  size="5"  value="" />
+                    <div class="description">
+                        <spring:message code="feedback.priority"/>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -59,7 +62,7 @@ $j(document).ready(function() {
     </table> 
 </div>
 </br>
-<b class="boxHeader"><spring:message code="feedback.severity.help.heading"/></b>
+<b class="boxHeader"><spring:message code="feedback.help"/></b>
 <div class="box">
     	<ul>
 		<li><i><spring:message code="feedback.severity.help.l1"/></i></li>

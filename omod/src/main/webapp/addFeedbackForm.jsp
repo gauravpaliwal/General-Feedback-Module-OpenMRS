@@ -35,7 +35,7 @@
         </tr>
         <tr>
             <td valign="top"><spring:message code="feedback.feedback"/> </td>
-            <td><textarea name="feedback" rows="10" cols="120" type="_moz" size="35"></textarea> </td>
+            <td><textarea name="feedback" rows="7" cols="100" type="_moz" size="35"></textarea> </td>
         </tr>
         <tr>
             <td><spring:message code="feedback.pageContext"/> </td>

@@ -89,31 +89,31 @@
 	
 	<globalProperty>
 		<property>feedback.notification</property>
-		<defaultValue></defaultValue>
+		<defaultValue>A New Feedback Submitted Successfully</defaultValue>
 		<description>What message should be sent to the user once feedback is successfully submitted</description>
 	</globalProperty>
 	
 	<globalProperty>
 		<property>feedback.notification.email</property>
-		<defaultValue></defaultValue>
+		<defaultValue>A New Feedback Submitted Successfully</defaultValue>
 		<description>Email ID to be used to send email notification to users</description>
 	</globalProperty>
 	
 	<globalProperty>
 		<property>feedback.admin.notification</property>
-		<defaultValue></defaultValue>
+		<defaultValue>A New Feedback Submitted Successfully</defaultValue>
 		<description>What message should be sent to the admin once feedback is successfully submitted</description>
 	</globalProperty>
 	
 	<globalProperty>
 		<property>feedback.ui.notification</property>
-		<defaultValue></defaultValue>
+		<defaultValue>A New Feedback Submitted Successfully</defaultValue>
 		<description>What message should be shown to the user once feedback is successfully submitted</description>
 	</globalProperty>
 	
 	<globalProperty>
 		<property>feedback.admin.notification.email</property>
-		<defaultValue></defaultValue>
+		<defaultValue>A New Feedback Submitted Successfully</defaultValue>
 		<description>Email Id to be used to send email notification to admin</description>
 	</globalProperty>
 	

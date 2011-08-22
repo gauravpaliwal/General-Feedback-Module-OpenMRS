@@ -18,7 +18,11 @@
         </tr>
 	<tr class="oddRow">
             	<td width="200"><spring:message code="feedback.sortWeight"/></td>
-                <td><input type="text" name="sortWeight"  size="50"  value="${severity.sortWeight}"/></td>
+                <td><input type="text" name="sortWeight"  size="5"  value="${severity.sortWeight}"/>
+                    <div class="description">
+                        <spring:message code="feedback.priority"/>
+                    </div>
+                </td>
         </tr>
         <tr>    
             <td>
@@ -40,18 +44,7 @@
 </div>
 
 </br>
-<b class="boxHeader"><spring:message code="feedback.severity.help.heading"/></b>
-<div class="box">
-    	<ul>
-		<li><i><spring:message code="feedback.severity.help.l1"/></i></li>
-		<li><i><spring:message code="feedback.severity.help.l2"/></i></li>
-                <li><i><spring:message code="feedback.severity.help.l3"/></i></li>
-                <li><i><spring:message code="feedback.severity.help.l4"/></i></li>
-                <li><i><spring:message code="feedback.severity.help.l5"/></i></li>
-                <li><i><spring:message code="feedback.severity.help.l6"/></i></li>
-        </ul>
-</div>
-        </openmrs:hasPrivilege>
+</openmrs:hasPrivilege>
 
         
 <%@ include file="/WEB-INF/template/footer.jsp" %>

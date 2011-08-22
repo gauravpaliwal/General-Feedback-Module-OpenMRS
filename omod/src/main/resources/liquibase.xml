@@ -115,5 +115,52 @@
                 <addAutoIncrement tableName="feedback_comment" columnName="feedback_comment_id" columnDataType="int"/>
                 
         </changeSet>
+	
+	<changeSet id="feedback-2011-07-02-12:59" author="gauravpaliwal">
+              
+		<comment>
+			Adding dummy value
+		</comment> 
+		<insert tableName="feedback_severity">
+			<column name="severity" value="Urgent"/>
+		</insert>
+		<insert tableName="feedback_severity">
+			<column name="severity" value="High"/>
+		</insert>
+		<insert tableName="feedback_severity">
+			<column name="severity" value="Medium"/>
+		</insert>
+		<insert tableName="feedback_severity">
+			<column name="severity" value="Low"/>
+		</insert>
+		<insert tableName="feedback_severity">
+			<column name="severity" value="Low"/>
+		</insert>		
+		<insert tableName="feedback_predefined_subject">
+			<column name="subject" value="Add Concept"/>
+		</insert>
+		<insert tableName="feedback_predefined_subject">
+			<column name="subject" value="Patient Not Found"/>
+		</insert>
+		<insert tableName="feedback_predefined_subject">
+			<column name="subject" value="Error"/>
+		</insert>
+		<insert tableName="feedback_predefined_subject">
+			<column name="subject" value="Record Not Found"/>
+		</insert>
+		<insert tableName="feedback_status">
+			<column name="status" value="Solved"/>
+		</insert>
+		<insert tableName="feedback_status">
+			<column name="status" value="Forwarded"/>
+		</insert>
+		<insert tableName="feedback_status">
+			<column name="status" value="Pending"/>
+		</insert>
+		<insert tableName="feedback_status">
+			<column name="status" value="Waiting for Data"/>
+		</insert>
+                       
+        </changeSet>
                
 </databaseChangeLog>

@@ -55,7 +55,7 @@ $j(document).ready(function() {
     </table> 
 </div>
 <br/>
-<b class="boxHeader"><spring:message code="feedback.status.help.heading"/></b>
+<b class="boxHeader"><spring:message code="feedback.help"/></b>
 <div class="box">
     	<ul>
 		<li><i><spring:message code="feedback.status.help.l1"/></i></li>

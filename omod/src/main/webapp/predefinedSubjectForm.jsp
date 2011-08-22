@@ -18,7 +18,11 @@
             </tr>
             <tr class="oddRow">
             	<td width="200"><spring:message code="feedback.sortWeight"/></td>
-                <td><input type="text" name="sortWeight"  size="50"  value="${predefinedsubjects.sortWeight}"/></td>
+                <td><input type="text" name="sortWeight"  size="5"  value="${predefinedsubjects.sortWeight}"/>
+                    <div class="description">
+                        <spring:message code="feedback.priority"/>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <input TYPE=hidden name=predefinedsubjectid value= <c:out value="${predefinedsubjects.feedbackPredefinedSubjectId}"/> >
@@ -43,18 +47,6 @@
 </div>
 
 </br>
-<b class="boxHeader"><spring:message code="feedback.predefinedsubject.help.heading"/></b>
-<div class="box">
-    	<ul>
-		<li><i><spring:message code="feedback.predefinedsubject.help.l1"/></i></li>
-		<li><i><spring:message code="feedback.predefinedsubject.help.l2"/></i></li>
-                <li><i><spring:message code="feedback.predefinedsubject.help.l3"/></i></li>
-                <li><i><spring:message code="feedback.predefinedsubject.help.l4"/></i></li>
-                <li><i><spring:message code="feedback.predefinedsubject.help.l5"/></i></li>
-                <li><i><spring:message code="feedback.predefinedsubject.help.l6"/></i></li>
-
-        </ul>
-</div>
 </openmrs:hasPrivilege>
 
 

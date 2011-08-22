@@ -10,21 +10,25 @@
         <tr>
             <td><spring:message code="feedback.userPreference.email"/></td>
             <td>
-                    <input type="text" name="email" size="50" value="${feedback_email}"/>
+                    <input type="text" name="email" size="30" value="${feedback_email}"/>
             </td>
         </tr>
         <tr>
             <td><spring:message code="feedback.userPreference.notification.receipt"/></td>
             <td>
-                <input type="radio" name="notificationReceipt" value="<spring:message code="general.yes"/>" <c:if test="${feedback_notificationReceipt == 'Yes'}">checked</c:if>> Yes
-                <input type="radio" name="notificationReceipt" value="<spring:message code="general.no"/>"  <c:if test="${feedback_notificationReceipt == 'No'}">checked</c:if>> No
+                <label for="radio1"><spring:message code="general.yes"/></label>
+                <input id="radio1" type="radio" name="notificationReceipt" value="<spring:message code="general.yes"/>" <c:if test="${feedback_notificationReceipt == 'Yes'}">checked</c:if>>
+                <label for="radio2"><spring:message code="general.no"/></label>
+                <input id="radio2" type="radio" name="notificationReceipt" value="<spring:message code="general.no"/>" <c:if test="${feedback_notificationReceipt == 'No'}">checked</c:if>>
             </td>
         </tr>
         <tr>
             <td><spring:message code="feedback.userPreference.notification.followup"/></td>
             <td>
-                <input type="radio" name="notificationFollowup" value="<spring:message code="general.yes"/>"  <c:if test="${feedback_notificationFollowup == 'Yes'}">checked</c:if>> Yes
-                <input type="radio" name="notificationFollowup" value="<spring:message code="general.no"/>"  <c:if test="${feedback_notificationFollowup == 'No'}">checked</c:if>> No
+                <label for="radio3"><spring:message code="general.yes"/></label>
+                <input type="radio" id="radio3" name="notificationFollowup" value="<spring:message code="general.yes"/>" <c:if test="${feedback_notificationFollowup == 'Yes'}">checked</c:if>>
+                <label for="radio4"><spring:message code="general.no"/></label>
+                <input type="radio" id="radio4" name="notificationFollowup" value="<spring:message code="general.no"/>" <c:if test="${feedback_notificationFollowup == 'No'}">checked</c:if>>
             </td>
         </tr>
         <tr>

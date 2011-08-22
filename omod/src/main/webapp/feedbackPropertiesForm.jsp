@@ -10,7 +10,7 @@
         <table>
 	<tr>
             <td valign="top"><spring:message code="feedback.admin.properties.notification.email"/> </td>
-            <td><input type="text" name="feedbackNotificationEmail" size="80" value="<openmrs:globalProperty key="feedback.notification.email"/>"></td>
+            <td><input type="text" name="feedbackNotificationEmail" size="30" value="<openmrs:globalProperty key="feedback.notification.email"/>"></td>
         </tr>
         <tr>
             <td valign="top"><spring:message code="feedback.admin.properties.notification"/> </td>
@@ -18,7 +18,7 @@
         </tr>  
 	<tr>
             <td valign="top"><spring:message code="feedback.admin.properties.admin.notification.email"/> </td>
-            <td><input type="text" name="feedbackAdminNotificationEmail" size="80" value="<openmrs:globalProperty key="feedback.admin.notification.email"/>"></td>
+            <td><input type="text" name="feedbackAdminNotificationEmail" size="30" value="<openmrs:globalProperty key="feedback.admin.notification.email"/>"></td>
         </tr>
 	<tr>
             <td valign="top"><spring:message code="feedback.admin.properties.admin.notification"/> </td>
